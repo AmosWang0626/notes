@@ -12,10 +12,13 @@ node.js的安装：下载msi文件，傻瓜式安装
   > http://www.cnblogs.com/wj204/p/6031435.html
 
 
-## 2.安装淘宝镜像
+## 2.淘宝镜像
+### 2.1 安装淘宝镜像
 * npm install -g cnpm --registry=https://registry.npm.taobao.org 
+### 2.2 卸载淘宝镜像
+* npm uninstall cnpm -g
 
-### 解决异常
+### 2.3 下载依赖异常
 某镜像下载不下来，例如 js-beautify-1.7.0，干脆找到下载地址(github),然后放到本地仓库
 > https://github.com/beautify-web/js-beautify/tree/v1.7.0
 
