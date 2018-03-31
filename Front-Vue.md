@@ -53,4 +53,6 @@ package.json 引用的有些可能是不安全的，github也会做出提示，�
 * 检查更新: ncu
 * 当前项目依赖更新: ncu -u
 * 所有项目依赖更新: ncu -a
-
+## 6.删除node_modules
+* 全局安装rimraf插件: npm install -g rimraf
+* 在项目根目录执行删除: rimraf node_modules
