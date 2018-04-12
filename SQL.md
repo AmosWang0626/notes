@@ -7,6 +7,9 @@
 # MyBatis
 
 ## Mapper
-- <if test="search.memberIds != null">
-- AND MEMBER_ID IN (<foreach collection="search.memberIds" item="item" separator=",">#{item}</foreach>)
-- </if>
+### 查询条件为List
+```sql
+<if test="search.memberIds != null">
+  AND MEMBER_ID IN (<foreach collection="search.memberIds" item="item" separator=",">#{item}</foreach>)
+</if>
+```
