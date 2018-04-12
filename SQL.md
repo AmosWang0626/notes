@@ -8,8 +8,12 @@
 
 ## Mapper
 ### 查询条件为List
-```sql
+```xml
 <if test="search.memberIds != null">
   AND MEMBER_ID IN (<foreach collection="search.memberIds" item="item" separator=",">#{item}</foreach>)
 </if>
+```
+### 查询条件含特殊字符
+```xml
+<if test="search.count != null">AND COUNT <![CDATA[ <= ]]> #{search.count}</if>
 ```
