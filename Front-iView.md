@@ -43,3 +43,24 @@ listenToFrame(msg) {
 }
 ```
 ---
+### 父组件向子组件传递数据双向绑定问题
+
+注意：声明周期问题
+data() 加载比 create 早
+
+1.第一种方式监听(较原始底层)
+// 监听父组件传递来的数据
+watch: {
+    fatherData: {
+        dep: true,
+        handler(value) {
+            this.fatherData = value;
+        }
+    }
+}
+// 第二种方式监听
+computed: {
+    pageData() {
+        return this.fatherData.pageData;
+    }
+}
