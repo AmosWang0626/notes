@@ -15,5 +15,12 @@
 ```
 ### 查询条件含特殊字符
 ```xml
+"," "=" "?" "||" "or" "&&" "and" "|" "bor" "^" "xor" "&" "band"
+"==" "eq" "!=" "neq" "<" "lt"">" "gt" "<=" "lte" ">=" "gte" "in"
+"not" "<<" "shl" ">>" "shr" ">>>" "ushr" "+" "-" "*" "/" "%" "."
+"(""instanceof"  "[" "]" <![CDATA[ <= ]]>
+```
+---
+```
 <if test="search.count != null">AND COUNT <![CDATA[ <= ]]> #{search.count}</if>
 ```
