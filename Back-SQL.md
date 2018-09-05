@@ -24,3 +24,6 @@
 ```
 <if test="search.count != null">AND COUNT <![CDATA[ <= ]]> #{search.count}</if>
 ```
+```
+<if test="id!=null &amp;&amp; id!=''"></if>
+```
