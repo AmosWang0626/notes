@@ -1,75 +1,63 @@
 # Docker 学习笔记
+>  镜像与容器的关系
+> - 类  and 对象
+> - 镜像 and 容器
 
-## docker 常用命令
-- docker images
-- docker search nginx
-- docker pull nginx
-- docker run -d --name nginx-amos nginx
-- docker stop nginx-amos
-- docker ps
-- docker ps -a
+## Docker 常用命令
 - docker rm 8cfd957086d9
 - docker rm nginx-amos
 
-## 镜像与容器的关系
 
-|DOCKER|面向对象|
-|---|---|
-|容器|对象|
-|镜像|类|
+## Docker基本操作
 
-----------
-## Docker run 命令解析
+### 一、查询镜像：
+> docker search [OPTIONS] TERM
+- TERM是必须的，表示镜像的名字
+
+### 二、查看电脑上安装的镜像：
+> docker images [OPTIONS] [REPOSITORY[:TAG]]
+- 两个属性不是必需的
+
+### 三、拉取一个镜像
+> docker pull [OPTIONS] NAME[:TAG]
+- NAME是必须的，表示拉去镜像的名字
+
+### 四、运行容器
 > docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
-
-### OPTIONS说明：
-- -a stdin 指定标准输入输出内容类型，可选 STDIN/STDOUT/STDERR 三项；
 - -d 后台运行容器，并返回容器ID；
 - -i 以交互模式运行容器，通常与 -t 同时使用；
 - -t 为容器重新分配一个伪输入终端，通常与 -i 同时使用；
 - --name nginx-amos 为容器指定一个名称；
-- --dns 8.8.8.8 指定容器使用的DNS服务器，默认和宿主一致；
-- --dns-search example.com 指定容器DNS搜索域名，默认和宿主一致；
-- --h "mars" 指定容器的hostname；
-- --e username="ritchie" 设置环境变量；
-- --env-file=[] 从指定文件读入环境变量；
-- --cpuset="0-2" or --cpuset="0,1,2" 绑定容器到指定CPU运行；
-- --m 设置容器使用内存最大值；
-- --net="bridge" 指定容器的网络连接类型，支持 bridge/host/none/container: 四种类型；
-- --link=[] 添加链接到另一个容器；
-- --expose=[] 开放一个端口或一组端口；
+- -p **:** 指定端口 (p小写)
+- -P 随机分配端口 (P大写)
+
+### 五、停止容器
+> docker stop [OPTIONS] CONTAINER [CONTAINER...]
+- CONTAINER
+	- CONTAINER ID：容器ID
+	- NAMES：容器名称
+
+### 六、列出容器
+> docker ps [OPTIONS]
+- -a 显示所有的容器，包括未运行的
+- -q :静默模式，只显示容器编号
+- -s :显示总的文件大小
+
+### 七、拉取一个镜像
+
+
+### 八、拉取一个镜像
+
+
+### 九、拉取一个镜像
+
+
+### 十、拉取一个镜像
 
 ----------
 
-
-# 拉取第一个Docker镜像
-
-### 一、拉取镜像：
-- docker pull [OPTIONS] NAME[:TAG]
-- NAME是必须的，表示拉去镜像的名字
-
-### 二、查看电脑上安装的镜像：
-> docker images [OPTIONS] [REPOSITORY[:TAG]]
-> 两个属性不是必需的
-
-- 先查看电脑上有的镜像
-    docker images
-    
-- 拉取镜像(拉取的时候只有名字，没有地址，它会先在本地找，
-  本地找不到回到docker的仓库去找)
-    docker pull hello-world
-
 ----------
-
-# 运行我们的第一个镜像
-
-> docker run [OPTIONS] IMAGE[:TAG] [COMMAND] [ARG...]
-> IMAGE 是必需的
-
-- docker run hello-world
-
-----------
-# 修改镜像存放位置
+## 安装 --- 修改镜像存放位置
     https://blog.csdn.net/stemq/article/details/5315093
     
     控制面板->管理工具->Hyper-V 管理器->虚拟机右键设置
