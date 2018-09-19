@@ -1,7 +1,17 @@
 # Docker 学习笔记
 
+## docker 常用命令
+- docker images
+- docker search nginx
+- docker pull nginx
+- docker run -d --name nginx-amos nginx
+- docker stop nginx-amos
+- docker ps
+- docker ps -a
+- docker rm 8cfd957086d9
+- docker rm nginx-amos
+
 ## 镜像与容器的关系
-类似面向对象中类与对象的关系
 
 |DOCKER|面向对象|
 |---|---|
