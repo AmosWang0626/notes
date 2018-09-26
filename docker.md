@@ -20,11 +20,11 @@
 ### 4.运行容器
 > docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 - -d 后台运行容器，并返回容器ID；
+- -P 随机分配端口 (P大写)
+- -p **:** 指定端口 (p小写)
 - -i 以交互模式运行容器，通常与 -t 同时使用；
 - -t 为容器重新分配一个伪输入终端，通常与 -i 同时使用；
 - --name nginx-amos 为容器指定一个名称；
-- -p **:** 指定端口 (p小写)
-- -P 随机分配端口 (P大写)
 
 ### 5.停止容器
 > docker stop [OPTIONS] CONTAINER [CONTAINER...]
@@ -42,7 +42,7 @@
 > docker rm [OPTIONS] CONTAINER [CONTAINER...]
 - -f 通过SIGKILL信号强制删除一个运行中的容器
 - -l 移除容器间的网络连接，而非容器本身
-- -v -v 删除与容器关联的卷
+- -v 删除与容器关联的卷
 
 ### 8.删除镜像
 > docker rmi [OPTIONS] IMAGE [IMAGE...]
@@ -50,9 +50,9 @@
 - docker rmi mysql/mysql-server:latest
 
 ### 9.修改镜像存放位置(Windows Docker安装)
-    https://blog.csdn.net/stemq/article/details/5315093
-    控制面板->管理工具->Hyper-V 管理器->虚拟机右键设置
-    将默认C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx的文件拷贝到想要改变的路径
+- https://blog.csdn.net/stemq/article/details/5315093
+- 控制面板->管理工具->Hyper-V 管理器->虚拟机右键设置
+- 将默认C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx的文件拷贝到想要改变的路径
 
 ### 10.交互模式
 > docker exec --help
@@ -67,8 +67,6 @@
 ----------
 
 ## Docker 内部交互
-
-
 ## Docker 网络通讯
 > 网络类型：
 > - Bridge: Bridge有独立的Namespace，这就涉及到端口映射
