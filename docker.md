@@ -3,11 +3,6 @@
 > - 类  and 对象
 > - 镜像 and 容器
 
-## Docker 常用命令
-- docker rm 8cfd957086d9
-- docker rm nginx-amos
-
-
 ## Docker基本操作
 
 ### 一、查询镜像：
@@ -52,6 +47,7 @@
 ### 八、删除镜像
 > docker rmi [OPTIONS] IMAGE [IMAGE...]
 - -f 强制删除
+- docker rmi mysql/mysql-server:latest
 
 ### 九、拉取一个镜像
 
@@ -60,63 +56,12 @@
 
 ----------
 
-----------
-## 安装 --- 修改镜像存放位置
-    https://blog.csdn.net/stemq/article/details/5315093
-    
-    控制面板->管理工具->Hyper-V 管理器->虚拟机右键设置
-    
-    将默认C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx的文件拷贝到想要改变的路径
-
-----------
-
-# Docker 运行 Nginx服务器
-// docker run --help
-> 1. 持久化容器
-> 2. 前台挂起 & 后台运行
-> 3. 进入Nginx内部
-
-- 首先查找Nginx
-    - docker search nginx
-
-- 首先pull获得我们要运行的Nginx
-    - docker pull nginx
-    - 报错了 Get XXX: unauthorized: incorrect username or password，不要紧，docker退出登录，使用用户名加密码登录，不能是邮箱加密码哟。
-
-- 查看当前docker里边运行的容器
-    - docker images
-
-- 后台运行Nginx, -d 后台运行容器，并返回容器ID
-    - docker run -d nginx
-
-- 运行之后，查看一下
-    - docker ps -a
-
-- 查看docker内部信息
-    // docker exec --help
-
-	-i 以交互模式运行容器
-	-t 为容器重新分配一个伪输入终端
-	bash 是进入终端的命令(Linux系统)，另外因为Nginx运行在Linux之上
-
-    docker exec -it 容器别名 bash
-
-- 查看Nginx的位置
-    which nginx
-    whereis nginx
-
-- 停止Nginx
-    docker stop 容器名字或者id
-
-----------
-
 ## Docker 网络通讯
 > 网络类型：
-    Bridge: Bridge有独立的Namespace，这就涉及到端口映射
-    Host: 使容器与主机使用同一块网卡
+> - Bridge: Bridge有独立的Namespace，这就涉及到端口映射
+> - Host: 使容器与主机使用同一块网卡
 
 ### Bridge 第一种方式
-
 > -p **:** 指定端口 p小写
 
     Bridge[桥接网络的方式]启动容器
@@ -144,6 +89,52 @@
     localhost:32769
 
 ----------
+## Windows Docker安装 ~ 修改镜像存放位置
+    https://blog.csdn.net/stemq/article/details/5315093
+    
+    控制面板->管理工具->Hyper-V 管理器->虚拟机右键设置
+    
+    将默认C:\Users\Public\Documents\Hyper-V\Virtual hard disks\MobyLinuxVM.vhdx的文件拷贝到想要改变的路径
+
+----------
+
+# Docker 运行 Nginx服务器
+> docker run --help
+> 1. 持久化容器
+> 2. 前台挂起 & 后台运行
+> 3. 进入Nginx内部
+
+- 首先查找Nginx镜像
+    - docker search nginx
+
+- pull获得我们要运行的Nginx
+    - docker pull nginx
+    - 报错了 Get XXX: unauthorized: incorrect username or password，不要紧，docker退出登录，使用用户名加密码登录，不能是邮箱加密码哟。
+
+- 查看当前docker里边运行的容器
+    - docker images
+
+- 后台运行Nginx, -d 后台运行容器，并返回容器ID
+    - docker run -d nginx
+
+- 运行之后，查看一下
+    - docker ps -a
+
+- 查看docker内部信息
+> docker exec --help
+> - -i 以交互模式运行容器
+> - -t 为容器重新分配一个伪输入终端
+> - bash 是进入终端的命令(Linux系统)，另外因为Nginx运行在Linux之上
+> - docker exec -it 容器别名 bash
+
+- 查看Nginx的位置
+    which nginx
+    whereis nginx
+
+- 停止Nginx
+    docker stop 容器名字或者id
+
+----------
 
 ## 其他
 
@@ -151,109 +142,19 @@
 
 ----------
 
+### Docker MySQL
 
-### 创建自己的Java web应用
-
-    制作自己的镜像
-    
-    Dockerfile：告诉Docker我要怎么制作docker镜像，制作镜像的每一步操作是什么
-    
-    docker build：之后执行Dockerfile中描述的事情
-    
-    将自己的应用.war放到目录中,ls查看目录中文件
-    ls
-    
-    修改文件名字
-    mv jpress-web-newest.war jpress.war
-    
-    下载Tomcat Docker版本(老地方搜索)
-    docker pull hub.c.163.com/library/tomcat:latest
-    
-    下载完成，查看本地的镜像（335MB）
-    docker images
-    
-    创建Dockerfile文件
-    vi Dockerfile
+- docker pull mysql/mysql-server:8.0
+- docker run -d -p 3306:3306 --name mysql666 -e MYSQL_ROOT_PASSWORD=123456 mysql/mysql-server:8.0
+- netstat -aon|findstr "3306"
+- docker exec -it mysql666 mysql -uroot -p
+- docker exec -it mysql666 mysql -uroot -p123456
+- ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
+- docker exec -it mysql666 bash【bash访问】
+- mysql666 【启动、重启、停止】
+  - docker start mysql666
+  - docker restart mysql666
+  - docker stop mysql666
 
 
-以下是Dockerfile的内容，其中中文注解不算
 
-    ***Dockerfile*****************************************
-    // 告诉Docker这里是本镜像的起点
-    from hub.c.163.com/library/tomcat
-    
-    // 所有者
-    MAINTAINER amos ***@163.com
-    
-    // 将自己的应用copy进来
-    COPY jpress.war /usr/local/tomcat/webapps
-    
-    插入i
-    保存退出:wq
-    
-    ***Dockerfile*****************************************
-
-----------
-    
-    运行制作镜像
-    docker build -t jpress:latest .
-    
-    .所在位置代表目录，.也就是当前目录
-    -t 设置该镜像名字，后边跟的就是名字jpress，版本是latest
-
-
-    运行镜像(-d：后台运行,-p：指定端口号，:8080：Tomcat默认端口号)
-    docker run -d -p 8888:8080 jpress
-    
-    查看运行的进程
-    docker ps
-    
-    查看端口状态
-    netstat -na|grep 8888
-    
-    浏览器测试：
-    localhost:8888
-    
-    访问应用
-    localhost:8888/jpress
-
-----------
-
-    运行出一个MySQL
-    
-    搜索一个
-    docker pull hub.c.163.com/library/mysql:latest
-    
-    先下载
-    docker pull hub.c.163.com/library/mysql:latest
-    
-    后台运行MySQL（-e：后边跟的就是键值对）
-    docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=000000 -e MYSQL_DATABASE=jpress hub.c.163.com/library/mysql:latest
-    
-    查看运行的进程
-    docker ps
-    
-    查看端口状态
-    netstat -na|grep 3306
-    
-    运行jpress项目的的时候，可能会报错
-    localhost应该改为本机的IP地址192.168.1.103
-    
-    用ifconfig能查到，如192.168.1.103
-    
-    获得web容器id
-    docker ps
-    
-    重启web容器
-    docker restart f888
-
-----------
-
-
-    集装箱、标准化和隔离
-    
-    镜像、容器和仓库（build ship run）
-    
-    docker命令 pull,build,run,stop,restart,exec
-
-----------
