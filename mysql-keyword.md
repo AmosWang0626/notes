@@ -12,6 +12,10 @@
 - select concat('姓名:',"AAA",',手机:', "13066668888");
   - 姓名:AAA,手机:13066668888
 
+## 派生表
+- SELECT 0 FROM (SELECT 1) temp;
+  - temp 派生表别名，务必设置
+
 # MyBatis
 
 ## Mapper
