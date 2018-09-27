@@ -143,6 +143,16 @@
   - docker start mysql666
   - docker restart mysql666
   - docker stop mysql666
+- Link by Navicat
+  - Host '172.18.0.1' is not allowed to connect to this MySQL server
+    - select host,user from mysql.user;
+    - update mysql.user set host = "%" where user = "root";
+    - flush privileges;
+  - 2059 - Authentication plugin 'caching_sha2_password' cannot be loaded: ***乱码
+    - select user,host,authentication_string from mysql.user;
+    - alter user 'root'@'%' identified with mysql_native_password by 'root' password expire never;
+    - flush privileges;
+
 
 
 
