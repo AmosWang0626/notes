@@ -7,6 +7,8 @@
   - 要想区分大小写用：REGEXP BINARY
   - select 'hello' REGEXP 'HelLo';
   - select 'hello' REGEXP BINARY 'HelLo';
+- REGEXP 匹配多个
+  - SELECT * FROM consurme_order WHERE TYPE_CODE REGEXP '[QWER]|A01|A02';
 
 ## 拼接concat(...)
 - select concat('姓名:',"AAA",',手机:', "13066668888");
