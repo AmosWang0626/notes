@@ -178,9 +178,9 @@
     - select user,host,authentication_string from mysql.user;
     - alter user 'root'@'%' identified with mysql_native_password by 'root' password expire never;
     - flush privileges;
+----------
 
-
-## docker redis
+## Docker Redis
 > docker安装Redis
 
 - docker search redis
