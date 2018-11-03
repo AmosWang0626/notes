@@ -48,6 +48,8 @@
 > docker rmi [OPTIONS] IMAGE [IMAGE...]
 - -f 强制删除
 - docker rmi mysql/mysql-server:latest
+- 手动删除悬空镜像
+ - docker rmi $(docker images -f "dangling=true" -q)
 
 ### 9.修改镜像存放位置(Windows Docker安装)
 - https://blog.csdn.net/stemq/article/details/5315093
@@ -60,6 +62,27 @@
 - -t 为容器重新分配一个伪输入终端
 - bash 是进入终端的命令(Linux系统)，另外因为Nginx运行在Linux之上
 - docker exec -it 容器别名 bash
+
+### 11.docker system 系统级命令
+> docker命令的核心（虽然不是特别常用）
+- docker system df 显示docker磁盘使用情况
+- docker system df -v 显示空间使用的详细信息
+- docker system info 显示系统信息
+- docker system prune 自动清理
+  - 已停止的容器
+  - 未被任何容器使用的卷
+  - 未被任何容器所关联的网络
+  - 所有悬空的镜像
+- docker system prune -a 清除所有未被使用的镜像和悬空镜像
+- docker system prune -f 无提示，强制删除
+
+### 12.docker * prune 非系统级清理
+- docker image prune 删除悬空的镜像
+- docker container prune 删除无用的容器
+> 默认会清理掉所有处于stopped状态的容器
+> - 筛选 --filter 【清除所有24小时外创建的容器 docker container prune --filter "until=24h"】
+- docker volume prune 删除无用的卷
+- docker network prune 删除无用的网络
 
 ### 100.其他
 - *:latest 字面意思是最新的 未必
