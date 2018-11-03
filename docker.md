@@ -12,6 +12,7 @@
 ### 2.查看电脑上安装的镜像：
 > docker images [OPTIONS] [REPOSITORY[:TAG]]
 - 两个属性不是必需的
+- docker images --filter "dangling=true"
 
 ### 3.拉取一个镜像
 > docker pull [OPTIONS] NAME[:TAG]
@@ -177,5 +178,15 @@
     - flush privileges;
 
 
+### docker redis
+> docker 安装redis
 
+- docker search redis
+- docker pull redis
+- docker run -d -p 6379:6379 --name docker-redis redis
+- 未设置auth，直接连接即可，也可继续设置auth
+- docker exec -it docker-redis redis-cli
+- config set requirepass root
+- auth root
+- config get requirepass
 
