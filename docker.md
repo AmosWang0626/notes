@@ -125,7 +125,8 @@
 
 ----------
 
-# Docker Nginx
+## Docker Nginx
+> docker安装Nginx
 
 - 首先查找Nginx镜像
   - docker search nginx
@@ -154,7 +155,8 @@
   - docker stop 容器名字或者id
 ----------
 
-### Docker MySQL
+## Docker MySQL
+> docker安装MySQL
 
 - docker pull mysql/mysql-server:8.0
 - docker run -d -p 3306:3306 --name mysql666 -e MYSQL_ROOT_PASSWORD=123456 mysql/mysql-server:8.0
@@ -178,8 +180,8 @@
     - flush privileges;
 
 
-### docker redis
-> docker 安装redis
+## docker redis
+> docker安装Redis
 
 - docker search redis
 - docker pull redis
