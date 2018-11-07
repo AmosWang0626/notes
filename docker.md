@@ -124,9 +124,10 @@
     localhost:32769
 
 ----------
+# Docker 安装软件
 
 ## Docker Nginx
-> docker安装Nginx
+> docker install Nginx
 
 - 首先查找Nginx镜像
   - docker search nginx
@@ -156,7 +157,7 @@
 ----------
 
 ## Docker MySQL
-> docker安装MySQL
+> docker install MySQL
 
 - docker pull mysql/mysql-server:8.0
 - docker run -d -p 3306:3306 --name mysql666 -e MYSQL_ROOT_PASSWORD=123456 mysql/mysql-server:8.0
@@ -181,7 +182,7 @@
 ----------
 
 ## Docker Redis
-> docker安装Redis
+> docker install Redis
 
 - docker search redis
 - docker pull redis
@@ -192,3 +193,17 @@
 - auth root
 - config get requirepass
 
+## Docker Jenkins
+> docker install jenkins
+
+- docker search jenkins
+- docker pull jenkins/jenkins:lts
+- run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home --name my_jenkins jenkins/jenkins:lts
+- volumes（数据卷，简写 -v）用于保存持久化数据
+  - docker volume ls
+  - docker inspect jenkins_home
+  - cd /var/lib/docker/volumes/jenkins_home/
+- 查看日志（-f 跟踪实时日志）
+  - docker logs -f my_jenkins
+
+----------
