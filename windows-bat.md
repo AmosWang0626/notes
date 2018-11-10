@@ -55,3 +55,52 @@ set "name=!name:)=右括号!"
     
     set c="abc&def" ---- 输出结果："abc&def"
     set "c=abc^&def" --- 输出结果：abc&def
+
+# 合并多个ts文件
+```
+@echo off
+:: 开启延迟变量
+setlocal EnableDelayedExpansion
+
+:: 最终生成的文件名称（使用注意1）
+set generate_file=amos.ts
+
+:: =======================
+:: == 生成的文件默认在当前文件夹下 ==
+:: =======================
+:: 最终生成的文件全路径
+:: %~dp0 表示当前文件夹
+set generate_file_full_path=%~dp0%generate_file%
+
+:: 要合并文件数量（/a 表示数字）
+set /a merge_count=0
+:: 要合并的文件的前缀（使用注意2）
+set old_file_prefix=a
+:: 要合并的文件的后缀（使用注意3）
+set old_file_suffix=.ts
+
+:: 文件已存在就删除
+if exist %generate_file% del /f /q %generate_file%
+
+:: 遍历符合格式的文件
+for /r %%i in (*.ts) do (
+    set /a merge_count += 1
+)
+
+:: 初始化空文件
+cd > %generate_file%
+echo 开始合并文件······
+
+:: for 循环遍历所有文件
+for /l %%i in (1, 1, %merge_count%) do (
+    set "temp_file_path=%~dp0%old_file_prefix%%%i%old_file_suffix%"
+    :: 拼接文件 copy generate_file + 当前遍历的file generate_file
+    copy /b %generate_file_full_path% + !temp_file_path! %generate_file_full_path%
+    if "%%i" neq "%~f0" echo =========================
+)
+
+:: 结束语
+echo 合并文件完成!
+pause
+
+```
