@@ -41,3 +41,9 @@
 ```
 <if test="id!=null &amp;&amp; id!=''"></if>
 ```
+
+### 常用建表语句
+```
+  `CREATE_TIME` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `UPDATE_TIME` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+```
