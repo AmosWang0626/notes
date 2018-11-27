@@ -1,12 +1,13 @@
 # Zookeeper 分布式之中流砥柱
 
-## 基本命令
+## 一、基本命令
 
 - docker search zookeeper
 - docker pull zookeeper
 - docker run -d --name zoo -p 2181:2181 zookeeper
 
-## 连接zk【使用 network 代替 --link】
+## 二、连接 zookeeper
+> 使用 network 代替 --link
 - 1.创建网络
   - docker network create net
 
@@ -23,7 +24,50 @@
 - 5.连接zookeeper zkCli.sh
   - docker exec -it zoo zkCli.sh
 
-## docker 命令
+## 三、zookeeper
+> 使用 docker-compose 进行集群部署
+```yaml
+version: '2'
+services:
+    zoo1:
+        image: zookeeper
+        restart: always
+        container_name: zoo1
+        ports:
+            - "2181:2181"
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+    zoo2:
+        image: zookeeper
+        restart: always
+        container_name: zoo2
+        ports:
+            - "2182:2181"
+        environment:
+            ZOO_MY_ID: 2
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+
+    zoo3:
+        image: zookeeper
+        restart: always
+        container_name: zoo3
+        ports:
+            - "2183:2181"
+        environment:
+            ZOO_MY_ID: 3
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+```
+- 使用 docker-compose.yml 启动集群
+  - 下边这个是简化版, 启动集群默认找 docker-compose.yml
+    - docker-compose -p zk_cluster up -d
+    - docker-compose -f docker-compose.yml -p zk_cluster up -d
+  - docker ps -a
+  - docker stop zoo1 zoo2 zoo3
+  - docker rm zoo1 zoo2 zoo3
+
+## 五、docker 命令
 
 - docker run --link 已运行的容器名:自定义的别名
   - 注意: --link 已过时，不建议使用，以及不建议在 docker-compose 中使用
@@ -35,7 +79,10 @@
   - --network 指定网络
   - --network-alias 定义别名
 
-## zookeeper 命令
+## 六、zookeeper 须知
+> - 端口 2181 由 ZooKeeper 客户端使用，用于连接到 ZooKeeper 服务器;
+> - 端口 2888 由对等 ZooKeeper 服务器使用，用于互相通信;
+> - 端口 3888 用于领导者选举.
 
 1. 显示根目录下、文件： ls / 使用 ls 命令来查看当前 ZooKeeper 中所包含的内容
 2. 显示根目录下、文件： ls2 / 查看当前节点数据并能看到更新次数等数据
