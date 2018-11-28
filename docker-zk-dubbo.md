@@ -71,6 +71,82 @@ services:
   - docker stop zoo1 zoo2 zoo3
   - docker rm zoo1 zoo2 zoo3
 
+## 四、dubbo-admin + zookeeper
+```yaml
+version: '3.5'
+services:
+  zoo1:
+    image: zookeeper
+    restart: always
+    hostname: zoo1
+    container_name: zookeeper_1
+    #domainname:
+    ports:
+      - 2181:2181
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      - dubbo-net
+
+  zoo2:
+    image: zookeeper
+    restart: always
+    hostname: zoo2
+    container_name: zookeeper_2
+    ports:
+      - 2182:2181
+    environment:
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      - dubbo-net
+
+  zoo3:
+    image: zookeeper
+    restart: always
+    hostname: zoo3
+    container_name: zookeeper_3
+    ports:
+      - 2183:2181
+    environment:
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      - dubbo-net
+
+  dubbo-admin:
+    image: chenchuxin/dubbo-admin
+    container_name: dubbo
+    ports:
+      - 8080:8080
+    links:
+      - zoo1
+      - zoo2
+      - zoo3
+    networks:
+      - dubbo-net
+    environment:
+      - dubbo.registry.address=zookeeper://zoo1:2181|zookeeper://zoo2:2181|zookeeper://zoo3:2181
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
+
+networks:
+  dubbo-net:
+    name: dubbo-net
+    driver: bridge
+```
+- 启动 (注意当前路径下有 docker-compose.yml)
+  - docker-compose up -d
+- 查看与删除
+    - docker ps -a
+    - docker network ls
+    - docker stop dubbo zookeeper_3 zookeeper_2 zookeeper_1
+    - docker rm dubbo zookeeper_3 zookeeper_2 zookeeper_1
+    - docker network rm dubbo-net
+
 ## 五、docker 命令
 
 - docker run --link 已运行的容器名:自定义的别名
@@ -84,12 +160,11 @@ services:
   - --network-alias 定义别名
 
 - docker-compose
-> - 命令不知道什么意思？help一下吧
-> - docker-compose -h|--help
+  - docker-compose -h|--help
   - docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
     - -f, --file FILE            Specify an alternate compose file (default: docker-compose.yml)
     - -p, --project-name NAME    Specify an alternate project name
-  
+
 
 ## 六、zookeeper 须知
 > - 端口 2181 由 ZooKeeper 客户端使用，用于连接到 ZooKeeper 服务器;
@@ -104,5 +179,3 @@ services:
 6. 删除文件： delete /zk 将刚才创建的 znode 删除
 7. 退出客户端： quit
 8. 帮助命令： help
-
-
