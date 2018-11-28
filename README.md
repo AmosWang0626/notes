@@ -1,6 +1,6 @@
 # notes
 > Java程序员的笔记斋
-
+- 温馨提示：_blank方式打开链接，请按住Ctrl键
 - 项目地址：[notes](https://amoswang0626.github.io/notes/)
 - 我的博客：[blog](https://my.oschina.net/AmosWang)
 
