@@ -14,13 +14,13 @@
 
 - docker
   - [docker 学习笔记](docker/docker.md)
-  - [docker 启动zk + dubbo](docker/docker-zk-dubbo.md)
-  - [docker 打包spring-boot项目](docker/docker-spring-boot.md)
+  - [docker 启动 zk dubbo](docker/docker-zk-dubbo.md)
+  - [docker 打包 spring-boot 项目](docker/docker-spring-boot.md)
 
 - 系统相关
-  - [Linux 相关](system/linux.md)
-  - [Windows bat](system/windows-bat.md)
-  - [Windows cmd](system/windows-cmd.md)
+  - [linux 相关](system/linux.md)
+  - [windows 命令](system/windows-cmd.md)
+  - [windows 批处理](system/windows-bat.md)
 
 - 框架
   - [maven](/frame/maven.md)
