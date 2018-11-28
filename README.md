@@ -7,15 +7,15 @@
 ## 文件目录
 
 - java
-  - [java 基础](java.md)
-  - [java 面试](java-interview.md)
-  - [java 虚拟机](java-jvm.md)
-  - [java 垃圾回收](java-gc.md)
+  - [java 基础](java/java.md)
+  - [java 面试](java/java-interview.md)
+  - [java 虚拟机](java/java-jvm.md)
+  - [java 垃圾回收](java/java-gc.md)
 
 - docker
-  - [docker 学习笔记](docker.md)
-  - [docker 启动zk + dubbo](docker-zk-dubbo.md)
-  - [docker 打包spring-boot项目](docker-spring-boot.md)
+  - [docker 学习笔记](docker/docker.md)
+  - [docker 启动zk + dubbo](docker/docker-zk-dubbo.md)
+  - [docker 打包spring-boot项目](docker/docker-spring-boot.md)
 
 - 系统相关
   - [Linux 相关](system/linux.md)
@@ -31,9 +31,9 @@
 
 - 前端技术
   - [vue](/front/vue.md)
-  - [iView](/front/iview.md)
+  - [iview](/front/iview.md)
   - [vue-webpack](/front/vue-webpack.md)
-  - [JavaScript](/front/javascript.md)
+  - [javascript](/front/javascript.md)
 
 - mysql
   - [mysql 基础](/mysql/mysql.md)
@@ -47,7 +47,7 @@
 
 |#|语法|效果|
 |---|----|:---:|
-|1|`[docker 学习笔记](docker.md)`|[docker 学习笔记](docker.md)|
+|1|`[docker 学习笔记](docker.md)`|[docker 学习笔记](docker/docker.md)|
 |2|`[我的博客](https://my.oschina.net/AmosWang "AmosWang")`|[我的博客](https://my.oschina.net/AmosWang "AmosWang")|
 |3|`[回到顶部](#notes)`|[回到顶部](#notes)|
 
