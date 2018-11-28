@@ -32,29 +32,30 @@ set "name=!name:)=右括号!"
 ```
 
 ## 注意事项
+```
+其中，感叹号其实就是变量百分号（%）的强化版。
+之所以要用！而不用%，是因为在for循环中，当一个变量被多次赋值时，
+%dd%所获取的仅仅是dd第一次被赋予的值；
+要想刷新dd的值，
+就必须首先通过命令"setlocal enabledelayedexpansion"来开启延迟变量开关，
+然后用！dd！来获取dd的值。
 
-    其中，感叹号其实就是变量百分号（%）的强化版。
-    之所以要用！而不用%，是因为在for循环中，当一个变量被多次赋值时，
-    %dd%所获取的仅仅是dd第一次被赋予的值；
-    要想刷新dd的值，
-    就必须首先通过命令"setlocal enabledelayedexpansion"来开启延迟变量开关，
-    然后用！dd！来获取dd的值。
-    
-    http://ttwang.iteye.com/blog/2017672
-    @echo off
-    关闭回显
-    @echo on
-    打开回显
-    
-    
-    如果字符串中有&符号，可以使用 set c="abc&def" ，但是引号会带入变量，如果不想引号被带入变量就要使用 set "c=abc^&def"。
-    
-    set "c=abc&def" ---- 错误
-    set c=abc&def   ---- 错误
-    set c=abc^&def  ---- 错误
-    
-    set c="abc&def" ---- 输出结果："abc&def"
-    set "c=abc^&def" --- 输出结果：abc&def
+http://ttwang.iteye.com/blog/2017672
+@echo off
+关闭回显
+@echo on
+打开回显
+
+
+如果字符串中有&符号，可以使用 set c="abc&def" ，但是引号会带入变量，如果不想引号被带入变量就要使用 set "c=abc^&def"。
+
+set "c=abc&def" ---- 错误
+set c=abc&def   ---- 错误
+set c=abc^&def  ---- 错误
+
+set c="abc&def" ---- 输出结果："abc&def"
+set "c=abc^&def" --- 输出结果：abc&def
+```
 
 # 合并多个ts文件
 ```
