@@ -24,6 +24,10 @@
 - 5.连接zookeeper zkCli.sh
   - docker exec -it zoo zkCli.sh
 
+- 6.查看zookeeper 状态
+  - /zookeeper-3.4.13/bin/zkServer.sh {start|start-foreground|stop|restart|status|upgrade|print-cmd}
+  - docker exec -it zoo zkServer.sh status
+
 ## 三、zookeeper
 > 使用 docker-compose 进行集群部署
 ```yaml
@@ -78,6 +82,14 @@ services:
 - docker run --network net --network-alias zk-net
   - --network 指定网络
   - --network-alias 定义别名
+
+- docker-compose
+> - 命令不知道什么意思？help一下吧
+> - docker-compose -h|--help
+  - docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
+   - -f, --file FILE            Specify an alternate compose file (default: docker-compose.yml)
+   - -p, --project-name NAME    Specify an alternate project name
+  
 
 ## 六、zookeeper 须知
 > - 端口 2181 由 ZooKeeper 客户端使用，用于连接到 ZooKeeper 服务器;
