@@ -87,8 +87,8 @@ services:
 > - 命令不知道什么意思？help一下吧
 > - docker-compose -h|--help
   - docker-compose [-f <arg>...] [options] [COMMAND] [ARGS...]
-   - -f, --file FILE            Specify an alternate compose file (default: docker-compose.yml)
-   - -p, --project-name NAME    Specify an alternate project name
+    - -f, --file FILE            Specify an alternate compose file (default: docker-compose.yml)
+    - -p, --project-name NAME    Specify an alternate project name
   
 
 ## 六、zookeeper 须知
