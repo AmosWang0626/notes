@@ -28,3 +28,7 @@
   - `Linux`
 - 内核版本: uname -v
   - `#1 SMP Tue Jul 4 15:04:05 UTC 2017`
+
+## df 查看磁盘使用情况
+- 字节形式：df -l
+- GB形式：df -h
