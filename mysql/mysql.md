@@ -46,10 +46,10 @@ FROM
 <where>
     <if test="name != null and !''.equals(name)"> NAME = #{name}</if>
     <if test="settleStartTimeForm != null " >
-        and  UPDATE_TIME <![CDATA[   >=  ]]> #{settleStartTimeForm}
+        and  UPDATE_TIME <![CDATA[ >= ]]> #{settleStartTimeForm}
     </if>
     <if test="settleEndTimeForm != null " >
-        and  UPDATE_TIME <![CDATA[   <=  ]]>  #{settleEndTimeForm}
+        and  UPDATE_TIME <![CDATA[ <= ]]>  #{settleEndTimeForm}
     </if>
 </where>
 ORDER BY DESC
