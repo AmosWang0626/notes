@@ -35,3 +35,34 @@
 
 ## 查看端口状态
 - lsof -i:80
+
+## nginx 添加白名单IP脚本
+```
+#!/bin/bash
+
+# 变量赋值
+ip=$1
+
+# read -p "请输入新的IP：" ip
+
+echo "$ip" | egrep --color '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'
+if [ $? -ne 0 ]; then
+  echo "你输入ip地址不符和要求";
+  exit 0;
+fi
+
+# 获取当前文件行数
+column=$(wc -l < /etc/nginx/block_ip.txt);
+
+# 向当前最后一行处（也即倒数第二行）插入数据：sed -i "*i allow $ip;" /etc/nginx/block_ip.txt
+# 语法：*i 就是在第五行插入行
+#       allow $ip; 要插入的内容
+sed -i "${column}i allow $ip;" /etc/nginx/block_ip.txt;
+
+echo "add success";
+
+nginx -s reload;
+
+exit 0;
+
+```
