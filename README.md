@@ -11,7 +11,7 @@
   - [java 面试](java/java-interview.md)
   - [java 虚拟机](java/java-jvm.md)
   - [java 垃圾回收](java/java-gc.md)
-  - [java http](java/java-http.md)
+  - [java biz](java/java-biz.md)
 
 - docker
   - [docker 学习笔记](docker/docker.md)
