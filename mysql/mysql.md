@@ -83,3 +83,11 @@ SELECT * FROM `order` WHERE USER_ID IN (SELECT USER_ID FROM `order` GROUP BY USE
 ## 8.字段不为空，不是!=null，而是IS NOT NULL
 
 ## 9.group by与distinct
+
+## 10.month
+```
+-- 当前月
+SELECT DATE_FORMAT(NOW(), '%Y%m') CURRENT_MONTH;
+-- 上个月
+SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y%m') LAST_MONTH;
+```
