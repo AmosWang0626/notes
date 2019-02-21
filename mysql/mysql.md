@@ -96,3 +96,31 @@ SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y%m') LAST_MONTH;
 -- 当日
 SELECT DAY(NOW()) CURRENT_DAY;
 ```
+## 11.insert into select
+INSERT INTO t1 (member_id, apply_no, content) 
+	SELECT member_id, apply_no, content FROM t1 WHERE type = 'MOBILE' GROUP BY content ORDER BY COUNT(content) DESC;
+
+## 12.around date 
+SELECT DATE_FORMAT('2019-08-01 00:02:08', '%i')
+SELECT DATE_FORMAT('2019-08-01 00:02:08', '%i')
+
+SELECT COUNT(*), run_time, (run_min * 60 + run_sec)
+FROM(
+	SELECT
+		APPLY_NO 'apply_no',
+		COUNT(*) 'count',
+		TIMEDIFF(MAX(CREATE_TIME),MIN(CREATE_TIME)) 'run_time',
+		DATE_FORMAT(TIMEDIFF(MAX(CREATE_TIME),MIN(CREATE_TIME)), '%i') 'run_min',
+		DATE_FORMAT(TIMEDIFF(MAX(CREATE_TIME),MIN(CREATE_TIME)), '%s') 'run_sec',
+		MIN(CREATE_TIME) 'begin',
+		MAX(CREATE_TIME) 'end'
+	FROM `rule_result`
+	GROUP BY APPLY_NO ORDER BY CREATE_TIME DESC
+) a GROUP BY run_time ORDER BY run_time DESC;
+
+## 13.db status
+SHOW GLOBAL STATUS LIKE 'Handler_read%';
+SHOW STATUS LIKE 'Handler_read%';
+SHOW PROCESSLIST;
+
+
