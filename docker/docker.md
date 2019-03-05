@@ -161,7 +161,9 @@
 
 - docker pull mysql/mysql-server:8.0
 - docker run -d -p 3306:3306 --name mysql666 -e MYSQL_ROOT_PASSWORD=123456 mysql/mysql-server:8.0
-- netstat -aon|findstr "3306"
+- 查看主机端口状态
+  - windows: netstat -aon|findstr "3306"
+  - linux: netstat -anp|grep 3306
 - docker exec -it mysql666 mysql -uroot -p
 - docker exec -it mysql666 mysql -uroot -p123456
 - ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
