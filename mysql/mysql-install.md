@@ -8,6 +8,25 @@
  - ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
  - flush privileges;
 
+# Linux MySQL
+
+- https://dev.mysql.com/doc/refman/8.0/en/linux-installation-yum-repo.html
+- yum localinstall mysql80-community-release-el7-3.noarch.rpm
+- yum repolist enabled | grep "mysql.*-community.*"
+- yum repolist enabled | grep mysql
+- yum install mysql-community-server
+- 修改端口：
+  - vi /etc/my.cnf
+  - 增加port=3309
+- service mysqld start
+- service mysqld status
+- 查看原始密码
+  - grep 'temporary password' /var/log/mysqld.log
+- 设置新密码|设置Navicat支持的密码加密方式
+  - ALTER USER 'root'@'localhost' IDENTIFIED BY '#Ass1234' PASSWORD EXPIRE NEVER;
+  - ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '#Ass1234';
+  - flush privileges;
+
 # Windows MySQL
 
 ## 服务相关
