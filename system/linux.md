@@ -160,3 +160,23 @@ location / {
     proxy_pass http://tomcat:8080/
 }
 ```
+
+#### 2.4 实战
+
+##### 2.4.1 一个斜线的问题
+
+```
+http://10.21.12.88:8080/api/hello
+
+location /api/ {
+    proxy_pass http://portal;
+}
+
+***********************************
+
+http://10.21.12.88:8080/hello
+
+location /api/ {
+    proxy_pass http://portal/;
+}
+```
