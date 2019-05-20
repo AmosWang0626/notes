@@ -180,3 +180,10 @@ location /api/ {
     proxy_pass http://portal/;
 }
 ```
+##### 2.4.2 vue项目页面刷新404
+```
+if (!-e $request_filename) {
+    rewrite ^/(.*) /index.html last;
+    break;
+}
+```
