@@ -113,3 +113,16 @@
     端口：3306
     用户名：amos	//也即上边几句话中设置的
     密码：root	//同上
+
+## MySQL访问缓慢
+> 当远程访问mysql时，mysql会解析域名，会导致访问速度很慢，加上下面这个配置可解决此问题
+
+- 禁止mysql做域名解析
+```
+[mysqld]
+skip-name-resolve
+```
+
+## 设置默认密码加密方式
+- my.cnf
+  - default-authentication-plugin=mysql_native_password
