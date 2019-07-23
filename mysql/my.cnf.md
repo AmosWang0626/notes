@@ -1,3 +1,4 @@
+```
 [client]
 port = 3306
 default-character-set = utf8
@@ -81,3 +82,4 @@ key_buffer_size = 8M
 sort_buffer_size = 8M
 read_buffer = 4M
 write_buffer = 4M
+```
