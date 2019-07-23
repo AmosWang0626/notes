@@ -1,4 +1,4 @@
-
+## 批量更新
 ```
 <update id="batchUpdateErrorList">
     INSERT INTO `sip_session_phone` (ID, TALK_TIME, TALE_END_TIME)
@@ -9,3 +9,6 @@
     ON DUPLICATE KEY UPDATE TALK_TIME=values(TALK_TIME), TALE_END_TIME=values(TALE_END_TIME)
 </update>
 ```
+
+## 单条更新
+update table_aaa set c_a = null, c_b = null where c_id = '1234567890'
