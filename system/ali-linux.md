@@ -20,3 +20,7 @@ ClientAliveCountMax 86400
 
 service sshd restart
 ```
+
+## 使用Navicat连接阿里云数据库，长时间无操作，继续操作，断开连接
+
+右键连接 > 编辑连接 > 高级 > 勾选保持连接间隔(秒) 设置相应的时间【例如：1800(30分钟)】
