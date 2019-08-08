@@ -1,6 +1,17 @@
 # Linux
 > Linux shell ftp 工具，推荐使用 SecureCRT SecureFX
 
+## cron job
+```
+# test cron 每分钟执行一次
+* * * * * echo "do rm -rf lu*.tmp $(date +\%Y-\%m-\%d~\%H:\%M:\%S)" >> /tmp/rm-tmp-job.txt
+```
+```
+# this is rm liberoffice generate lu*.tmp job
+0 4 */5 * * echo "$(date +\%Y-\%m-\%d~\%H:\%M:\%S) do rm -rf /tmp/lu*.tmp" >> /tmp/rm-tmp-job.txt
+0 4 */5 * * rm -rf /tmp/lu*.tmp
+```
+
 ## SecureCRT SecureFX 使用技巧
 - 批量导入服务器
   - 先决文件：https://www.vandyke.com/support/tips/importsessions.html
