@@ -11,4 +11,7 @@
 ```
 
 ## 单条更新
-update table_aaa set c_a = null, c_b = null where c_id = '1234567890'
+`update table_aaa set c_a = null, c_b = null where c_id = '1234567890'`
+
+## 时间段判断
+`AND DATE_FORMAT(BEGIN_TIME, '%Y-%m-%d') <= '2019-08-16' AND DATE_FORMAT(END_TIME, '%Y-%m-%d') >= '2019-08-16'`
