@@ -30,3 +30,6 @@ WHERE
 GROUP BY
 	phone.ID
 ```
+
+## 清空表
+truncate table message_issue;
