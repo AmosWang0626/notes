@@ -123,4 +123,9 @@ SHOW GLOBAL STATUS LIKE 'Handler_read%';
 SHOW STATUS LIKE 'Handler_read%';
 SHOW PROCESSLIST;
 
+## 14.and or
+- 看两个等价sql：
+  - select from test where condition1 or condition2 and condition3;
+  - select from test where condition1 or (condition2 and condition3);
+- 故可以得出结论：and级别高于or, 清晰起见建议使用2
 
