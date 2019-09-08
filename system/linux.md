@@ -1,26 +1,25 @@
 # Linux
-> Linux shell ftp 工具，推荐使用 SecureCRT SecureFX
 
-## cron job
-```
-# test cron 每分钟执行一次
-* * * * * echo "do rm -rf lu*.tmp $(date +\%Y-\%m-\%d~\%H:\%M:\%S)" >> /tmp/rm-tmp-job.txt
-```
-```
-# this is rm liberoffice generate lu*.tmp job
-0 4 */5 * * echo "$(date +\%Y-\%m-\%d~\%H:\%M:\%S) do rm -rf /tmp/lu*.tmp" >> /tmp/rm-tmp-job.txt
-0 4 */5 * * rm -rf /tmp/lu*.tmp
-```
+## 目录
+0. [查看磁盘使用情况 df、du](#1dfdu)
+0. [查看系统信息 uname](#2uname)
+0. [神器 lsof](#3lsof)
+0. [定时任务 corn](#4cron)
+0. [连接工具 SecureCRT SecureFX](#5securecrtfx)
 
-## SecureCRT SecureFX 使用技巧
-- 批量导入服务器
-  - 先决文件：https://www.vandyke.com/support/tips/importsessions.html
-  - 创建一个.csv文件,写上对应服务器信息,如下
-    ```
-    protocol,username,folder,session_name,hostname
-    SSH2,root,hello,pro-hello,127.0.0.1
-    ```
-## uname 查看系统信息
+
+## 1、查看磁盘使用情况df、du
+- df
+  - 以字节展示：df -l
+  - 可读性展示：df -h
+
+- du
+  - 可读性展示（单位1024）：du -h
+  - 可读性展示（单位1000）：du -H
+  - 查看当前目录大小：du -hd0 /home/
+  - 查看当前目录及子目录大小：du -hd1 /home/boot/
+
+## 2、uname查看系统信息 
 - 全部信息: uname -a
   - `Linux dudu 3.10.0-514.26.2.el7.x86_64 #1 SMP Tue Jul 4 15:04:05 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux`
 - 硬件平台: uname -i
@@ -40,161 +39,105 @@
 - 内核版本: uname -v
   - `#1 SMP Tue Jul 4 15:04:05 UTC 2017`
 
-## df 查看磁盘使用情况
-- 字节形式：df -l
-- GB形式：df -h
+## 3、lsof命令的使用
 
-## 查看端口状态
-- lsof -i:80
+1.列出所有打开的文件:
+- lsof
+- 备注: 如果不加任何参数，就会打开所有被打开的文件，输出内容非常多
+ 
+2.查看谁正在使用某个文件
+- lsof /filepath/file
 
-## nginx 添加白名单IP脚本
+3.递归查看某个目录的文件信息
+- lsof +D /filepath/filepath2/
+- 备注: 使用了+D，对应目录下的所有子目录和文件都会被列出
+
+4.不使用+D选项，遍历查看某个目录的所有文件信息 的方法
+- lsof | grep '/filepath/filepath2/'
+
+5.列出某个用户打开的文件信息
+- lsof -u username
+- 备注: -u 选项，u其实是user的缩写
+- 查看所有用户 vim /etc/group
+
+6.列出某个程序所打开的文件信息
+- lsof -c mysql
+- 备注: -c 选项将会列出所有以mysql开头的程序的文件，其实你也可以写成lsof | grep mysql,但是第一种方法明显比第二种方法要少打几个字符了
+
+7.列出多个程序多打开的文件信息
+- lsof -c mysql -c apache
+
+8.列出某个用户以及某个程序所打开的文件信息
+- lsof -u test -c mysql
+
+9.列出除了某个用户外的被打开的文件信息
+- lsof   -u ^root
+- 备注：^这个符号在用户名之前，将会把是root用户打开的进程不让显示
+
+10.通过某个进程号显示该进行打开的文件
+- lsof -p 1
+
+11.列出多个进程号对应的文件信息
+- lsof -p 123,456,789
+
+12.列出除了某个进程号，其他进程号所打开的文件信息
+- lsof -p ^1
+
+13.列出所有的网络连接
+- lsof -i
+
+14.列出所有tcp 网络连接信息
+- lsof -i tcp
+
+15.列出所有udp网络连接信息
+- lsof -i udp
+
+16.***列出谁在使用某个端口（重点）***
+- lsof -i:3306
+
+17.列出谁在使用某个特定类型的端口
+- 特定的udp端口
+  - lsof -i udp:55
+- 特定的tcp端口
+  - lsof -i tcp:80
+
+18.列出某个用户的所有活跃的网络端口
+- lsof -a -u test -i
+
+19.列出所有网络文件系统
+- lsof -N
+
+20.域名socket文件
+- lsof -u
+
+21.某个用户组所打开的文件信息
+- lsof -g 5555
+
+22.根据文件描述列出对应的文件信息
+- lsof -d description(like 2)
+
+23.根据文件描述范围列出文件信息
+- lsof -d 2-3
+ 
+
+## 4、定时任务cron
 ```
-#!/bin/bash
-
-# 变量赋值
-ip=$1
-
-# read -p "请输入新的IP：" ip
-
-echo "$ip" | egrep --color '^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$'
-if [ $? -ne 0 ]; then
-  echo "你输入ip地址不符和要求";
-  exit 0;
-fi
-
-# 获取当前文件行数
-column=$(wc -l < /etc/nginx/block_ip.txt);
-
-# 向当前最后一行处（也即倒数第二行）插入数据：sed -i "*i allow $ip;" /etc/nginx/block_ip.txt
-# 语法：*i 就是在第五行插入行
-#       allow $ip; 要插入的内容
-sed -i "${column}i allow $ip;" /etc/nginx/block_ip.txt;
-
-echo "add success";
-
-nginx -s reload;
-
-exit 0;
-
+# test cron 每分钟执行一次
+* * * * * echo "do rm -rf lu*.tmp $(date +\%Y-\%m-\%d~\%H:\%M:\%S)" >> /tmp/rm-tmp-job.txt
 ```
-
-## nginx配置location
-
-### 1、规则解释 
 ```
-location  = / {
-  # 精确匹配 / ，主机名后面不能带任何字符串
-  [ configuration A ]
-}
-
-location  / {
-  # 因为所有的地址都以 / 开头，所以这条规则将匹配到所有请求
-  # 但是正则和最长字符串会优先匹配
-  [ configuration B ]
-}
-
-location /documents/ {
-  # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索
-  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条
-  [ configuration C ]
-}
-
-location ~ /documents/Abc {
-  # 匹配任何以 /documents/Abc 开头的地址，匹配符合以后，还要继续往下搜索
-  # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条
-  [ configuration CC ]
-}
-
-location ^~ /images/ {
-  # 匹配任何以 /images/ 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。
-  [ configuration D ]
-}
-
-location ~* \.(gif|jpg|jpeg)$ {
-  # 匹配所有以 gif,jpg或jpeg 结尾的请求
-  # 然而，所有请求 /images/ 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则
-  [ configuration E ]
-}
-
-location /images/ {
-  # 字符匹配到 /images/，继续往下，会发现 ^~ 存在
-  [ configuration F ]
-}
-
-location /images/abc {
-  # 最长字符匹配到 /images/abc，继续往下，会发现 ^~ 存在
-  # F与G的放置顺序是没有关系的
-  [ configuration G ]
-}
-
-location ~ /images/abc/ {
-  # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用
-    [ configuration H ]
-}
-
-location ~* /js/.*/\.js
+# this is rm liberoffice generate lu*.tmp job
+0 4 */5 * * echo "$(date +\%Y-\%m-\%d~\%H:\%M:\%S) do rm -rf /tmp/lu*.tmp" >> /tmp/rm-tmp-job.txt
+0 4 */5 * * rm -rf /tmp/lu*.tmp
 ```
 
-### 2、实际使用建议
-> 所以实际使用中，个人觉得至少有三个匹配规则定义，如下：
 
-#### 2.1 第一个必选规则
-> - 直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。
-> - 这里是直接转发给后端应用服务器了，也可以是一个静态首页
-
-```
-location = / {
-    proxy_pass http://tomcat:8080/index
-}
-```
-
-#### 2.2 第二个必选规则
-> - 第二个必选规则是处理静态文件请求，这是nginx作为http服务器的强项
-> - 有两种配置模式，目录匹配或后缀匹配,任选其一或搭配使用
-
-```
-location ^~ /static/ {
-    root /webroot/static/;
-}
-location ~* \.(gif|jpg|jpeg|png|css|js|ico)$ {
-    root /webroot/res/;
-}
-```
-
-#### 2.3 第三个通用规规则
-> 第三个规则就是通用规则，用来转发动态请求到后端应用服务器
-> 非静态文件请求就默认是动态请求，自己根据实际把握
-> 毕竟目前的一些框架的流行，带.php,.jsp后缀的情况很少了
-
-```
-location / {
-    proxy_pass http://tomcat:8080/
-}
-```
-
-#### 2.4 实战
-
-##### 2.4.1 一个斜线的问题
-
-```
-http://10.21.12.88:8080/api/hello
-
-location /api/ {
-    proxy_pass http://portal;
-}
-
-***********************************
-
-http://10.21.12.88:8080/hello
-
-location /api/ {
-    proxy_pass http://portal/;
-}
-```
-##### 2.4.2 vue项目页面刷新404
-```
-if (!-e $request_filename) {
-    rewrite ^/(.*) /index.html last;
-    break;
-}
-```
+## 5、Secure(CRT/FX)使用技巧
+> Linux shell ftp 工具，推荐使用 SecureCRT SecureFX
+- 批量导入服务器
+  - 先决文件：https://www.vandyke.com/support/tips/importsessions.html
+  - 创建一个.csv文件,写上对应服务器信息,如下
+    ```
+    protocol,username,folder,session_name,hostname
+    SSH2,root,hello,pro-hello,127.0.0.1
+    ```
