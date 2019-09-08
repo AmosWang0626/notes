@@ -30,35 +30,42 @@
 # Windows MySQL
 
 ## 服务相关
-    启动mysql服务，用net start mysql
-    关闭mysql服务，用net stop mysql
+- 启动mysql服务，用net start mysql
+- 关闭mysql服务，用net stop mysql
 
 ## 进入MySQL数据库：
-    mysql -h127.0.0.1 -uroot -proot
-    mysql -hlocalhost -uroot -proot
-    mysql -u root -p
-    mysql -uroot -proot
-    mysql -u root -proot
+- mysql -h127.0.0.1 -uroot -proot
+- mysql -hlocalhost -uroot -proot
+- mysql -u root -p
+- mysql -uroot -proot
+- mysql -u root -proot
 
 ## 命令行操作
-    1.显示所有的数据库，注意是databases：
-        show databases;
-    2.退出该数据库：
-        exit;
-    3.进入某数据库通过：
-        use amos;
-        show tables;	//显示所有的表
-    4.显示MySQL版本：
-        select version();
-    5.显示当前时间：
-        select now();
-    6.显示字符串：
-        select "welecome to my blog!";
-    7.删除数据库、表
-        drop table hello_table;
-        drop database amos;
-    8.查看表的结构
-        desc entity;
+1.显示所有的数据库，注意是databases：
+- show databases;
+
+2.退出该数据库：
+- exit;
+
+3.进入某数据库通过：
+- use amos;
+- show tables;	//显示所有的表
+
+4.显示MySQL版本：
+- select version();
+
+5.显示当前时间：
+- select now();
+
+6.显示字符串：
+- select "welecome to my blog!";
+
+7.删除数据库、表：
+- drop table hello_table;
+- drop database amos;
+
+8.查看表的结构：
+- desc entity;
 
 ## 防止中文乱码
 

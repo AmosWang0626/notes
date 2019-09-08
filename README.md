@@ -38,11 +38,11 @@
   - [javascript](/front/javascript.md)
 
 - mysql
-  - [mysql 基础](/mysql/mysql.md)
-  - [mysql 锁](/mysql/mysql-lock.md)
-  - [mysql 快捷键](/mysql/mysql-keyword.md)
-  - [mysql 安装](/mysql/mysql-install.md)
-  - [mysql 存储过程](/mysql/mysql-procedure.md)
+  - [mysql 基础](/sql/mysql.md)
+  - [mysql 锁](/sql/mysql-lock.md)
+  - [mysql 快捷键](/sql/mysql-keyword.md)
+  - [mysql 安装](/sql/mysql-install.md)
+  - [mysql 存储过程](/sql/mysql-procedure.md)
 
 ## markdown 技巧
 > :smiley: [新版小表情](https://github.com/caiyongji/emoji-list) [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
