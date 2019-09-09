@@ -133,3 +133,13 @@ skip-name-resolve
 ## 设置默认密码加密方式
 - my.cnf
   - default-authentication-plugin=mysql_native_password
+
+```
+   Linux相关命令：
+   1、重启mysql
+   service mysqld restart
+   
+   2、查找文件
+   whereis my.cnf
+   略……
+   ```

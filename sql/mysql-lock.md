@@ -11,3 +11,16 @@ select ...lock in share mode和select ... for update这种显示加锁的查询�
 ### 总结
 通过对比，lock in share mode适用于两张表存在业务关系时的一致性要求，for update适用于操
 作同一张表时的一致性要求。
+
+
+- 查询：
+  - SELECT * FROM `now_address` WHERE MEMBER_ID = 11111 AND `STATUS` = 1;
+  - 时间: 0.005s
+
+- 创建多行索引：
+  - CREATE INDEX index_address ON `now_address`(`MEMBER_ID` , `STATUS`);
+
+- 查询：
+  - SELECT * FROM `now_address` WHERE MEMBER_ID = 11111 AND `STATUS` = 1;
+  - 时间：0.001s
+
