@@ -15,9 +15,9 @@
 
 - docker
   - [docker 学习笔记](docker/docker.md)
+  - [docker 安装软件](docker/docker-soft.md)
   - [docker 启动 zk dubbo](docker/docker-zk-dubbo.md)
-  - [docker 打包 spring-boot 项目](docker/docker-spring-boot.md)
-  - [docker 打包 vue 项目](docker/docker-vue.md)
+  - [docker 打包 spring boot 项目](docker/docker-spring-boot.md)
 
 - 系统相关
   - [linux 相关](system/linux.md)
