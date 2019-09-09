@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>浏览器页面切换事件监听</title>
+    <script>
+        var count = 0;
+        var hiddenProperty = 'hidden' in document ? 'hidden' :
+            'webkitHidden' in document ? 'webkitHidden' :
+                'mozHidden' in document ? 'mozHidden' : null;
+        var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+        var onVisibilityChange = function () {
+            if (document[hiddenProperty]) {
+                console.log('页面非激活');
+            } else {
+                console.log('页面激活');
+                count++;
+                document.getElementById('hello').innerHTML = '页面第' + count + '次激活!'
+            }
+        };
+        document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+    </script>
+</head>
+<body>
+<div class="content">
+    <h1>监听浏览器页面是否激活</h1>
+    <br/>
+    <h1 id="hello"></h1>
+</div>
+</body>
+</html>

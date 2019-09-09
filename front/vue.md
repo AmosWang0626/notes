@@ -1,58 +1,65 @@
-# Vue学习
+# Vue
 
-## 1.安装node.js
-node.js的安装：下载msi文件，傻瓜式安装
+## 组件传参
 
-### 安装参考教程：
-- Node.js安装及环境配置之Windows篇
-  > http://www.jianshu.com/p/03a76b2e7e00
-- vue+webpack构建项目
-  > http://www.cnblogs.com/leijing0607/p/6386615.html
-- 一步步构造自己的vue2.0+webpack环境
-  > http://www.cnblogs.com/wj204/p/6031435.html
-
-
-## 2.淘宝镜像
-### 2.1 安装淘宝镜像
-* npm install -g cnpm --registry=https://registry.npm.taobao.org 
-### 2.2 卸载淘宝镜像
-* npm uninstall cnpm -g
-
-### 2.3 下载依赖异常
-某镜像下载不下来，例如 js-beautify-1.7.0，干脆找到下载地址(github),然后放到本地仓库
-> https://github.com/beautify-web/js-beautify/tree/v1.7.0
-
-
-## 3.安装vue-cli
-* cnpm install -g vue-cli
-* 安装完成后, 输入vue，就可看见系统已识别该命令
-
-
-## 4.创建个项目
-官方实例如下：
+### 父组件向子组件传值
+- 父页面
 ```
-# 全局安装 vue-cli
-$ npm install --global vue-cli
-# 创建一个基于 webpack 模板的新项目
-$ vue init webpack my-project
-# 安装依赖，走你
-$ cd my-project
-$ npm install
-$ npm run dev
+<page-frame :fatherData='data'></page-frame>
+data: {
+    name: 'xiaomi',
+    users: ['amos', 'yuan']
+}
 ```
-### Windows小技巧
-* 查看当前目录下文件 tree
-* 查看当前目录下全部文件 tree /f
-* 保存当前显示的目录结构 tree >hello.txt  || tree /f >hello.txt
+- 子页面
+```
+子：
+ data() {
+    return {
+      name: this.fatherData.name,
+      users: this.fatherData.data,
+    };
+  },
+  props: ['fatherData']
+```
 
+### 子组件向父组件传值
+- 子页面
+```
+<button type="success" @click="onClickMe">open mouse!</button>
+onClickMe: function () {
+    this.$emit('childCallback', 'Hello, Frame CallBack!');
+}
+```
+- 父页面
+```
+<page-frame @childCallback='toastMessage'></page-frame>
+toastMessage(msg) {
+    this.$Message.success(msg);
+}
+```
 
-## 5.npm 更新
-package.json 引用的有些可能是不安全的，github也会做出提示，定期更新依赖的文件也是很必要的
+### 父组件向子组件传递数据双向绑定问题
+> 注意：Vue生命周期中，data()加载比 create 早
 
-* 安装更新工具: npm install -g npm-check-updates
-* 检查更新: ncu
-* 当前项目依赖更新: ncu -u
-* 所有项目依赖更新: ncu -a
-## 6.删除node_modules
-* 全局安装rimraf插件: npm install -g rimraf
-* 在项目根目录执行删除: rimraf node_modules
+1. 第一种方式监听(较原始底层)
+    > 监听父组件传递来的数据
+```
+watch: {
+    fatherData: {
+        dep: true,
+        handler(value) {
+            this.fatherData = value;
+        }
+    }
+}
+```
+
+2. 第二种方式监听
+```
+computed: {
+    pageData() {
+        return this.fatherData.pageData;
+    }
+}
+```

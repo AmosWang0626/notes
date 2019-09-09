@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>获取浏览器语言</title>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #app {
+            margin-top: 10%;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- 百分比 vw 视窗宽度; vh 视窗高度  -->
+    <div style="background:#eee; margin: 10vh 30vw; padding: 20px">
+        <Card :bordered="false">
+            <p slot="title">浏览器语言</p>
+            <p v-if="seen">当前浏览器的语言是 {{msg}}</p>
+        </Card>
+    </div>
+    <i-button type="primary" size="large" @click="getLanguage()">咻咻咻</i-button>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            msg: '',
+            seen: false
+        },
+        methods: {
+            getLanguage: function () {
+                // 核心代码就一句：navigator.language
+                this.$Message.info(navigator.language);
+                this.msg = navigator.language;
+                this.seen = true;
+            }
+        }
+    })
+</script>
+</body>
+</html>

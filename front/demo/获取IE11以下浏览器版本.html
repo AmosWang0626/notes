@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>666</title>
+    <style>
+        .hello {
+            display: none;
+        }
+    </style>
+    <script>
+        window.onload = function f() {
+            document.getElementById('useragent').innerHTML = navigator.userAgent;
+            var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+            reIE.test(navigator.userAgent);
+            var ieVersion = parseFloat(RegExp["$1"]);
+            if (ieVersion != null && !isNaN(ieVersion)) {
+                document.getElementById('ie-version').innerHTML = 'IE 版本为 ' + ieVersion;
+            }
+            if ('\v' == 'v') {
+                console.log('IE版本为8及以下');
+                var elements = document.getElementsByName('radio');
+                var length = elements.length;
+                for (var i = 0; i < length; i++) {
+                    console.log('old class name is ' + elements[i].className);
+                    elements[i].setAttribute('class', 'hello1');
+                    console.log('new class name is ' + elements[i].className);
+                }
+            } else {
+                console.log('非IE浏览器 OR IE版本为8以上');
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="content">
+    <label><input class="hello" type="radio" value="0" name="radio">单选框1</label>
+    <label><input class="hello" type="radio" value="0" name="radio">单选框2</label>
+    <h1 id="useragent"></h1>
+    <h1 id="ie-version"></h1>
+</div>
+</body>
+</html>
