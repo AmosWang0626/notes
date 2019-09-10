@@ -7,41 +7,42 @@
 ## 文件目录
 
 - java
-  - [java 基础](java/java.md)
-  - [java 面试](java/java-interview.md)
-  - [java 虚拟机](java/java-jvm.md)
-  - [java 垃圾回收](java/java-gc.md)
-  - [java biz](java/java-biz.md)
+  - [Java 基础](java/java.md)
+  - [Java 面试](java/java-interview.md)
+  - [Java 虚拟机](java/java-jvm.md)
+  - [Java 垃圾回收](java/java-gc.md)
+  - [Java biz](java/java-biz.md)
 
 - docker
-  - [docker 学习笔记](docker/docker.md)
-  - [docker 安装软件](docker/docker-soft.md)
-  - [docker 启动 zk dubbo](docker/docker-zk-dubbo.md)
-  - [docker 打包 spring boot 项目](docker/docker-spring-boot.md)
+  - [Docker 学习笔记](docker/docker.md)
+  - [Docker 安装软件](docker/docker-soft.md)
+  - [Docker zk Dubbo](docker/docker-zk-dubbo.md)
+  - [Docker Spring Boot](docker/docker-spring-boot.md)
 
 - 系统相关
-  - [linux 相关](system/linux.md)
-  - [windows 命令](system/windows-cmd.md)
-  - [windows 批处理](system/windows-bat.md)
+  - [Linux 相关](system/linux.md)
+  - [Nginx 相关](system/nginx.md)
+  - [Windows 命令](system/windows-cmd.md)
+  - [Windows 批处理](system/windows-bat.md)
 
 - 框架
-  - [maven](/frame/maven.md)
-  - [redis](/frame/redis.md)
-  - [mybatis](/frame/mybatis.md)
-  - [spring](/frame/spring.md)
-  - [spring-boot](/frame/spring-boot.md)
+  - [Git](/frame/git.md)
+  - [Maven](/frame/maven.md)
+  - [Redis](/frame/redis.md)
+  - [MyBatis](/frame/mybatis.md)
+  - [Spring](/frame/spring.md)
+  - [Spring Boot](/frame/spring-boot.md)
 
 - 前端技术
   - [vue](/front/vue.md)
   - [vue-node](/front/vue-node.md)
-  - [javascript](/front/javascript.md)
 
-- mysql
-  - [mysql 基础](/sql/mysql.md)
-  - [mysql 锁](/sql/mysql-lock.md)
-  - [mysql 快捷键](/sql/mysql-keyword.md)
-  - [mysql 安装](/sql/mysql-install.md)
-  - [mysql 存储过程](/sql/mysql-procedure.md)
+- 数据库
+  - [SQL增删改查](/db/sql-crud.md)
+  - [SQL高级](/db/sql-advanced.md)
+  - [数据库/表操作](/db/db-operate.md)
+  - [MySQL安装](/db/mysql-install.md)
+  - [Oracle学习](/db/oracle.md)
 
 ## markdown 技巧
 > :smiley: [新版小表情](https://github.com/caiyongji/emoji-list) [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)

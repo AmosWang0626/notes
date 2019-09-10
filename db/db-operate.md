@@ -1,15 +1,17 @@
 # 数据库及表操作
 
 ## 目录
-- [增](#insert)
-- [改](#update)
-- [查](#select)
-- [删](#delete)
-- [注意](#notice)
+- [新增](#新增insert)
+- [修改](#修改update)
+- [查询](#查询select)
+- [删除](#删除delete)
+- [注意](#注意notice)
 
 
 ## 新增insert
 - 新增字段 `ALTER TABLE wmmm_user.member ADD CHANNEL_ID bigint(20) DEFAULT NULL COMMENT '注册来源渠道号';`
+- 默认设置创建时间 `CREATE_TIME datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'`
+- 默认设置修改时间 `UPDATE_TIME datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'`
 
 
 ## 修改update
@@ -34,6 +36,9 @@ SELECT DATE(NOW()) CURRENT_MONTH;
 SELECT DATE_FORMAT(NOW(), '%Y%m') CURRENT_MONTH;
 -- 上个月 201908
 SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y%m') LAST_MONTH;
+-- 如下两个等价SQL
+SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %h:%i:%s');
+SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %T');
 ```
 
 ## 删除delete
