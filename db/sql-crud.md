@@ -1,20 +1,20 @@
 # 数据库增删改查
 ## 目录
-- [新增](#新增&批量新增insert)
-- [修改](#修改&批量修改update)
+- [新增](#新增和批量新增insert)
+- [修改](#修改和批量修改update)
 - [查询](#查询select)
 - [删除](#删除delete)
 - [注意](#注意notice)
 
 
-## 新增&批量新增insert
+## 新增和批量新增insert
 - insert into select
 ```sql
 INSERT INTO order_desc (member_id, apply_no, content);
 SELECT member_id, apply_no, content FROM order_desc2 WHERE APPLY_TYPE = 'MOBILE' GROUP BY content ORDER BY COUNT(content) DESC;
 ```
 
-## 修改&批量修改update
+## 修改和批量修改update
 - 单条更新
 ```sql
 update table_name set username = null, age = null where id = '1433233';
