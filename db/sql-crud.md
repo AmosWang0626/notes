@@ -88,12 +88,12 @@ update table_name set username = null, age = null where id = '1433233';
     GROUP BY phone.ID;
     ```
 
-5. SQL HAVING
+5. HAVING
     ```sql
     SELECT MEMBER_ID, COUNT(MEMBER_ID) FROM contact_info GROUP BY MEMBER_ID HAVING COUNT(MEMBER_ID) > 5;
     ```
 
-6. SQL OR
+6. OR
     ```sql
     -- 看两个等价sql
     select * from user where condition1 or condition2 and condition3;
@@ -101,7 +101,7 @@ update table_name set username = null, age = null where id = '1433233';
     -- 故可以得出结论：and级别高于or, 清晰起见建议使用2
     ```
 
-7. SQL CONCAT
+7. CONCAT
     ```mysql
     SELECT CONCAT('姓名：',"张三",'，手机号：', "13066668888") MESSAGE;
     ```    
@@ -135,6 +135,11 @@ update table_name set username = null, age = null where id = '1433233';
     FROM amos_user
     INNER JOIN (SELECT TOP 40 row_number () OVER (ORDER BY username) n, id FROM amos_user) temp_user 
     ON amos_user.id = temp_user.id AND temp_user.n > 20;
+    ```
+
+10. COUNT(TYPE = 1 OR NULL) TYPE_COUNT
+    ```mysql
+    COUNT(TYPE = 1 OR NULL) TYPE_COUNT ... [optional: HAVING TYPE_COUNT > 0]
     ```
 
 
