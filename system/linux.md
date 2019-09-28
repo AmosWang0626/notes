@@ -1,15 +1,15 @@
 # Linux
 
 ## 目录
-0. [查看磁盘使用情况 df、du](#1、查看磁盘使用情况)
-0. [查看系统信息 uname](#2、uname查看系统信息 )
-0. [神器 lsof](#3、lsof命令的使用)
-0. [定时任务 corn](#4、定时任务cron)
-0. [连接工具 SecureCRT SecureFX](#5、Secure(CRT/FX)使用技巧)
-0. [Linux目录释义](#6、Linux目录释义)
+0. [查看磁盘使用情况 df、du](#查看磁盘使用情况)
+0. [查看系统信息 uname](#查看系统信息uname)
+0. [神器 lsof](#命令的使用lsof)
+0. [定时任务 corn](#定时任务cron)
+0. [连接工具 SecureCRT SecureFX](#Secure(CRT/FX)使用技巧)
+0. [Linux目录释义](#Linux目录释义)
 
 
-## 1、查看磁盘使用情况
+## 查看磁盘使用情况
 - df
   - 以字节展示：df -l
   - 可读性展示：df -h
@@ -20,7 +20,7 @@
   - 查看当前目录大小：du -hd0 /home/
   - 查看当前目录及子目录大小：du -hd1 /home/boot/
 
-## 2、uname查看系统信息 
+## 查看系统信息uname 
 - 全部信息: uname -a
   - `Linux dudu 3.10.0-514.26.2.el7.x86_64 #1 SMP Tue Jul 4 15:04:05 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux`
 - 硬件平台: uname -i
@@ -40,7 +40,7 @@
 - 内核版本: uname -v
   - `#1 SMP Tue Jul 4 15:04:05 UTC 2017`
 
-## 3、lsof命令的使用
+## 命令的使用lsof
 
 1.列出所有打开的文件:
 - lsof
@@ -121,7 +121,7 @@
 - lsof -d 2-3
  
 
-## 4、定时任务cron
+## 定时任务cron
 ```
 # test cron 每分钟执行一次
 * * * * * echo "do rm -rf lu*.tmp $(date +\%Y-\%m-\%d~\%H:\%M:\%S)" >> /tmp/rm-tmp-job.txt
@@ -133,7 +133,7 @@
 ```
 
 
-## 5、Secure(CRT/FX)使用技巧
+## Secure(CRT/FX)使用技巧
 > Linux shell ftp 工具，推荐使用 SecureCRT SecureFX
 - 批量导入服务器
   - 先决文件：https://www.vandyke.com/support/tips/importsessions.html
@@ -143,7 +143,7 @@
     SSH2,root,hello,pro-hello,127.0.0.1
     ```
 
-## 6、Linux目录释义
+## Linux目录释义
 
 ### 6.1 前言
 
