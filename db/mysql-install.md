@@ -31,13 +31,14 @@
 ## 命令行操作
 1. 显示所有的数据库：`show databases;`
 2. 退出该数据库：`exit`
-3. 进入某数据库通过：`use amos;`
+3. 进入某数据库通过：`use hello_db;`
 4. 显示所有的表：`show tables;`
 5. 显示MySQL版本：`select version();`
 6. 显示当前时间：`select now();`
-7. 删库：`drop database amos_db;`
+7. 删库：`drop database hello_db;`
 8. 删表：`drop table hello_table;`
-9. 查看表的结构：`desc entity;`
+9. 查看表的结构：`desc hello_table;`
+10. 查看表的结构：`show columns from hello_table;`
 
 ## 防止中文乱码
 1. 建库
