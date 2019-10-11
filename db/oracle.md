@@ -16,3 +16,26 @@ SELECT COL01, COL02, COL03
 FROM TEXT_TABLE
 WHERE "ID" IN ('10001', '10002', '10003');
 ```
+
+## 建表
+- [Err] ORA-00907: missing right parenthesis
+> - 表面意思是少右括号，但和MySQL不同，某些关键字也是需要处理的。
+> - 例如：`INTEGER (8)`是错的，正确写法是去掉长度 `(8)`，示例如下
+
+```oracle
+CREATE TABLE "CODE_SEARCH" (
+	"ID" VARCHAR2 (32) NOT NULL,
+	"TYPE" INTEGER,
+	"CONTENT" VARCHAR2 (4000),
+	"USER_ID" VARCHAR2 (32),
+	"VISIT_TIME" TIMESTAMP (6),
+	"DESCRIPTION" VARCHAR2 (4000),
+	PRIMARY KEY ("ID")
+);
+```
+
+### 较MySQL
+- `` to ""
+- `INTEGER (8)` to `INTEGER`
+- `VARCHAR (100)` to `VARCHAR2 (100)`
+- `DATETIME` to `TIMESTAMP (6)`
