@@ -1,6 +1,11 @@
 # nginx
 
-## 一、nginx 添加白名单IP脚本
+## 目录
+- [nginx添加白名单IP脚本](#nginx添加白名单IP脚本)
+- [nginx配置规则与实战](#nginx配置规则与实战)
+- [nginx在线升级](#nginx在线升级)
+
+## nginx添加白名单IP脚本
 ```
 #!/bin/bash
 
@@ -31,7 +36,7 @@ exit 0;
 
 ```
 
-## 二、nginx 配置
+## nginx配置规则与实战
 
 ### 1、location 规则解释 
 ```
@@ -88,7 +93,7 @@ location ~ /images/abc/ {
 location ~* /js/.*/\.js
 ```
 
-### 2、实际使用建议
+### 2、实战指北
 > 所以实际使用中，个人觉得至少有三个匹配规则定义，如下：
 
 #### 2.1 第一个必选规则
@@ -152,3 +157,18 @@ if (!-e $request_filename) {
     break;
 }
 ```
+
+## nginx在线升级
+### 0.查看Nginx版本 `nginx -v`
+### 1.查看内核版本 `lsb_release -a`
+### 2.编辑或新增 `/etc/yum.repos.dnginx.repo`
+> 注意内容中的7, 指CentOS内核版本为7.X
+```
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/7/$basearch/
+gpgcheck=0
+enabled=1
+```
+### 3.执行yum升级命令 `yum update nginx -y`
+### 4.验证Nginx版本 `nginx -v`
