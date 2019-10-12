@@ -39,6 +39,15 @@
   - `Linux`
 - 内核版本: uname -v
   - `#1 SMP Tue Jul 4 15:04:05 UTC 2017`
+- 内核版本详细信息（更直观）: lsb_release -a
+  > LSB(Linux Standard Base) 此命令适用于所有的Linux发行版本
+  ```
+  LSB Version:    :core-4.1-amd64:core-4.1-noarch
+  Distributor ID: CentOS
+  Description:    CentOS Linux release 7.7.1908 (Core)
+  Release:        7.7.1908
+  Codename:       Core
+  ```
 
 ## 命令的使用lsof
 
