@@ -48,9 +48,9 @@
 > [新版小表情](https://github.com/caiyongji/emoji-list) [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 
 |#|语法|效果|
-|---|----|:---:|
-|1|`[docker 学习笔记](docker.md)`|[docker 学习笔记](docker/docker.md)|
-|2|`[我的博客](https://my.oschina.net/AmosWang "AmosWang")`|[我的博客](https://my.oschina.net/AmosWang "AmosWang")|
-|3|`[回到顶部](#notes)`|[回到顶部](#notes)|
+| --- | ---- | : --- : |
+| 1 | `[docker 学习笔记](docker.md)` | [docker 学习笔记](docker/docker.md) |
+| 2 | `[我的博客](https://my.oschina.net/AmosWang "AmosWang")` | [我的博客](https://my.oschina.net/AmosWang "AmosWang") |
+| 3 | `[回到顶部](#notes)` | [回到顶部](#notes) |
 
 [回到顶部](#notes)
