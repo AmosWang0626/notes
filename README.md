@@ -45,7 +45,7 @@
   - [Oracle学习](/db/oracle.md)
 
 ## markdown 技巧
-> :smiley: [新版小表情](https://github.com/caiyongji/emoji-list) [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
+> [新版小表情](https://github.com/caiyongji/emoji-list) [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
 
 |#|语法|效果|
 |---|----|:---:|
