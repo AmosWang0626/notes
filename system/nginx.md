@@ -171,4 +171,13 @@ gpgcheck=0
 enabled=1
 ```
 ### 3.执行yum升级命令 `yum update nginx -y`
-### 4.验证Nginx版本 `nginx -v`
+### 4.验证Nginx版本 `nginx -t` `nginx -v`
+### 升级失败
+```
+如果提示下边错误信息:
+nginx: [emerg] module "/usr/lib64/nginx/modules/ngx_http_geoip_module.so" version 1012002 instead of 1014000 in /usr/share/nginx/modules/mod-http-geoip.conf:1
+说明二版本之间有些不兼容, 可执行下列命令处理冲突, 然后此时需要重启nginx, 有悖在线升级
+yum remove nginx-mod*
+yum install nginx-module-*
+```
+
