@@ -18,6 +18,13 @@ WHERE "ID" IN ('10001', '10002', '10003');
 ```
 
 ## 建表
+### 查看表字段及数据类型
+```
+SELECT table_name, column_name, data_type
+FROM all_tab_cols WHERE table_name = 'MOS_USER'
+```
+
+### 字段类型须知
 - [Err] ORA-00907: missing right parenthesis
 > - 表面意思是少右括号，但和MySQL不同，某些关键字也是需要处理的。
 > - 例如：`INTEGER (8)`是错的，正确写法是去掉长度 `(8)`，示例如下
