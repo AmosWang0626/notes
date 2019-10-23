@@ -10,7 +10,7 @@
 ## 新增和批量新增insert
 - insert into select
 ```sql
-INSERT INTO order_desc (member_id, apply_no, content);
+INSERT INTO order_desc (member_id, apply_no, content)
 SELECT member_id, apply_no, content FROM order_desc2 WHERE APPLY_TYPE = 'MOBILE' GROUP BY content ORDER BY COUNT(content) DESC;
 ```
 
