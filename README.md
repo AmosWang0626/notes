@@ -46,14 +46,13 @@
   - [Oracle学习](/db/oracle.md)
 
 ## markdown 技巧
-> [新版小表情](https://github.com/caiyongji/emoji-list) [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)
-
-|#|语法|效果|
-| --- | ---- | : --- : |
-| 1 | `[docker 学习笔记](docker.md)` | [docker 学习笔记](docker/docker.md) |
-| 2 | `[我的博客](https://my.oschina.net/AmosWang "AmosWang")` | [我的博客](https://my.oschina.net/AmosWang "AmosWang") |
-| 3 | `[回到顶部](#notes)` | [回到顶部](#notes) |
-| 4 | `[编辑表格](http://ewind.us/h5/md-table/)` | [编辑表格](http://ewind.us/h5/md-table/) |
-
+| No | 语法                                                            | 效果                                                          |
+|----|---------------------------------------------------------------|-------------------------------------------------------------|
+| 1  | `[docker 学习笔记](docker.md)`                                    | [docker 学习笔记](docker/docker.md)                             |
+| 2  | `[我的博客](https://my.oschina.net/AmosWang "AmosWang")`          | [我的博客](https://my.oschina.net/AmosWang "AmosWang")          |
+| 3  | `[编辑表格](http://ewind.us/h5/md-table/)`                        | [编辑表格](http://ewind.us/h5/md-table/)                        |
+| 4  | `[回到顶部](#notes)`                                              | [回到顶部](#notes)                                              |
+| 5  | `[新版小表情](https://github.com/caiyongji/emoji-list)`            | [新版小表情](https://github.com/caiyongji/emoji-list)            |
+| 6  | `[老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/)` | [老版小表情](https://www.webpagefx.com/tools/emoji-cheat-sheet/) |
 
 [回到顶部](#notes)
