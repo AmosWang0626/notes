@@ -32,6 +32,7 @@
   - [MyBatis](/frame/mybatis.md)
   - [Spring](/frame/spring.md)
   - [Spring Boot](/frame/spring-boot.md)
+  - [Spring Cloud](/frame/spring-cloud.md)
 
 - 前端技术
   - [vue](/front/vue.md)
