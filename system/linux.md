@@ -8,6 +8,11 @@
 0. [连接工具 SecureCRT SecureFX](#Secure(CRT/FX)使用技巧)
 0. [Linux目录释义](#Linux目录释义)
 
+```
+未整理内容：
+修改服务器时间：`date -s "2019/10/31 23:57:00"`
+改回当前时间[NTP服务器(上海)]：`ntpdate -u ntp.api.bz`
+```
 
 ## 查看磁盘使用情况
 - df
