@@ -1,6 +1,50 @@
 # Java GC
 http://jefferent.iteye.com/blog/1123677
 
+## Java8实践
+### GC日志示例1
+```
+2019-11-02T21:43:44.513+0800: 129010.205: [GC (Allocation Failure) \
+[PSYoungGen: 134135K->13659K(133120K)] 187486K->69073K(216576K), 0.0317286 secs] \
+[Times: user=0.06 sys=0.00, real=0.04 secs]
+```
+### GC日志示例2
+```
+2019-11-01T10:22:59.918+0800: 1765.610: [Full GC (Ergonomics) \
+[PSYoungGen: 7010K->0K(145408K)] [ParOldGen: 52384K->43630K(83456K)] 59394K->43630K(228864K), \
+[Metaspace: 84184K->83747K(1126400K)], 0.3355045 secs] [Times: user=0.55 sys=0.00, real=0.33 secs] 
+Heap after GC invocations=41 (full 4):
+ PSYoungGen      total 145408K, used 0K [0x00000000f6700000, 0x0000000100000000, 0x0000000100000000)
+  eden space 138240K, 0% used [0x00000000f6700000,0x00000000f6700000,0x00000000fee00000)
+  from space 7168K, 0% used [0x00000000fee00000,0x00000000fee00000,0x00000000ff500000)
+  to   space 9728K, 0% used [0x00000000ff680000,0x00000000ff680000,0x0000000100000000)
+ ParOldGen       total 83456K, used 43630K [0x00000000e3400000, 0x00000000e8580000, 0x00000000f6700000)
+  object space 83456K, 52% used [0x00000000e3400000,0x00000000e5e9ba10,0x00000000e8580000)
+ Metaspace       used 83747K, capacity 86604K, committed 87552K, reserved 1126400K
+  class space    used 10334K, capacity 10848K, committed 11008K, reserved 1048576K
+}
+{Heap before GC invocations=42 (full 4):
+ PSYoungGen      total 145408K, used 138240K [0x00000000f6700000, 0x0000000100000000, 0x0000000100000000)
+  eden space 138240K, 100% used [0x00000000f6700000,0x00000000fee00000,0x00000000fee00000)
+  from space 7168K, 0% used [0x00000000fee00000,0x00000000fee00000,0x00000000ff500000)
+  to   space 9728K, 0% used [0x00000000ff680000,0x00000000ff680000,0x0000000100000000)
+ ParOldGen       total 83456K, used 43630K [0x00000000e3400000, 0x00000000e8580000, 0x00000000f6700000)
+  object space 83456K, 52% used [0x00000000e3400000,0x00000000e5e9ba10,0x00000000e8580000)
+ Metaspace       used 86395K, capacity 89964K, committed 90112K, reserved 1128448K
+  class space    used 10571K, capacity 11188K, committed 11264K, reserved 1048576K
+```
+### 小总结
+- Allocation Failure 意思是分配失败，也即触发本次 GC 的原因
+- GC：Minor GC（新生代垃圾收集）
+- 示例1 `[PSYoungGen: 134135K->13659K(133120K)] 187486K->69073K(216576K), 0.0317286 secs]`
+  - PSYoungGen：PS（Parallel Scavenge 垃圾收集器：多线程、并行、采用复制算法）
+  - 134135K->13659K GC前后新生代占用空间；Minor GC之后Eden区为空，13659K 就是Survivor占用的空间
+  - (133120K) 年轻代总大小
+  - 0.0317286 secs 垃圾收集过程所消耗的时间
+
+
+---
+
 ## 虚拟机中的共划分为三个代：
 > 年轻代和年老代的划分是对垃圾收集影响比较大的
 
@@ -44,7 +88,6 @@ http://jefferent.iteye.com/blog/1123677
 
 ### 可达性分析
 通过一系列的称为 GC Roots 的对象作为起点, 然后向下搜索; 搜索所走过的路径称为引用链/Reference Chain, 当一个对象到 GC Roots 没有任何引用链相连时, 即该对象不可达, 也就说明此对象是不可用的, 如下图: Object5、6、7 虽然互有关联, 但它们到GC Roots是不可达的,因此也会被判定为可回收的对象:
-![title](https://leanote.com/api/file/getImage?fileId=5b5a9ba0ab644171a6000ea5)
 
 - 在java中可做GC Roots的对象包括：
     - 方法区: 类静态属性引用的对象;
