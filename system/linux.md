@@ -13,6 +13,11 @@
 修改服务器时间：`date -s "2019/10/31 23:57:00"`
 改回当前时间[NTP服务器(上海)]：`ntpdate -u ntp.api.bz`
 搜索历史命令：Ctrl + R    (reverse: 反/逆)
+uname -a
+Linux 系统版本号：cat /etc/redhat-release
+CPU核心数，型号：cat /proc/cpuinfo
+内存大小：cat /proc/meminfo |grep MemTotal
+带宽，网卡数：ifconfig；ethtool eth0等
 ```
 
 ## 查看磁盘使用情况
