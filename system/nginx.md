@@ -4,6 +4,7 @@
 - [nginx添加白名单IP脚本](#nginx添加白名单IP脚本)
 - [nginx配置规则与实战](#nginx配置规则与实战)
 - [nginx在线升级](#nginx在线升级)
+- [nginx配置缓存](#nginx配置缓存)
 
 ## nginx添加白名单IP脚本
 ```
@@ -181,3 +182,42 @@ yum remove nginx-mod*
 yum install nginx-module-*
 ```
 
+## nginx配置缓存
+> 新搭了个博客[amos.wang](https://amos.wang)
+> 前两天，每次打开都费很长时间，简直不能忍，深夜配置下～～
+
+### 缓存配置如下，完整配置，没打码
+```conf
+# 核心一句话
+proxy_cache_path /etc/nginx/cache levels=1:2 keys_zone=amos_cache:10m max_size=10g inactive=60m use_temp_path=off;
+
+server {
+    listen       443 ssl;
+    listen       [::]:443 ssl;
+    server_name  amos.wang;
+
+    ssl_certificate         /etc/nginx/cert/amos/www.pem;
+    ssl_certificate_key     /etc/nginx/cert/amos/www.key;
+    ssl_session_cache       shared:SSL:1m;
+    ssl_session_timeout     10m;
+    ssl_ciphers             HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers       on;
+
+    location / {
+        proxy_pass   http://127.0.0.1:4000;
+    }
+
+    # 核心一段，相应后缀的文件回缓存
+    location ~ .*\.(css|js|woff2)(.*) {
+        proxy_pass http://127.0.0.1:4000;
+        proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_cache amos_cache;
+        proxy_cache_valid any 3d;
+        expires 3d;
+        add_header amos "hey! guess who i am ?";
+     }
+
+}
+
+```
