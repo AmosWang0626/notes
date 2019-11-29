@@ -207,7 +207,7 @@ server {
         proxy_pass   http://127.0.0.1:4000;
     }
 
-    # 核心一段，相应后缀的文件回缓存
+    # 核心一段，相应后缀的文件会被缓存
     location ~ .*\.(css|js|woff2)(.*) {
         proxy_pass http://127.0.0.1:4000;
         proxy_redirect off;
