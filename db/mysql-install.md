@@ -1,3 +1,14 @@
+---
+title: MySQL 安装相关
+date: 2019-01-01
+categories: database
+tags:
+- 数据库
+- Mysql
+- Mysql安装
+---
+
+
 # MySQL 安装相关
 
 # Linux MySQL

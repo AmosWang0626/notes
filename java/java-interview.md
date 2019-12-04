@@ -1,3 +1,14 @@
+---
+title: Java 面试相关
+date: 2018-11-04
+categories: java
+tags:
+- java
+- 面试
+---
+
+# java 面试相关
+
 ## ArrayList和LinkedList的大致区别如下:
 1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。 
 2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。 

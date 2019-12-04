@@ -1,3 +1,11 @@
+---
+title: 前端相关 VSCode配置
+date: 2019-01-01
+categories: front
+tags:
+- VSCode配置
+---
+
 # VS Code 配置
 
 ## 默认保存，并格式化代码

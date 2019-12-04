@@ -1,3 +1,12 @@
+---
+title: 框架 mybatis
+date: 2019-01-01
+categories: frame
+tags:
+- 框架
+- mybatis
+---
+
 # MyBatis （2017.5.16）
 
 > MyBatis 主要是处理数据的持久化操作的一个轻量级框架，相对于Hibernate而言。

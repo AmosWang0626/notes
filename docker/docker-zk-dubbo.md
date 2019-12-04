@@ -1,3 +1,14 @@
+---
+title: docker zookeeper
+date: 2019-01-28
+categories: docker
+tags:
+- docker
+- zookeeper
+- dobbo
+---
+
+
 # Zookeeper 分布式之中流砥柱
 
 ## 一、基本命令

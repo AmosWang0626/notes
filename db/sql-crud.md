@@ -1,3 +1,13 @@
+---
+title: SQL 基础增删改查
+date: 2019-01-01
+categories: database
+tags:
+- 数据库
+- SQL基础
+---
+
+
 # 数据库增删改查
 ## 目录
 - [新增](#新增和批量新增insert)

@@ -1,3 +1,8 @@
+---
+title: Github笔记
+date: 2018-01-01
+---
+
 # notes
 > Java程序员的笔记斋
 - 温馨提示：_blank方式打开链接，请按住Ctrl键
@@ -10,7 +15,6 @@
   - [Java 基础](java/java.md)
   - [Java 面试](java/java-interview.md)
   - [Java 虚拟机](java/java-jvm.md)
-  - [Java 垃圾回收](java/java-gc.md)
   - [Java biz](java/java-biz.md)
 
 - docker
@@ -36,7 +40,7 @@
 
 - 前端技术
   - [vue](/front/vue.md)
-  - [vue-node](/front/vue-node.md)
+  - [vue-node](/front/node-js.md)
 
 - 数据库
   - [SQL增删改查](/db/sql-crud.md)

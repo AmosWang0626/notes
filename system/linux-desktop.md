@@ -1,3 +1,13 @@
+---
+title: 系统相关 Linux 桌面系统
+date: 2019-01-01
+categories: system
+tags:
+- 系统相关
+- Linux
+---
+
+
 # Linux桌面系统
 
 ## .deb 文件安装

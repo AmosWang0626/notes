@@ -1,3 +1,13 @@
+---
+title: 系统相关 Linux
+date: 2019-01-01
+categories: system
+tags:
+- 系统相关
+- Linux
+---
+
+
 # Linux
 
 ## 目录

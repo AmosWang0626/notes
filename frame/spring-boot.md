@@ -1,3 +1,13 @@
+---
+title: 框架 spring-boot
+date: 2019-01-01
+categories: frame
+tags:
+- 框架
+- spring-boot
+---
+
+
 ## 项目三种启动方式
 
 1. IDEA自己的默认启动

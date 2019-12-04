@@ -1,3 +1,15 @@
+---
+title: SQL 高级
+date: 2019-01-01
+categories: database
+tags:
+- 数据库
+- 索引
+- SQL优化
+- 数据库锁
+---
+
+
 # SQL 高级
 
 ## 1、索引

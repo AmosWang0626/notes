@@ -1,3 +1,12 @@
+---
+title: Java 学习笔记
+date: 2018-11-04
+categories: java
+tags:
+- java
+---
+
+
 # Java 学习笔记
 
 ## 1.Java移位

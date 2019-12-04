@@ -1,3 +1,12 @@
+---
+title: skill 我的想法
+date: 2018-11-11
+categories: skill
+tags:
+- idea
+- 想法
+---
+
 # 被你发现了
 
 ## 网络是免费的，但是怎么赢利呢，增值服务

@@ -1,3 +1,12 @@
+---
+title: Oracle 语法相关
+date: 2019-01-01
+categories: database
+tags:
+- 数据库
+- oracle
+---
+
 # Oracle
 
 ## 根据日期找出年月日

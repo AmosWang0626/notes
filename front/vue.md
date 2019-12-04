@@ -1,3 +1,13 @@
+---
+title: 前端相关 vue
+date: 2019-01-01
+categories: front
+tags:
+- 前端
+- vue
+---
+
+
 # Vue
 
 ## 1、组件传参

@@ -1,8 +1,8 @@
 ---
 title: Java GC 学习实践(下)
 date: 2019-11-04
-categories: java-gc
-tag:
+categories: java
+tags:
 - java
 - gc
 - jvm

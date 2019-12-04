@@ -1,3 +1,13 @@
+---
+title: 系统相关 Windows 命令
+date: 2019-01-01
+categories: system
+tags:
+- 系统相关
+- Windows命令
+---
+
+
 # cmd
 ### 电脑配置相关
 - 管理电脑用户

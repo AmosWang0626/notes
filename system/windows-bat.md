@@ -1,4 +1,14 @@
-# 去除文件名中的左右括号
+---
+title: 系统相关 Windows 脚本
+date: 2019-01-01
+categories: system
+tags:
+- 系统相关
+- Windows脚本
+---
+
+
+## 去除文件名中的左右括号
 ```
 @Echo Off&SetLocal ENABLEDELAYEDEXPANSION
 FOR %%a in (*) do (
@@ -10,7 +20,7 @@ FOR %%a in (*) do (
 exit
 ```
 
-# 批处理命令详解
+## 批处理命令详解
 ```
 @Echo Off&SetLocal ENABLEDELAYEDEXPANSION
 ::关闭回显,设置变量延迟
@@ -57,7 +67,7 @@ set c="abc&def" ---- 输出结果："abc&def"
 set "c=abc^&def" --- 输出结果：abc&def
 ```
 
-# 合并多个ts文件
+## 合并多个ts文件
 ```
 @echo off
 :: 开启延迟变量
