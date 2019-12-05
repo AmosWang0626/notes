@@ -1,9 +1,10 @@
 ---
 title: Java 设计模式
 date: 2018-11-11
-categories: java
+categories: 设计模式
 tags:
 - java
+- 代理模式
 - 设计模式
 ---
 

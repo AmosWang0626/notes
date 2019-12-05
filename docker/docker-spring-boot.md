@@ -1,7 +1,7 @@
 ---
 title: docker spring boot
 date: 2019-03-18
-categories: docker
+categories: Docker
 tags:
 - docker
 - spring-boot

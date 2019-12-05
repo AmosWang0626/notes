@@ -1,10 +1,6 @@
 ---
-title: skill 软件斋
+title: 软件斋
 date: 2019-01-01
-categories: skill
-tags:
-- soft
-- 软件推荐
 ---
 
 # 软件斋

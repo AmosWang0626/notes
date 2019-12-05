@@ -1,10 +1,6 @@
 ---
-title: skill 此地无银三百两
-date: 2019-01-01
-categories: skill
-tags:
-- skill
-- 想法
+title: 此地无银三百两
+date: 2019-04-08
 ---
 
 # 此地无银三百两

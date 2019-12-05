@@ -1,7 +1,7 @@
 ---
 title: 前端相关 VSCode配置
 date: 2019-01-01
-categories: front
+categories: 前端
 tags:
 - VSCode配置
 ---

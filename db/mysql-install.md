@@ -1,9 +1,8 @@
 ---
 title: MySQL 安装相关
-date: 2019-01-01
-categories: database
+date: 2018-01-01
+categories: 数据库
 tags:
-- 数据库
 - Mysql
 - Mysql安装
 ---

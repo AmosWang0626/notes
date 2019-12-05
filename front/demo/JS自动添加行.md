@@ -1,10 +1,7 @@
 ---
 title: JS 表格自动添加行
 date: 2019-01-01
-categories: front
-tags:
-- 前端
-- javascript
+categories: 前端
 ---
 
 

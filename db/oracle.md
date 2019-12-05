@@ -1,10 +1,9 @@
 ---
 title: Oracle 语法相关
 date: 2019-01-01
-categories: database
+categories: 数据库
 tags:
-- 数据库
-- oracle
+- Oracle
 ---
 
 # Oracle

@@ -1,7 +1,7 @@
 ---
 title: 系统相关 Windows 脚本
 date: 2019-01-01
-categories: system
+categories: 系统相关
 tags:
 - 系统相关
 - Windows脚本

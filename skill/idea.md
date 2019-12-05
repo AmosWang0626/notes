@@ -1,10 +1,6 @@
 ---
-title: skill 我的想法
+title: 我的想法
 date: 2018-11-11
-categories: skill
-tags:
-- idea
-- 想法
 ---
 
 # 被你发现了

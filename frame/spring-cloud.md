@@ -1,9 +1,8 @@
 ---
 title: 框架 spring-cloud
 date: 2019-01-01
-categories: frame
+categories: 框架
 tags:
-- 框架
 - spring-cloud
 ---
 

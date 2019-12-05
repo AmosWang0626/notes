@@ -1,7 +1,7 @@
 ---
 title: 系统相关 阿里云服务器
 date: 2019-01-01
-categories: system
+categories: 系统相关
 tags:
 - 系统相关
 - 阿里云

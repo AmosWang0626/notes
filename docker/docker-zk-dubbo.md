@@ -1,11 +1,11 @@
 ---
-title: docker zookeeper
+title: docker zookeeper dubbo
 date: 2019-01-28
-categories: docker
+categories: Docker
 tags:
 - docker
 - zookeeper
-- dobbo
+- dubbo
 ---
 
 

@@ -1,7 +1,7 @@
 ---
 title: 系统相关 Linux 桌面系统
 date: 2019-01-01
-categories: system
+categories: 系统相关
 tags:
 - 系统相关
 - Linux
