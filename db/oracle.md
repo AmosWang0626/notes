@@ -28,8 +28,11 @@ WHERE "ID" IN ('10001', '10002', '10003');
 ## 建表
 ### 查看表字段及数据类型
 ```
-SELECT table_name, column_name, data_type
-FROM all_tab_cols WHERE table_name = 'MOS_USER'
+SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE
+FROM ALL_TAB_COLS WHERE TABLE_NAME='AMOS_USER';
+或者
+SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE
+FROM USER_TAB_COLUMNS WHERE TABLE_NAME='AMOS_USER';
 ```
 
 ### 字段类型须知

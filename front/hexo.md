@@ -1,5 +1,5 @@
 ---
-title: Github笔记
+title: Hexo使用指北
 date: 2019-11-24
 tags:
 - hexo

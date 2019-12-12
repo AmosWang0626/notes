@@ -21,7 +21,7 @@ tags:
 - 新增字段 `ALTER TABLE wmmm_user.member ADD CHANNEL_ID bigint(20) DEFAULT NULL COMMENT '注册来源渠道号';`
 - 默认设置创建时间 `CREATE_TIME datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'`
 - 默认设置修改时间 `UPDATE_TIME datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'`
-
+- 注: 数据库增加字段 `ADD COLUMN` 是错的，直接 `ADD` 即可
 
 ## 修改update
 - 修改字段 `ALTER TABLE wmmm_user.member CHANGE COLUMN CHANNEL_ID CHANNEL_NO varchar(32) DEFAULT NULL COMMENT '注册来源渠道号';`
@@ -66,6 +66,7 @@ SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %T');
 
 ## 删除delete
 - 清空表 `truncate table message_issue;`
+- 删除字段 `alter table message_issue DROP COLUMN "DOWNLOAD_FLAG";`
 
 ## 注意notice
 
