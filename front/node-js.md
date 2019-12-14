@@ -1,7 +1,7 @@
 ---
 title: 前端相关 Node.js
 date: 2019-01-01
-categories: 前端
+categories: 前端相关
 tags:
 - Node.js
 - npm

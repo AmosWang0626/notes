@@ -1,9 +1,9 @@
 ---
 title: 前端相关 VSCode配置
 date: 2019-01-01
-categories: 前端
+categories: 前端相关
 tags:
-- VSCode配置
+- VS Code配置
 ---
 
 # VS Code 配置

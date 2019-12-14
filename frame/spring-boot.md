@@ -1,7 +1,7 @@
 ---
-title: 框架 spring-boot
+title: 框架相关 spring-boot
 date: 2019-01-01
-categories: 框架
+categories: 框架相关
 tags:
 - spring-boot
 ---

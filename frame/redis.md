@@ -1,7 +1,7 @@
 ---
-title: 框架 redis
+title: 框架相关 redis
 date: 2019-01-01
-categories: 框架
+categories: 框架相关
 tags:
 - redis
 ---

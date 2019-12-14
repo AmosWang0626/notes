@@ -1,13 +1,13 @@
 ---
-title: 框架 git
+title: 框架相关 git
 date: 2019-01-01
-categories: 框架
+categories: 框架相关
 tags:
 - git
 ---
 
 
-# :basketball:Git学习笔记:biking_woman:
+# Git学习笔记
 
 - git commit --amend（修改最后一次提交的描述）
 - git reset --soft HEAD^（回退最后一次提交）
@@ -27,12 +27,12 @@ tags:
   - git branch -d remotes/origin/develop（删除本地分支）
   - git branch（查看当前分支）
   - git log（查看提交记录）
-- git 放弃本地修改，未add的:blonde_woman:
+- git 放弃本地修改，未add的
   - 语法：git checkout -- file
   - git checkout -- vue.config.js
-- git add过的:blowfish:，恢复到未add区
+- git add过的，恢复到未add区
   - git reset file
 
-### 注意:1st_place_medal:
+### 注意
 
 - git以功能为单位提交，便于往别的分支cherry-pick，毕竟很多业务在一个基础之上开发
