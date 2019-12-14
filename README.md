@@ -7,47 +7,52 @@ date: 2018-01-01
 > Java程序员的笔记斋
 - 温馨提示：_blank方式打开链接，请按住Ctrl键
 - 项目地址：[notes](https://amoswang0626.github.io/notes/)
-- 我的博客：[blog](https://my.oschina.net/AmosWang)
+- 我的博客：[blog](https://amos.wang)
 
 ## 文件目录
 
-- java
+- Java
   - [Java 基础](java/java.md)
   - [Java 面试](java/java-interview.md)
   - [Java 虚拟机](java/java-jvm.md)
-  - [Java biz](java/java-biz.md)
+  - [Java GC笔记1](java/java-gc-01.md)
+  - [Java GC笔记2](java/java-gc-02.md)
 
-- docker
+- Docker
   - [Docker 学习笔记](docker/docker.md)
   - [Docker 安装软件](docker/docker-soft.md)
-  - [Docker zk Dubbo](docker/docker-zk-dubbo.md)
+  - [Docker ZK Dubbo](docker/docker-zk-dubbo.md)
   - [Docker Spring Boot](docker/docker-spring-boot.md)
 
 - 系统相关
   - [Linux 相关](system/linux.md)
+  - [Linux 文件系统](system/linux-filesystem.md)
   - [Nginx 相关](system/nginx.md)
   - [Windows 命令](system/windows-cmd.md)
   - [Windows 批处理](system/windows-bat.md)
 
-- 框架
-  - [Git](/frame/git.md)
-  - [Maven](/frame/maven.md)
-  - [Redis](/frame/redis.md)
-  - [MyBatis](/frame/mybatis.md)
-  - [Spring](/frame/spring.md)
-  - [Spring Boot](/frame/spring-boot.md)
-  - [Spring Cloud](/frame/spring-cloud.md)
+- 框架相关
+  - [Git](frame/git.md)
+  - [Maven](frame/maven.md)
+  - [Redis](frame/redis.md)
+  - [MyBatis](frame/mybatis.md)
+  - [Spring](frame/spring.md)
+  - [Spring Boot](frame/spring-boot.md)
+  - [Spring Cloud](frame/spring-cloud.md)
 
-- 前端技术
-  - [vue](/front/vue.md)
-  - [vue-node](/front/node-js.md)
+- 前端相关
+  - [vue](front/vue.md)
+  - [vue-node](front/node-js.md)
 
 - 数据库
-  - [SQL增删改查](/db/sql-crud.md)
-  - [SQL高级](/db/sql-advanced.md)
-  - [数据库/表操作](/db/db-operate.md)
-  - [MySQL安装](/db/mysql-install.md)
-  - [Oracle学习](/db/oracle.md)
+  - [SQL增删改查](db/sql-crud.md)
+  - [数据库/表操作](db/db-operate.md)
+  - [SQL高级](db/sql-advanced.md)
+  - [MySQL安装](db/mysql-install.md)
+  - [Oracle学习](db/oracle.md)
+
+- Hexo
+  - [Hexo](front/hexo.md)
 
 ## markdown 技巧
 
