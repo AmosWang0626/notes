@@ -1,5 +1,5 @@
 ---
-title: docker 安装软件
+title: Docker 安装软件
 date: 2019-02-28
 categories: Docker
 tags:
@@ -12,6 +12,10 @@ tags:
 
 
 # Docker 安装软件
+- nginx
+- mysql
+- redis
+- jenkins
 
 ## Docker Nginx
 > docker install Nginx

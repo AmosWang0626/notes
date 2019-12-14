@@ -1,7 +1,7 @@
 ---
 title: Java 业务常识
 date: 2018-11-04
-categories: java
+categories: Java
 tags:
 - 业务
 ---
@@ -14,8 +14,7 @@ tags:
 - 整理一个http字典
   - 涉及多种 http request
 
-## encryption
-> 加密 解密
+## 加密解密
 
 ### 常见加密算法
 对称加密算法主要有：DES、3DES、AES

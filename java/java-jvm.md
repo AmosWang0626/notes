@@ -1,7 +1,7 @@
 ---
 title: Java JVM 调优
 date: 2018-11-04
-categories: java
+categories: Java
 tags:
 - jvm
 ---

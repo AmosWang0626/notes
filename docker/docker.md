@@ -1,5 +1,5 @@
 ---
-title: docker
+title: Docker
 date: 2019-02-21
 categories: Docker
 tags:
@@ -74,7 +74,8 @@ tags:
 - -i 以交互模式运行容器
 - -t 为容器重新分配一个伪输入终端
 - bash 是进入终端的命令(Linux系统)，另外因为Nginx运行在Linux之上
-- docker exec -it 容器别名 bash
+- docker exec -it 容器ID/别名 bash
+- 注意: bash不一定能用，可以多试几个 sh bash /bin/sh 等
 
 ### 11.docker system 系统级命令
 > docker命令的核心（虽然不是特别常用）

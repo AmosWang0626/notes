@@ -1,7 +1,7 @@
 ---
 title: Java 学习笔记
 date: 2018-11-04
-categories: java
+categories: Java
 ---
 
 
@@ -19,6 +19,7 @@ java中有三种移位运算符
 ```
 ## 2.Date Util
 ```
+
 private static final ThreadLocal<DateFormat> FORMAT_YEAR_2_SECOND =
 	 ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 ```
