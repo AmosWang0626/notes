@@ -1,5 +1,5 @@
 ---
-title: 数据库及表操作
+title: DB 表结构操作
 date: 2019-01-01
 categories: 数据库
 tags:
@@ -7,7 +7,7 @@ tags:
 ---
 
 
-# 数据库及表操作
+# DB 表相关操作
 
 ## 目录
 - [新增](#新增insert)
@@ -47,21 +47,6 @@ tags:
 <def>
 	SELECT TABLE_NAME FROM USER_TABLES WHERE TABLE_NAME LIKE 'DEV_LOG_XXX_SEARCH_%' ORDER BY TABLE_NAME DESC
 </def>
-```
-
-- 日期相关
-```mysql
--- 当日
-SELECT DAY(NOW()) CURRENT_DAY;
--- 当月 2019-09-09
-SELECT DATE(NOW()) CURRENT_MONTH;
--- 当月 201909
-SELECT DATE_FORMAT(NOW(), '%Y%m') CURRENT_MONTH;
--- 上个月 201908
-SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y%m') LAST_MONTH;
--- 如下两个等价SQL
-SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %h:%i:%s');
-SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %T');
 ```
 
 ## 删除delete

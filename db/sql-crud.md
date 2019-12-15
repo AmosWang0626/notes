@@ -1,5 +1,5 @@
 ---
-title: SQL 基础增删改查
+title: SQL 增删改查
 date: 2019-01-01
 categories: 数据库
 tags:
@@ -68,6 +68,19 @@ update table_name set username = null, age = null where id = '1433233';
         FROM `rule_result`
         GROUP BY APPLY_NO ORDER BY CREATE_TIME DESC
     ) a GROUP BY run_time ORDER BY run_time DESC;
+    ```
+    ```mysql
+    -- 当日
+    SELECT DAY(NOW()) CURRENT_DAY;
+    -- 当月 2019-09-09
+    SELECT DATE(NOW()) CURRENT_MONTH;
+    -- 当月 201909
+    SELECT DATE_FORMAT(NOW(), '%Y%m') CURRENT_MONTH;
+    -- 上个月 201908
+    SELECT DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),'%Y%m') LAST_MONTH;
+    -- 如下两个等价SQL
+    SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %h:%i:%s');
+    SELECT DATE_FORMAT(NOW(),'%Y-%d-%m %T');
     ```
 
 2. MyBatis Mapper.xml foreach
