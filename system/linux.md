@@ -29,6 +29,7 @@ CPU核心数，型号：cat /proc/cpuinfo
 内存大小：cat /proc/meminfo |grep MemTotal
 带宽，网卡数：ifconfig；ethtool eth0等
 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
+添加执行权限：chmod -x hello.sh
 ```
 
 ## 查看磁盘使用情况
