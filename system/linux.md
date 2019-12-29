@@ -17,17 +17,11 @@ tags:
 0. [定时任务 corn](#定时任务cron)
 0. [连接工具 SecureCRT SecureFX](#Secure(CRT/FX)使用技巧)
 0. [Linux目录释义](#Linux目录释义)
+0. [Linux修改系统时间](#Linux修改系统时间)
 
 ```
 未整理内容：
-修改服务器时间：`date -s "2019/10/31 23:57:00"`
-改回当前时间[NTP服务器(上海)]：`ntpdate -u ntp.api.bz`
-搜索历史命令：Ctrl + R    (reverse: 反/逆)
-uname -a
-Linux 系统版本号：cat /etc/redhat-release
-CPU核心数，型号：cat /proc/cpuinfo
-内存大小：cat /proc/meminfo |grep MemTotal
-带宽，网卡数：ifconfig；ethtool eth0等
+搜索历史命令：Ctrl + R (reverse: 反/逆)
 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
 添加执行权限：chmod -x hello.sh
 ```
@@ -43,26 +37,34 @@ CPU核心数，型号：cat /proc/cpuinfo
   - 查看当前目录大小：du -hd0 /home/
   - 查看当前目录及子目录大小：du -hd1 /home/boot/
 
-## 查看系统信息uname 
-- 全部信息: uname -a
+## 查看系统信息uname
+- Linux 系统版本号
+  - `cat /etc/redhat-release`
+- CPU核心数，型号：
+  - `cat /proc/cpuinfo`
+- 内存大小：
+  - `cat /proc/meminfo |grep MemTotal`
+- 带宽，网卡数：
+  - `ifconfig` 或者 `ethtool eth0`
+- 全部信息: `uname -a`
   - `Linux dudu 3.10.0-514.26.2.el7.x86_64 #1 SMP Tue Jul 4 15:04:05 UTC 2017 x86_64 x86_64 x86_64 GNU/Linux`
-- 硬件平台: uname -i
+- 硬件平台: `uname -i`
   - `x86_64`
-- 机器硬件（CPU）名: uname -m
+- 机器硬件（CPU）名: `uname -m`
   - `x86_64`
-- 节点名称: uname -n
+- 节点名称: `uname -n`
   - `dudu`
-- 操作系统: uname -o
+- 操作系统: `uname -o`
   - `GNU/Linux`
-- 系统处理器的体系结构: uname -p
+- 系统处理器的体系结构: `uname -p`
   - `x86_64`
-- 操作系统的发行版号 uname -r
+- 操作系统的发行版号 `uname -r`
   - `3.10.0-514.26.2.el7.x86_64`
-- 系统名: uname -s
+- 系统名: `uname -s`
   - `Linux`
-- 内核版本: uname -v
+- 内核版本: `uname -v`
   - `#1 SMP Tue Jul 4 15:04:05 UTC 2017`
-- 内核版本详细信息（更直观）: lsb_release -a
+- 内核版本详细信息（更直观）: `lsb_release -a`
   > LSB(Linux Standard Base) 此命令适用于所有的Linux发行版本
   ```
   LSB Version:    :core-4.1-amd64:core-4.1-noarch
@@ -246,3 +248,7 @@ CPU核心数，型号：cat /proc/cpuinfo
   - 这个目录中存放着在不断扩充着的东西，我们习惯将那些经常被修改的目录放在这个目录下。包括各种日志文件。
 - /run：
   - 是一个临时文件系统，存储系统启动以来的信息。当系统重启时，这个目录下的文件应该被删掉或清除。如果你的系统上有 /var/run 目录，应该让它指向 run。
+
+## Linux修改系统时间
+修改服务器时间：`date -s "2019/10/31 23:57:00"`
+改回当前时间[NTP服务器(上海)]：`ntpdate -u ntp.api.bz`
