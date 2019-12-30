@@ -1,5 +1,5 @@
 ---
-title: Github笔记
+title: Github 笔记
 date: 2018-01-01
 ---
 
