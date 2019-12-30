@@ -24,6 +24,7 @@ tags:
 搜索历史命令：Ctrl + R (reverse: 反/逆)
 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
 添加执行权限：chmod -x hello.sh
+ZIP排除文件夹：zip -r jetty-bak20191230.zip jetty-8080 -x "jetty-8080/logs/*" "jetty-8080/webapps/*"
 ```
 
 ## 查看磁盘使用情况
