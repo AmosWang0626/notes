@@ -17,7 +17,7 @@ tags:
 
 - `GRANT ALL PRIVILEGES ON *.* TO 'zzti'@'180.117.75.5' IDENTIFIED BY 'zutEdu2018';`
 
-- 可为其他用户授权 `GRANT 权限 ON 数据库对象 TO 用户 IDENTIFIED BY 密码 WITH GRANT OPTION;`
+- 可为其他用户授权（基础授权 + `WITH GRANT OPTION;`）
 
 - `GRANT ALL PRIVILEGES ON *.* TO 'zzti'@'180.117.75.5' IDENTIFIED BY 'zutEdu2018' WITH GRANT OPTION;`
 
@@ -26,13 +26,13 @@ tags:
 - 创建用户设置密码 
 - `CREATE USER 'zzti'@'%' IDENTIFIED BY 'zutEdu2018';`
 
-- MySQL 8.0+ 密码默认加密方式有改变，用旧的加密方式 `WITH mysql_native_password`
+- MySQL 8.0+ 使用旧有加密方式 `WITH mysql_native_password`
 - `CREATE USER 'zzti'@'%' IDENTIFIED WITH mysql_native_password BY 'zutEdu2018';`
 
 - 基础授权 `GRANT 权限 ON 数据库对象 TO 用户;`
 - `GRANT ALL PRIVILEGES ON mall.* TO 'mall'@'%';`
 
-- 可为其他用户授权 `GRANT 权限 ON 数据库对象 TO 用户 WITH GRANT OPTION;`
+- 可为其他用户授权（基础授权 + `WITH GRANT OPTION;`）
 - `GRANT ALL PRIVILEGES ON mall.* TO 'mall'@'%' WITH GRANT OPTION;`
 
 ### 1.3 释义
