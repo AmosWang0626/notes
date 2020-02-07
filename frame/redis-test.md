@@ -77,6 +77,16 @@ tags:
 - 增加相同的数据(失败,set不允许重复): `sadd set_many aa` 
 
 ### 5、有序集合操作
+- 添加 `zadd sort_number 5 five 4 four 3 three 1 one 2 two`
+- 正向遍历不带分数 `zrange sort_number 0 -1`
+- 正向遍历带分数 `zrange sort_number 0 -1 WITHSCORES`
+- 逆向遍历带分数 `zrevrange sort_number 0 -1 WITHSCORES`
+- 正向遍历根据分数区间 1 < n <= 4 `zrangebyscore sort_number (1 4`
+- 逆向遍历根据分数区间 1 < n <= 4 `zrevrangebyscore sort_number 4 (1`
+- 获取某个item下标(从0开始) `zrank sort_number four`
+- 删除一个或多个元素 `zrem sort_number two`
+- 根据item下标删除一个或多个元素 `zremrangebyrank sort_number 0 2`
+- 根据分数区间删除一个或多个元素(包含临界值) `zremrangebyscore sort_number 3 5`
 
 ### 6、字符串位操作
 
