@@ -1,10 +1,10 @@
 ---
-title: 上手 Swagger3.0.0,增加支持 WebFlux
+title: 上手 Swagger3.0.0-SNAPSHOT,增加支持 WebFlux
 date: 2020-02-12
 categories: Java
 ---
 
-# 上手 Swagger3.0.0,增加支持 WebFlux
+# 上手 Swagger3.0.0-SNAPSHOT,增加支持 WebFlux
 > 截至今天(2020年2月12日) swagger 3.X 尚未正式发布，项目需要，先用快照版
 
 ## 相关源码
@@ -40,7 +40,7 @@ categories: Java
 ## 二、WebFlux 相关依赖
 - 较之前用的WebMVC版本，增加一个依赖：springfox-spring-webflux
 - [Swagger配置-SwaggerConfig.java](https://github.com/AmosWang0626/mall/blob/master/mall-gateway/src/main/java/com/mall/gateway/config/SwaggerConfig.java)
-- [Swagger配置-WebMvcConfig.java](https://github.com/AmosWang0626/mall/blob/master/mall-gateway/src/main/java/com/mall/gateway/config/WebFluxConfig.java)
+- [Swagger配置-WebFluxConfig.java](https://github.com/AmosWang0626/mall/blob/master/mall-gateway/src/main/java/com/mall/gateway/config/WebFluxConfig.java)
 
 ```xml
 <dependencies>
