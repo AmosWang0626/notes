@@ -1,5 +1,5 @@
 ---
-title: 框架相关 spring-cloud
+title: 框架相关 Spring Cloud 版本说明
 date: 2019-01-01
 categories: 框架相关
 tags:
@@ -7,9 +7,7 @@ tags:
 ---
 
 
-# spring cloud
-
-## 版本说明
+# Spring Cloud 版本说明
 
 | 版本号        | 版本说明  | 版本用途                |
 |------------|-------|---------------------|
