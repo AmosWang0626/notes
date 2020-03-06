@@ -18,13 +18,24 @@ tags:
 0. [连接工具 SecureCRT SecureFX](#Secure(CRT/FX)使用技巧)
 0. [Linux目录释义](#Linux目录释义)
 0. [Linux修改系统时间](#Linux修改系统时间)
+0. [Linux查找](#Linux查找)
+    > which、whereis、locate、find
+0. [ls](#ls)
+0. [scp](#scp)
+0. [netstat](#netstat)
+0. [fdisk](#fdisk)
 
 ```
 未整理内容：
-搜索历史命令：Ctrl + R (reverse: 反/逆)
-创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
-添加执行权限：chmod -x hello.sh
-ZIP排除文件夹：zip -r jetty-bak20191230.zip jetty-8080 -x "jetty-8080/logs/*" "jetty-8080/webapps/*"
+1. 搜索历史命令：Ctrl + R (reverse: 反/逆)
+2. 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
+3. 添加执行权限：chmod -x hello.sh
+4. ZIP排除文件夹：zip -r jetty-bak20191230.zip jetty-8080 -x "jetty-8080/logs/*" "jetty-8080/webapps/*"
+5. yum repolist 列出已经配置的所有可用仓库
+   yum repolist enabled | grep docker
+6. 显示当前的各种用户进程限制 ulimit -a
+sync; echo 3 > /proc/sys/vm/drop_caches 
+echo 3 > /proc/sys/vm/
 ```
 
 ## 查看磁盘使用情况
@@ -39,7 +50,9 @@ ZIP排除文件夹：zip -r jetty-bak20191230.zip jetty-8080 -x "jetty-8080/logs
   - 查看当前目录及子目录大小：du -hd1 /home/boot/
 
 ## 查看系统信息uname
-- Linux 系统版本号
+- Linux查看当前操作系统版本信息
+  - `cat /proc/version`
+- Linux当前操作系统发行版信息
   - `cat /etc/redhat-release`
 - CPU核心数，型号：
   - `cat /proc/cpuinfo`
@@ -253,3 +266,102 @@ ZIP排除文件夹：zip -r jetty-bak20191230.zip jetty-8080 -x "jetty-8080/logs
 ## Linux修改系统时间
 修改服务器时间：`date -s "2019/10/31 23:57:00"`
 改回当前时间[NTP服务器(上海)]：`ntpdate -u ntp.api.bz`
+
+## Linux查找
+- `which`【在$PATH目录下查找文件】
+
+  - $PATH `(/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin)`
+  - 一般是用来**搜索命令**用的。主要是**查看命令的完整路径**
+  - 文件名完全匹配、有后缀名也不行、遍历$PATH、找到一个匹配的文件即退出。
+
+- `whereis`【在预定目录下查找文件】
+
+  - 预定目录可用 `whereis -l`
+  - 文件名完全匹配、但可有后缀名、遍历包含$PATH的多个目录、找出所有匹配文件
+  - 和which类似，只是多了源代码文件和手册文件搜索。
+
+- `locate`【在数据库中查找目录或文件，速度超快】
+
+  - 需要安装 `yum install mlocate`
+  - 安装完需要先刷新数据库 `updatedb`
+
+  ```shell
+  [root@amos ~]# locate /etc/*network
+  /etc/rc.d/init.d/network
+  /etc/rc.d/rc0.d/K90network
+  /etc/rc.d/rc2.d/S10network
+  /etc/selinux/targeted/active/modules/100/sysnetwork
+  /etc/selinux/targeted/tmp/modules/100/sysnetwork
+  /etc/sysconfig/network
+  [root@amos ~]# locate /etc/*S*network
+  /etc/rc.d/rc2.d/S10network
+  ```
+
+  ---
+
+- `find`【非常强大，只是要扫描磁盘，速度会慢些】
+
+  - 完全匹配，支持模糊查询，只找文件（可加-type d找目录）
+
+  ```shell
+  [root@amos home]# find -name boot*.*
+  ./boot-2019.zip
+  [root@amos home]# find / -name boot*.*
+  /home/boot-2019.zip
+  [root@amos home]# find /opt/hexo/hexoui/ -type d -name docker
+  /opt/hexo/hexoui/source/_posts/notes/docker
+  [root@amos home]# find /opt/hexo/hexoui/ -name java-*.md  
+  /opt/hexo/hexoui/source/_posts/notes/java/java-gc-01.md
+  /opt/hexo/hexoui/source/_posts/notes/java/java-gc-02.md
+  ```
+
+## ls
+>（显示非隐藏文件的文件名，按文件名进行排序）
+
+- `ls -a`显示全部的文件，包括隐藏文件，以`.`开头的文件
+- `ls -A`显示全部文件，包括隐藏文件，但是不包括`.`和`..`开头的文件
+- `ls -l`列出长字符串，包含文件的权限、属性等信息
+- `ls -t`按文件时间排序
+- `ls -S`按文件大小排序。
+- `ls -alth`查看当前的详细信息
+- `ll | wc -w`查看该目录下有多少个文件
+
+## scp
+- `scp /home/boot.zip root@192.168.1.129:/home/`
+
+## netstat
+- 查看正在监听的端口和进程
+    - `netstat -nlpt |grep 3306`
+    - `netstat -pan |grep 3306`
+
+- 查看正在监听的端口和进程详情
+    - `netstat -ano |grep 3306`
+
+- 查看进程状态
+    - `ps -ef|grep 25889`
+
+- 实时显示进程状态
+    - `top -H -p 25889`
+
+- 查看并发请求数及其TCP连接状态
+    - `netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'`
+        - CLOSED：无连接是活动的或正在进行
+        - LISTEN：服务器在等待进入呼叫
+        - SYN_RECV：一个连接请求已经到达，等待确认
+        - SYN_SENT：应用已经开始，打开一个连接
+        - ESTABLISHED：正常数据传输状态
+        - FIN_WAIT1：应用说它已经完成
+        - FIN_WAIT2：另一边已同意释放
+        - ITMED_WAIT：等待所有分组死掉
+        - CLOSING：两边同时尝试关闭
+        - TIME_WAIT：另一边已初始化一个释放
+        - LAST_ACK：等待所有分组死掉
+
+- 查看指定状态的TCP连接状态
+    - `netstat -an|grep CLOSE_WAIT`
+
+## fdisk
+- 查看硬盘使用情况
+    - `fdisk –l`
+
+[回到顶部](#Linux)

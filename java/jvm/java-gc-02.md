@@ -64,7 +64,7 @@ tags:
 
 ![df -h](https://gitee.com/AmosWang/resource/raw/master/image/linux-df.png )
 
-- [Filesystem](../system/linux-filesystem.md)
+- [Filesystem](../../dev.ops/linux/linux-filesystem.md)
   - tmpfs：Linux/Unix 系统上的一种基于内存的文件系统
   - devtmpfs：负责设备文件创建的管理工作，缩短开机时间
   - overlay：堆叠文件系统，Docker 使用overlay来构建和管理镜像与容器的磁盘结构

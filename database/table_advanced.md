@@ -1,5 +1,5 @@
 ---
-title: SQL 高级
+title: 数据库表优化
 date: 2019-01-01
 categories: 数据库
 tags:
@@ -9,7 +9,7 @@ tags:
 ---
 
 
-# SQL 高级
+# 数据库表优化
 
 ## 1、索引
 - 查询：
@@ -116,5 +116,5 @@ tags:
 多阻塞了select...lock in share mode的查询方式，并不会阻塞快照读。
 
 ### 总结
-通过对比，lock in share mode适用于两张表存在业务关系时的一致性要求，for update适用于操
-作同一张表时的一致性要求。
+通过对比，lock in share mode适用于两张表存在业务关系时的一致性要求，
+for update适用于操作同一张表时的一致性要求。

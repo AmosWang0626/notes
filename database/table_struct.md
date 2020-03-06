@@ -1,5 +1,5 @@
 ---
-title: DB 表结构操作
+title: 数据库表结构相关操作
 date: 2019-01-01
 categories: 数据库
 tags:
@@ -7,28 +7,28 @@ tags:
 ---
 
 
-# DB 表相关操作
+# 数据库表结构相关操作
 
 ## 目录
-- [新增](#新增insert)
-- [修改](#修改update)
-- [查询](#查询select)
-- [删除](#删除delete)
+- [新增](#新增add)
+- [修改](#修改change)
+- [查询](#查询show)
+- [删除](#删除drop)
 - [注意](#注意notice)
 
 
-## 新增insert
+## 新增add
 - 新增字段 `ALTER TABLE wmmm_user.member ADD CHANNEL_ID bigint(20) DEFAULT NULL COMMENT '注册来源渠道号';`
 - 默认设置创建时间 `CREATE_TIME datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'`
 - 默认设置修改时间 `UPDATE_TIME datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'`
 - 注: 数据库增加字段 `ADD COLUMN` 是错的，直接 `ADD` 即可
 
-## 修改update
+## 修改change
 - 修改字段 `ALTER TABLE wmmm_user.member CHANGE COLUMN CHANNEL_ID CHANNEL_NO varchar(32) DEFAULT NULL COMMENT '注册来源渠道号';`
 - 修改数据库密码 `update user set password=password('root') where user='root' and host='%';`
 
 
-## 查询select
+## 查询show
 - MySQL查看字符集 `SHOW VARIABLES LIKE 'character%';`
 - 查询数据库用户 `select User, Host, authentication_string from user;`
 - 查看自数据库启动以来查询效率 `SHOW GLOBAL STATUS LIKE 'Handler_read%';`
@@ -49,7 +49,7 @@ tags:
 </def>
 ```
 
-## 删除delete
+## 删除drop
 - 清空表 `truncate table message_issue;`
 - 删除字段 `alter table message_issue DROP COLUMN "DOWNLOAD_FLAG";`
 
