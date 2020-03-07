@@ -28,17 +28,33 @@ tags:
 
 ## 图片演示
 - 获取异常服务进程ID
-    ![获取异常服务进程ID](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-jps.png)
+    > ![获取异常服务进程ID](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-jps.png)
+
 - 模拟CPU飙高
-    ![模拟CPU飙高](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-range.png)
+    > ![模拟CPU飙高](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-range.png)
+
 - 找到CPU飙高线程
-    ![找到CPU飙高线程](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-top.png)
+    > ![找到CPU飙高线程](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-top.png)
+
 - 进程ID转16进制，打印当前异常堆栈快照
-    ![进程ID转16进制，打印当前异常堆栈快照](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-hex-jstack.png)
-- GC情况-主要关注已使用空间占总空间的百分比
-    ![GC情况-主要关注已使用空间占总空间的百分比](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-jstat.png)
+    > ![进程ID转16进制，打印当前异常堆栈快照](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-hex-jstack.png)
+
+- GC情况-Java8（已使用空间占总空间的百分比）
+    > ![GC情况-主要关注已使用空间占总空间的百分比](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-jstat.png)
+    - S0：幸存者空间0
+    - S1：幸存者空间1
+    - E：伊甸园
+    - O：老年代
+    - M：元空间
+    - CCS：压缩的类空间
+    - YGC：Young GC次数
+    - YGCT：Young GC时间
+    - FGC：Full GC次数
+    - FGCT：Full GC时间
+    - GCT：GC 总时间
+
 - SED查看文件指定行
-    ![SED查看文件指定行](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-log-sed.png)
+    > ![SED查看文件指定行](https://gitee.com/AmosWang/resource/raw/master/image/jvm/jvm-test-log-sed.png)
 
 
 ## JVM监控工具准备
