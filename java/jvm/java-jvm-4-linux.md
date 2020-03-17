@@ -1,5 +1,5 @@
 ---
-title: Java GC 学习实践(下)
+title: Java 线上问题排查
 date: 2019-11-04
 categories: Java
 tags:
@@ -7,56 +7,14 @@ tags:
 - jvm
 ---
 
-> 接着上篇，本篇重点在于项目运行监控
->
-> [Java GC 学习实践（上）](https://my.oschina.net/AmosWang/blog/3125881 "Java GC 学习实践（上）")
+# Java 线上问题排查
 
-# Java GC 学习实践（下）
-1. [浅谈基础](https://my.oschina.net/AmosWang/blog/3125881#h1_2)
-2. [解析 GC 日志](https://my.oschina.net/AmosWang/blog/3125881#h1_18)
-3. JVM 监控工具
-4. Linux 监控相关
-
-# 三、JVM 监控工具
-
-- jps（JVM Process Status）
-  - 虚拟机进程状态工具
-  - JVM 版的 ps，显示所有虚拟机进程
-  - `jps -l` 
-- jstat（JVM Statistics Monitoring Tool）
-  - 虚拟机统计信息监视工具
-  - jstat [  option vmid [ interval [s|ms] [count] ]  ] 
-  - vmid 进程号；interval  执行间隔；count 执行次数；
-  - `jstat -gc 20295 250 10`
-  - `jstata -options` 会输出所有选项 -gc、-class、-gcutil等等
-- jinfo
-  - java 配置信息工具，可以看到默认 JVM 配置信息
-  - `jinfo -flags 20295`
-  - `jinfo -flag NewSize 20295`
-- jmap
-  - java 内存映射工具
-  - 1.用于生成堆转储快照（一般称为 heapdump 或者 heap 文件）
-  - 2.查询finalize执行队列，java堆、空间使用率、当前使用收集器等
-- jhat
-  - jmap生成的文件，可能会很大，几百MB
-  - 分析堆转储快照，jhat内置微型http服务器，jhat 对应 dump文件，即可在浏览器访问
-  - `jhat xxx.hprof` 然后就可在浏览器访问了 `http://localhost:7000`
-  - 不推荐使用，比较麻烦；可使用 VisualVM 等
-- jstack
-  - Java 堆栈跟踪工具
-  - `jstack -l 20295`
-
-# 四、Linux 监控相关
-
-## 1. 内存监控
-
-### 1.1 free
-
+## 一、内存监控 free
 - `free -h` （`h`也即human，人性化展示）MB、GB之类的
 - `free -m` 以MB的方式展示，适合**内存**变化粒度较小时使用
 - `free -g` 以GB方式展示，目测不常用
 
-## 2. 磁盘监控
+## 二、磁盘监控
 
 ### 2.1 df
 
@@ -64,7 +22,7 @@ tags:
 
 ![df -h](https://gitee.com/AmosWang/resource/raw/master/image/linux-df.png )
 
-- [Filesystem](../../dev.ops/linux/linux-filesystem.md)
+- [Filesystem](https://github.com/AmosWang0626/notes/blob/master/dev.ops/linux/linux-filesystem.md)
   - tmpfs：Linux/Unix 系统上的一种基于内存的文件系统
   - devtmpfs：负责设备文件创建的管理工作，缩短开机时间
   - overlay：堆叠文件系统，Docker 使用overlay来构建和管理镜像与容器的磁盘结构
@@ -82,9 +40,7 @@ tags:
 - `du -sh /opt/xxx` 显示文件夹大小
 - `du -Sh /opt/xxx` 显示文件夹、子文件夹大小
 
-## 3. 进程管理
-
-### 3.1 htop
+## 三、进程管理 htop
 
 - 较 `top` 功能强大些，**交互式**动态监控页面，如果没安装 `yum install htop`
 
@@ -132,6 +88,12 @@ tags:
   - %MEM：该进程占用的物理内存和总内存的百分比
   - TIME+：该进程启动后占用的总的CPU时间
   - COMMAND：进程启动的启动命令名称
+
+## 四、缓存相关
+- `wget https://silenceshell-1255345740.cos.ap-shanghai.myqcloud.com/hcache)`
+- `chmod +x hcache`
+- `mv hcache /usr/local/bin/`
+- `hcache --top 10`
 
 ### 参考文章
 
