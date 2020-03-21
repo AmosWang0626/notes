@@ -93,3 +93,14 @@ sudo systemctl enable docker
     - 如果找不到`ntpdate`命令 `yum install ntpdate.armv7hl`
 
 - 好了，可以愉快滴玩耍了~~~
+
+## 8. 安装 htop
+> 适用于 `yum install htop` 找不到 htop 的情况
+- 官网下载安装包，或者下边链接
+    - [htop-2.2.0.tar.gz](https://github.com/AmosWang0626/notes/blob/master/dev.ops/raspberry/htop-2.2.0.tar.gz)
+- 安装先决 `yum install -y gcc gcc-c++ ncurses-devel`
+- `tar -zxvf htop-2.2.0.tar.gz`
+- `cd htop-2.2.0`
+- `./configure`
+- 执行了上一步才能 make 哟 `make && make install`
+- 测试下吧 `htop`
