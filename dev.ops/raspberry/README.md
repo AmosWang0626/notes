@@ -91,6 +91,11 @@ sudo systemctl enable docker
     - 检查下机器时间 `date`
     - 修改机器时间 `ntpdate cn.pool.ntp.org`
     - 如果找不到`ntpdate`命令 `yum install ntpdate.armv7hl`
+  - 开机自动修改时间
+    > 重启树莓派后你会发现时间又回到了`** 1970`
+    - `vim /etc/rc.d/rc.local`
+      - 文件最后加入 `ntpdate cn.pool.ntp.org`
+    - `chmod +x /etc/rc.d/rc.local`
 
 - 好了，可以愉快滴玩耍了~~~
 
