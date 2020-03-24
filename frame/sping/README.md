@@ -30,3 +30,5 @@ tags:
 ## 7. 写点测试方法测试下吧
 > 注意：如果引入 `@ComponentScan` 不成功，重复第 3 步试试；还不行的话，重启IDEA，刷新 Gradle
 ![测试 module](https://gitee.com/AmosWang/resource/raw/master/image/spring/compile/spring-compile.7.new-moudle.test.png)
+
+[附 single-test 源码](https://gitee.com/AmosWang/spring-framework/tree/amos-5.1.x/single-test)
