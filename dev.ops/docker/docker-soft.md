@@ -3,19 +3,19 @@ title: Docker Install Software
 date: 2019-02-28
 categories: Docker
 tags:
-- docker
-- nginx
-- mysql
-- redis
-- jenkins
+- Docker
+- Nginx
+- MySQL
+- Redis
+- Jenkins
 ---
 
 
 # Docker 安装软件
-- nginx
-- mysql
-- redis
-- jenkins
+- Nginx
+- MySQL
+- Redis
+- Jenkins
 
 ## Docker Nginx
 > docker install Nginx

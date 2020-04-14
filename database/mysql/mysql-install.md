@@ -3,8 +3,8 @@ title: MySQL 安装相关
 date: 2019-01-01
 categories: 数据库
 tags:
-- Mysql
-- Mysql安装
+- MySQL
+- MySQL安装
 ---
 
 
