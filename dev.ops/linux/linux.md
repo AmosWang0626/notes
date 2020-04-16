@@ -36,6 +36,9 @@ tags:
 6. 显示当前的各种用户进程限制 ulimit -a
 sync; echo 3 > /proc/sys/vm/drop_caches 
 echo 3 > /proc/sys/vm/
+7. 权限lrwxrwxrwx
+r 4 w 2 x 1
+l: d目录 l软链接 -文件 b可随机存取装置 c串行端口设备(键鼠等)
 ```
 
 ## 查看磁盘使用情况
