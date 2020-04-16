@@ -33,7 +33,7 @@ tags:
 - [CSDN——子路老师博客](https://me.csdn.net/java_lyvee)
 
 ## 简述循环依赖过程
-1. `.java` 编译成 `.class` 文件
+1. `.java` 编译成 `.class` 文件，ClassLoader 加载 `.class` 文件
 2. Spring 容器实例化
 3. 扫描符合规则的类（比如添加了@Controller、@Service等等注解的类、@Bean注解的方法）
 4. 解析这些类（比如拿到这些类的@Scope、@Lazy等等）
@@ -68,6 +68,8 @@ tags:
 16. 生命周期回调3——回调实现InitializingBean接口的方法afterPropertiesSet
 17. 如果Bean需要AOP，此处完成相应AOP代理
 18. 将初始化完成的Bean放入单例池，也就是一级缓存 singletonObjects
+
+![Spring循环依赖](https://gitee.com/AmosWang/resource/raw/master/image/spring/spring-cycle-ref.png)
 
 ## 附录
 
