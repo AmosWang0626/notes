@@ -1,7 +1,7 @@
 ---
 title: 悟道
-date: 2020-03-06
-categories: 悟道
+date: 2020-01-01
+categories: 我的想法
 tags:
 - enlightenment
 ---
