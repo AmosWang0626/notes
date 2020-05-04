@@ -8,6 +8,18 @@ tags:
 ---
 
 
+## 去除文件夹名中的前缀
+> 去除文件夹名字的`【价值千万XXX】`前缀
+```
+@Echo Off&SetLocal ENABLEDELAYEDEXPANSION
+FOR /f "tokens=*" %%i in ('dir /a:d /b') do (
+　　set "name=%%i"
+　　set "name=!name:【价值千万XXX】=!"
+　　ren "%%i" "!name!"
+)
+exit
+```
+
 ## 去除文件名中的前缀
 > 去除文件名`【价值千万XXX】`前缀
 ```
