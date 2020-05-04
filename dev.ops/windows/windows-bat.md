@@ -8,12 +8,24 @@ tags:
 ---
 
 
+## 去除文件名中的前缀
+> 去除文件名`【价值千万XXX】`前缀
+```
+@Echo Off&SetLocal ENABLEDELAYEDEXPANSION
+FOR %%a in (*) do (
+　　set "name=%%a"
+　　set "name=!name:【价值千万XXX】=!"
+　　ren "%%a" "!name!"
+)
+exit
+```
+
 ## 去除文件名中的左右括号
 ```
 @Echo Off&SetLocal ENABLEDELAYEDEXPANSION
 FOR %%a in (*) do (
 　　set "name=%%a"
-　　set "name=!name: (=!"
+　　set "name=!name:(=!"
 　　set "name=!name:)=!"
 　　ren "%%a" "!name!"
 )
