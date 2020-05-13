@@ -1,6 +1,6 @@
 ---
 title: 我想写一个开源项目了
-date: 2020-04-17
+date: 2019-10-01
 categories: 我的想法
 tags:
 - enlightenment
