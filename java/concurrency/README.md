@@ -7,22 +7,6 @@ categories: Java
 # Java 高效并发
 > 学习是一个发散的过程，层层递进，连贯起来，如故事一样。
 
-## 目录
-1. 并发有什么用？
-2. Java 内存模型（JMM）
-    - 回顾计算机内存模型
-    - 主内存与工作内存
-    - 原子性、可见性与有序性
-    - 先行发生原则（happens-before）
-3. 亲儿子解决方案
-    - 大娃 Synchronized
-    - 二蛋 Volatile
-4. 并发基础 CAS 与 AQS
-    - ReentrantLock
-    - 其他并发集合
-5. 线程池
-6. 总结
-
 ---
 # 一、并发有什么用？
 
@@ -175,17 +159,15 @@ Java 天生支持先行发生原则，具体原则如下。如果两个操作之
 
    - 同步代码块
 
-     Java虚拟机的指令集中有 monitorenter 和 monitorexit 两条指令来支持 synchronized 关键字的语义，正确实现 synchronized 关键字需要 Javac 编译器与 Java虚拟机两者共同协作支持。
+     Java虚拟机的指令集中有 monitorenter 和 monitorexit 两条指令来支持 synchronized 关键字的语义，正确实现 synchronized 关键字需要 javac 编译器与 Java虚拟机两者共同协作支持。
 
      ```java
      void onlyMe(Foo f) {
-       synchronized(f) {
-     	  doSomething();
-       }
+         synchronized (f) {
+             doSomething();
+         }
      }
      ```
-
-
      ```c
      Method void onlyMe(Foo)
      0 aload_1		// 将对象f入栈
@@ -227,19 +209,94 @@ Java 天生支持先行发生原则，具体原则如下。如果两个操作之
 
 3. 实现原理
 
-   
+    禁止指令重排序，保障新值的可见性。结合 DCL 编译后的源码看一下 ↓↓↓↓↓
+
+    ```java
+    public class Singleton {
+        private volatile static Singleton instance;
+    
+        public static Singleton getInstance() {
+            if (instance == null) {
+                synchronized (Singleton.class) {
+                    if (instance == null) {
+                        instance = new Singleton();
+                    }
+                }
+            }
+            return instance;
+        }
+    
+        public static void main(String[] args) {
+            Singleton.getInstance();
+        }
+    }
+    ```
+
+    ```c
+    0x01a3de0f: mov $0x3375cdb0,%esi        ;...beb0cd75 33
+                                            ; {oop('Singleton')}
+    0x01a3de14: mov %eax,0x150(%esi)        ;...89865001 0000
+    0x01a3de1a: shr $0x9,%esi               ;...c1ee09
+    0x01a3de1d: movb $0x0,0x1104800(%esi)   ;...c6860048 100100
+    0x01a3de24: lock addl $0x0,(%esp)       ;...f0830424 00
+                                            ;*putstatic instance
+                                            ; - Singleton::getInstance@24
+    ```
+
+    **关键指令：`lock addl $0x0,(%esp)`**
+
+    这句指令中的`addl $0x0,(%esp)`（把ESP寄存器的值加0）显然是一个空操作，之所以用这个空操作而不是空操作专用指令`nop`，是因为IA32手册规定`lock`前缀不允许配合`nop`指令使用。
+
+    这里的关键在于**`lock`前缀，它的作用是将本处理器的缓存写入了内存，该写入动作也会引起别的处理器或者别的内核缓存无效（Invalidate）**，这种操作相当于对缓存中的变量做了一次前面介绍Java内存模式中所说的`store`和`write`操作。所以通过这样一个空操作，可让前面volatile变量的修改对其他处理器立即可见。
+
+    与此同时，**`lock addl$0x0,(%esp)`指令把修改同步到内存时，意味着所有之前的操作都已经执行完成，这样便形成了“指令重排序无法越过内存屏障”的效果。**
 
 ---
 # 四、并发基础 CAS 与 AQS
 
-## 4.1 ReentrantLock
+## 4.1 CAS
+
+Compare-and-Swap 或者 Compare-and-Set 简称 CAS。
+
+**CAS操作是原子性的**，CAS指令需要有三个操作数，分别是内存位置（在Java中可以简单地理解为变量的内存地址，用V表示）、旧的预期值（用A表示）和准备设置的新值（用B表示）。CAS指令执行时，当且仅当V符合A时，处理器才会用B更新V的值，否则它就不执行更新。
+
+在 JDK 5之后，Java类库中才开始使用CAS操作，该操作由`sun.misc.Unsafe`类里面的`compareAndSwapInt()`和`compareAndSwapLong()`等几个方法包装提供。`HotSpot`虚拟机在内部对这些方法做了特殊处理，即时编译出来的结果就是一条平台相关的处理器CAS指令，没有方法调用的过程，或者可以认为是无条件内联进去了。不过由于Unsafe类在设计上就不是提供给用户程序调用的类【`Unsafe::getUnsafe()`的代码中限制了只有启动类加载器（`Bootstrap ClassLoader`）加载的Class才能访问它】，因此在`JDK 9`之前只有Java类库可以使用CAS，譬如`J.U.C`包里面的整数原子类，其中的`compareAndSet()`和`getAndIncrement()`等方法都使用了Unsafe类的CAS操作来实现。而如果用户程序也有使用CAS操作的需求，那要么就采用反射手段突破`Unsafe`的访问限制，要么就只能通过Java类库API来间接使用它。直到`JDK 9`之后，Java类库才在`VarHandle`类里开放了面向用户程序使用的`CAS`操作。
+
+[JDK 8 使用 Unsafe.compareAndSwapInt() 示例](https://github.com/AmosWang0626/chaos/blob/master/chaos-advanced/src/main/java/com/amos/advanced/java/UnsafeCasStudy.java)
+
+## 4.2 AQS
+
+基本结构：状态位 state + Node 双向链表；
+
+获取锁：通过 CAS 修改 state（state + 1）；要是没获取到锁，就放进双向链表里边；
+
+释放锁：释放锁，修改 state（state - 1）。当 state = 0，操作队列，解锁队首。
+
+```java
+private transient volatile Node head; // 队首
+private transient volatile Node tail; // 队尾
+private volatile int state; // 状态位
+
+static final class Node {
+    volatile int waitStatus; // 等待状态
+    volatile Node prev; // 前
+    volatile Node next; // 后
+    volatile Thread thread; // 当前线程
+}
+```
+
+## 4.3 ReentrantLock
 
 > 针对的问题，jdk1.6之前，只要加上 synchronized，不管有没有并发，都会加上重量级锁，导致性能低下。
 >
 > Doug Lea 大神开发了JUC包，给出了加锁第二方案。
 
+## 4.4 其他并发集合
 
-## 4.2 其他并发集合
+- CountDownLatch 类似计数器，都执行完成时退出。
+- Semaphore 类似停车位，有进有出，满需等待。
+- CyclicBarrier 类似发令枪，线程都就绪时，并发执行。
+- ReentrantReadWriteLock 读写锁。
 
 ---
 # 五、线程池
@@ -249,5 +306,4 @@ Java 天生支持先行发生原则，具体原则如下。如果两个操作之
 
 ## 梳理关键词
 
-- JUC（java.util.concurrent）Java 并发包
 - 偏向锁、轻量级锁、重量级锁、锁消除、锁升级、公平锁、非公平锁
