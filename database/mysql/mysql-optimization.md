@@ -1,9 +1,9 @@
 ---
-title: MySQL 索引优化实战
+title: MySQL 索引优化
 date: 2020-05-04
 categories: 数据库
 tags:
-- MySQL索引优化
+- MySQL
 ---
 
 

@@ -1,14 +1,13 @@
 ---
-title: MySQL 安装相关
+title: Linux 安装 MySQL
 date: 2019-01-01
 categories: 数据库
 tags:
 - MySQL
-- MySQL安装
 ---
 
 
-# MySQL 安装相关
+# Linux 安装 MySQL
 
 # Linux MySQL
 - https://dev.mysql.com/doc/refman/8.0/en/linux-installation-yum-repo.html

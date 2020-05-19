@@ -1,14 +1,14 @@
 ---
 title: Docker 安装 MySQL
 date: 2019-01-01
-categories: 数据库
+categories: Docker
 tags:
 - docker
-- MySQL安装
+- MySQL
 ---
 
 
-# MySQL 安装相关
+# Docker 安装 MySQL
 
 1. pull image（默认 MySQL 8.0+）
     - `docker pull mysql`
