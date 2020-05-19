@@ -3,7 +3,7 @@ title: 数据库表结构相关操作
 date: 2019-01-01
 categories: 数据库
 tags:
-- 表操作
+- 数据库
 ---
 
 

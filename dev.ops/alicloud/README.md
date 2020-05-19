@@ -3,7 +3,6 @@ title: 系统相关 阿里云服务器
 date: 2019-01-01
 categories: 系统相关
 tags:
-- 系统相关
 - 阿里云
 ---
 
@@ -30,10 +29,10 @@ ClientAliveCountMax 86400
 service sshd restart
 ```
 
-## 使用Navicat连接阿里云数据库，长时间无操作，继续操作，断开连接
+## 使用 Navicat 连接阿里云数据库，长时间无操作，继续操作，断开连接
 > 右键连接 > 编辑连接 > 高级 > 勾选保持连接间隔(秒) 设置相应的时间【例如：1800(30分钟)】
 
-## 在线升级Linux
+## 在线升级 Linux
 > 可参考system下nginx.md
 
 ## 升级系统内核

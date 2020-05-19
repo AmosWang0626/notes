@@ -3,9 +3,7 @@ title: 数据库表优化
 date: 2019-01-01
 categories: 数据库
 tags:
-- 索引
-- SQL优化
-- 数据库锁
+- 数据库
 ---
 
 

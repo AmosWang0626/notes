@@ -3,7 +3,7 @@ title: 数据库表数据增删改查
 date: 2019-01-01
 categories: 数据库
 tags:
-- SQL基础
+- 数据库
 ---
 
 
