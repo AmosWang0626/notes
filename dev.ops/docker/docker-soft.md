@@ -3,17 +3,15 @@ title: Docker Install Software
 date: 2019-02-28
 categories: Docker
 tags:
-- Docker
-- Nginx
-- MySQL
-- Redis
-- Jenkins
+- docker
+- nginx
+- redis
+- jenkins
 ---
 
 
 # Docker 安装软件
 - Nginx
-- MySQL
 - Redis
 - Jenkins
 
@@ -61,35 +59,6 @@ EXPOSE 80
 
 ## docker run -d -p 80:80 --name aui amos-ui:1.0
 
-----------
-
-## Docker MySQL
-> docker install MySQL
-
-- docker pull mysql/mysql-server:8.0
-- docker run -d -p 3306:3306 --name mysql666 -e MYSQL_ROOT_PASSWORD=123456 mysql/mysql-server:8.0
-- 查看主机端口状态
-  - windows: netstat -aon|findstr "3306"
-  - linux: netstat -anp|grep 3306
-- docker exec -it mysql666 mysql -uroot -p
-- docker exec -it mysql666 mysql -uroot -p123456
-- ALTER USER 'root'@'localhost' IDENTIFIED BY 'root';
-- docker exec -it mysql666 bash【bash访问】
-- mysql666 【启动、重启、停止】
-  - docker start mysql666
-  - docker restart mysql666
-  - docker stop mysql666
-- 客户端连接
-  - 无权访问：Host '172.18.0.1' is not allowed to connect to this MySQL server
-    - select host,user from mysql.user;
-    - update mysql.user set host = "%" where user = "root";
-    - flush privileges;
-  - 修改密码规则：2059 - Authentication plugin 'caching_sha2_password' cannot be loaded: ***乱码
-    - select user,host,authentication_string from mysql.user;
-    - alter user 'root'@'%' identified with mysql_native_password by 'root' password expire never;
-    - flush privileges;
-    - 此时需要重新设置密码
-    - ALTER USER 'root'@'%' IDENTIFIED BY 'root';
 ----------
 
 ## Docker Redis
