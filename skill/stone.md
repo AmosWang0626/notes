@@ -36,3 +36,8 @@ categories: 我的想法
 > 2019-12-03 折腾两天后，什么ajax，什么tomcat，很明显***小问题***
 >
 > web.xml CharacterEncodingFilter 过滤器位置也有影响
+
+## 10、五分钟的事，搞了一个小时零五分钟
+> 飘了吗？unzip 结果没看就搞，一个文件夹，乱七八糟的用户
+>
+> `chown -R pi:pi /app`
