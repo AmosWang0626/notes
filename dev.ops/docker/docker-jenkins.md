@@ -7,7 +7,7 @@ tags:
 ---
 
 # Docker Jenkins
-> docker-compose 便捷启动
+> docker-compose [官方安装指南](https://www.jenkins.io/zh/doc/book/installing/)
 
 
 ## Linux
