@@ -83,6 +83,6 @@ tags:
 
 ## 效果图
 
-![](https://gitee.com/AmosWang/resource/raw/master/image/Github/Github-webhooks.png)
+![github-webhooks](https://gitee.com/AmosWang/resource/raw/master/image/github/github-webhooks.png)
 
-![](https://gitee.com/AmosWang/resource/raw/master/image/Github/Github-webhooks-detail.png)
+![github-webhooks-detail](https://gitee.com/AmosWang/resource/raw/master/image/github/github-webhooks-detail.png)
