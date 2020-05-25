@@ -1,0 +1,126 @@
+---
+title: K8S集群实战
+date: 2020-05-25
+categories: k8s
+tags:
+- k8s
+
+---
+
+
+# k8s集群实战
+
+> 看了周玉强老师讲的K8S集群实战，感觉门槛降低了好多，一年前看K8S，真的是好麻烦。
+
+## 1. 环境准备
+
+| 主机名     | IP 地址   | 角色         |
+| ---------- | --------- | ------------ |
+| k8s-master | 10.0.0.11 | master, node |
+| k8s-node1  | 10.0.0.12 | node         |
+| k8s-node2  | 10.0.0.13 | node         |
+
+| 主机名     | 安装的服务                                                   |
+| ---------- | ------------------------------------------------------------ |
+| k8s-master | etcd / api-server / controller-manager / scheduler \| kubelet / kube-proxy / docker |
+| k8s-node1  | kubelet / kube-proxy / docker                                |
+| k8s-node2  | kubelet / kube-proxy / docker                                |
+
+注：整体为一个`master`节点，三个`node`节点，因为`k8s-master`机器上也有一个`node`节点。
+
+![image-20200525211050446](C:\Users\amos\AppData\Roaming\Typora\typora-user-images\image-20200525211050446.png)
+
+### 编辑`/etc/hosts`，同时改下其他两台机器
+
+```shell
+10.0.0.11 k8s-master
+10.0.0.12 k8s-node1
+10.0.0.13 k8s-node2
+```
+
+- `scp -rp /etc/hosts 10.0.0.12:/etc/hosts`
+- `scp -rp /etc/hosts 10.0.0.13:/etc/hosts`
+
+## 2. 安装组件——master
+
+### 2.1 etcd
+
+`yum install -y etcd`
+
+修改配置`/etc/etcd/etcd.conf`
+
+```shell
+ETCD_LISTEN_CLIENT_URLS="http://0.0.0.0:2379" #6行
+ETCD_ADVERTISE_CLIENT_URLS="http://10.0.0.11:2379" #21行
+```
+
+- 小技巧
+  - `vim`选中一个单词 `viw``
+  - ``vim`看第几行，`:set number`
+
+启动并设置开机启动：
+
+- `systemctl start etcd`
+- `systemctl enable etcd`
+- `netstat -nlupt`
+
+测试一下：
+
+- `etcdctl set test/test_key 1433233`
+- `etcdctl get test/test_key`
+- `etcdctl -C http://10.0.0.11:2379 cluster-health`
+
+### 2.2 kubernetes-master
+
+`yum install -y kubernetes-master.x86_64`
+
+修改配置`/etc/kubernetes/apiserver`
+
+```shell
+KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0" #8行
+KUBE_API_PORT="--port=8080" #11行
+KUBELET_PORT="--kubelet-port=10250" #14行
+KUBE_ETCD_SERVERS="--etcd-servers=http://10.0.0.11:2379" #17行
+```
+
+修改配置`/etc/kubernetes/config`
+
+> controller-manager scheduler 共用的配置文件
+
+```shell
+KUBE_MASTER="--master=http://10.0.0.11:8080" #22行
+```
+
+启动并设置开机启动：
+
+- `systemctl status kube-apiserver.service`
+- `systemctl start kube-controller-manager.service`
+- `systemctl start kube-scheduler.service`
+- `systemctl enable kube-apiserver.service`
+- `systemctl enable kube-controller-manager.service`
+- `systemctl enable kube-scheduler.service`
+
+测试一下：
+
+- `kubectl get componentstatus` 或者 `kubectl get cs`
+
+启动失败：
+
+1. `Job for kube-apiserver.service failed because the control process exited with error code. See "systemctl status kube-apiserver.service" and "journalctl -xe" for details.`
+
+   检查下端口是否被占用，把`apiserver`、以及`config`配置的端口改下再试试
+
+2. `k8s getsockopt: connection refused`
+
+   关闭防火墙 `systemctl stop firewalld`
+
+   重启 `etcd`、`apiserver`、`kube-controller-manager`、`kube-scheduler`
+
+3. 单机模式，初次使用，实在不行，就将前边配置的 `10.0.0.11`改成`0.0.0.0`
+
+---
+
+未完待续。。。
+
+2020-05-25 23:45
+
