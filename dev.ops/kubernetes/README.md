@@ -74,53 +74,101 @@ ETCD_ADVERTISE_CLIENT_URLS="http://10.0.0.11:2379" #21行
 
 `yum install -y kubernetes-master.x86_64`
 
-修改配置`/etc/kubernetes/apiserver`
+1. 修改配置`/etc/kubernetes/apiserver`
+
+   ```shell
+   KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0" #8行
+   KUBE_API_PORT="--port=8080" #11行
+   KUBELET_PORT="--kubelet-port=10250" #14行
+   KUBE_ETCD_SERVERS="--etcd-servers=http://10.0.0.11:2379" #17行
+   KUBE_ADMISSION_CONTROL="--admission-control=" #23行 初学者可先去掉所有权限
+   ```
+
+2. 修改配置`/etc/kubernetes/config`
+   > controller-manager scheduler 共用的配置文件
+   ```shell
+   KUBE_MASTER="--master=http://10.0.0.11:8080" #22行
+   ```
+
+3. 启动并设置开机启动：
+
+    - `systemctl start kube-apiserver`
+    - `systemctl start kube-controller-manager`
+    - `systemctl start kube-scheduler`
+    - `systemctl enable kube-apiserver`
+    - `systemctl enable kube-controller-manager`
+    - `systemctl enable kube-scheduler`
+
+4. 测试一下：
+
+    - `kubectl get componentstatus` 或者 `kubectl get cs`
+    - 正常来说，此时执行是会报错的，安装完 kubernetes-node 再试试
+
+5. 启动失败：
+
+    - 看启动状态：`systemctl status xxx -l`
+      -  -l 表示查看详细信息
+      - 看日志看什么，正常输出是INFO，也就是 Ixxx；错误就是 Exxx了
+    - 重启 `systemctl restart xxx`
+
+    1. `Job for kube-apiserver.service failed because the control process exited with error code. See "systemctl status kube-apiserver.service" and "journalctl -xe" for details.`
+
+       检查下端口是否被占用，如果是记得把`apiserver config`相应配置的端口改下
+
+    2. `k8s getsockopt: connection refused`
+
+       关闭防火墙 `systemctl stop firewalld`
+
+       重启 `etcd`、`apiserver`、`kube-controller-manager`、`kube-scheduler`
+
+### 2.3 kubernetes-node
+
+`yum install -y kubernetes-node.x86_64`
+
+如果机器上之前安装过`docker`，先安装下试试，如果失败了，就把原有`docker`卸载了。
+
+因为`k8s`与`docker`搭配的版本有要求，安装`kubernetes-node`会自动安装`docker`，卸载命令如下：
 
 ```shell
-KUBE_API_ADDRESS="--insecure-bind-address=0.0.0.0" #8行
-KUBE_API_PORT="--port=8080" #11行
-KUBELET_PORT="--kubelet-port=10250" #14行
-KUBE_ETCD_SERVERS="--etcd-servers=http://10.0.0.11:2379" #17行
+yum list installed | grep docker
+yum -y remove xxx && yum -y remove xxxx # 依次删除即可
 ```
 
-修改配置`/etc/kubernetes/config`
-
-> controller-manager scheduler 共用的配置文件
+修改配置
 
 ```shell
-KUBE_MASTER="--master=http://10.0.0.11:8080" #22行
+KUBELET_ADDRESS="--address=10.0.0.11" #5
+KUBELET_PORT="--port=10250" #8
+KUBELET_HOSTNAME="--hostname-override=master" #11
+KUBELET_API_SERVER="--api-servers=http://10.0.0.11:8080" #14
 ```
 
 启动并设置开机启动：
 
-- `systemctl status kube-apiserver.service`
-- `systemctl start kube-controller-manager.service`
-- `systemctl start kube-scheduler.service`
-- `systemctl enable kube-apiserver.service`
-- `systemctl enable kube-controller-manager.service`
-- `systemctl enable kube-scheduler.service`
+- `systemctl start kubelet`
+  - 启动`kubelet`会自动启动`docker`
+  - `systemctl status docker`
+- `systemctl start kube-proxy`
+- `systemctl enable kubelt`
+- `systemctl enable kube-proxy`
 
 测试一下：
 
-- `kubectl get componentstatus` 或者 `kubectl get cs`
+``` shell
+kubectl get cs # kubectl get componentstatus
+kubectl get nodes
+kubectl --server=0.0.0.0:8080 get cs # 如果上边命令不可以，那么可以试下这个
+kubectl --server=0.0.0.0:8080 get nodes # 同上（目测apiserver配置有问题）
+```
 
-启动失败：
 
-1. `Job for kube-apiserver.service failed because the control process exited with error code. See "systemctl status kube-apiserver.service" and "journalctl -xe" for details.`
 
-   检查下端口是否被占用，把`apiserver`、以及`config`配置的端口改下再试试
 
-2. `k8s getsockopt: connection refused`
-
-   关闭防火墙 `systemctl stop firewalld`
-
-   重启 `etcd`、`apiserver`、`kube-controller-manager`、`kube-scheduler`
-
-3. 单机模式，初次使用，实在不行，就将前边配置的 `10.0.0.11`改成`0.0.0.0`
 
 ---
 
 未完待续。。。
 
-2020-05-25 23:45
+- 2020-05-25 23:45
+- 2020-05-26 23:19
 
