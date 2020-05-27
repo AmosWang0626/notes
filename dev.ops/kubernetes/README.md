@@ -122,6 +122,8 @@ ETCD_ADVERTISE_CLIENT_URLS="http://10.0.0.11:2379" #21行
        重启 `etcd`、`apiserver`、`kube-controller-manager`、`kube-scheduler`
 
 ### 2.3 kubernetes-node
+  > 另外两台服务器同理，需要相应配置 `/etc/kubernetes/config 等`，
+  > 配置 `etcd`、`master` 的地址
 
 `yum install -y kubernetes-node.x86_64`
 
@@ -161,9 +163,52 @@ kubectl --server=0.0.0.0:8080 get cs # 如果上边命令不可以，那么可�
 kubectl --server=0.0.0.0:8080 get nodes # 同上（目测apiserver配置有问题）
 ```
 
+### 2.4 flannel
 
+`yum install -y flannel`
 
+1. 修改配置 `vim /etc/sysconfig/flanneld`
 
+   ```shell
+   FLANNEL_ETCD_ENDPOINTS="http://10.0.0.11:2379" #3
+   ```
+
+2. 初始化配置
+
+   `etcdctl set /atomic.io/network/config '{ "Network": "172.16.0.0/16" }'`
+
+3. 启动并设置开机启动：
+
+   - `systemctl start flanneld`
+   - `systemctl enable flanneld`
+
+4. 验证设置
+
+   - 查看网络配置 `ifconfig`
+     > 会发现多了一块网卡，并且docker的ip和flannel的ip不是一个网段
+
+   - 重启docker `systemctl restart docker`
+
+   - 再次查看网络配置 `ifconfig`
+     > 会发现docker和flannel已经在同一个网段了
+
+5. 另两台同样安装 flannel（使得node间网络互通）
+
+   - `docker run -it busybox` 然后 ping 下其他服务
+
+   - `iptables -L -n`
+     > L 列出所有规则 | -n 以数字方式展示ip
+
+        可以看到 `Chain FORWARD (policy DROP)` 把这里的 DROP 改成 ACCEPT即可。
+        `iptables -P FORWARD ACCEPT`
+   - 将配置加入Docker启动文件中
+     ```shell
+     systemctl status docker # 找到docker启动文件位置
+     which iptables
+     vim /usr/lib/systemd/system/docker.service
+     # 增加如下配置
+     
+     ```
 
 ---
 
@@ -171,4 +216,5 @@ kubectl --server=0.0.0.0:8080 get nodes # 同上（目测apiserver配置有问�
 
 - 2020-05-25 23:45
 - 2020-05-26 23:19
+- 2020-05-27 23:26
 
