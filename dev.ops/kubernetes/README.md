@@ -56,11 +56,9 @@ tags:
    ETCD_ADVERTISE_CLIENT_URLS="http://10.0.0.11:2379" #21行
    ```
 
-   小技巧
-
    - `vim`选中一个单词 `viw`
-   - `vim`看第几行 `:set number`
-
+- `vim`看第几行 `:set number`
+   
 3. 启动并设置开机启动
 
    - `systemctl start etcd`
@@ -230,35 +228,132 @@ tags:
       systemctl daemon-reload
       ```
 
-## 3. 创建pod
-1. 声明配置文件 `nginx-pod.yaml`
+## 3. 创建第一个pod
+### 3.1 创建配置文件 
 
-   ```yaml
-   apiVersion: v1 # 版本号
-   kind: Pod      # 资源 Pod/Service/Deployment/
-   metadata:      # 元数据
-     name: nginx  # Pod名字
-     labels:       # Pod标签
-       app: website
-   spec:          # Pod中容器的详细定义
-     containers:
-       - name: nginx
-         image: nginx
-         ports:
-           - containerPort: 80
+> `nginx-pod.yaml`
+
+```yaml
+apiVersion: v1 # 版本号
+kind: Pod      # 资源 Pod/Service/Deployment/
+metadata:      # 元数据
+  name: nginx  # Pod名字
+  labels:       # Pod标签
+    app: website
+spec:          # Pod中容器的详细定义
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+```
+
+### 3.2 执行启动命令
+
+- `kubectl create -f nginx-pod.yaml`
+  - 如果自定义了端口，可用下边命令查看。正常来说8080端口都很忙
+- `kubectl --server=10.0.0.11:8080 create -f nginx-pod.yaml`
+
+### 3.3 查看结果
+
+- 查询 Pod
+  - `kubectl get pod`
+  - `kubectl --server=10.0.0.11:8080 get pod`
+  - `kubectl --server=10.0.0.11:8080 get pod nginx`
+- 删除 Pod
+  - `kubectl delete pod nginx`
+  - `kubectl --server=10.0.0.11:8080 delete pod nginx`
+
+### 3.4 解决问题
+
+`kubectl get pod`可以看到如下信息
+
+```shell
+NAME      READY     STATUS              RESTARTS   AGE
+nginx     0/1       ContainerCreating   0          1h
+```
+
+为什么没有 `READY` 呢，并且状态是 `ContainerCreating`？
+
+1. 看一下详细信息，就能看到报错信息了
+
+   - `kubectl describe pod nginx`
+
+   - 拓展一个命令，查看当前 pod 在哪台 node 上边
+
+   - `kubectl get pod -o wide`
+
+2. 报错信息大致意思
+
+   我们的`kubelet`配置文件里边配置了个Pod基础容器地址，但是从这个地址下载镜像需要证书，而现在配置的证书是个空链接。所以就有两种方案：（1）找个证书（2）换个Pod基础容器地址。
+
+   下边我们采用方案 2。
+
+3. 修改`kubelet`里的基础容器配置
+
+   ```shell
+   # 原始配置
+   KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=registry.access.redhat.com/rhel7/pod-infrastructure:latest"
+   # 修改后的配置
+   KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=docker.io/tianyebj/pod-infrastructure:latest"
    ```
 
-2. 启动命令
+   - `docker search pod-infrastructure`
 
-   - `kubectl create -f nginx-pod.yaml`
-     - 如果自定义了端口，可用下边命令查看。正常来说8080端口都很忙
-   - `kubectl --server=10.0.0.11:8080 create -f nginx-pod.yaml`
+     选第二个 `docker.io/tianyebj/pod-infrastructure`，第一个亲测不行，和原来报错一样。
+
+   - 重启 `kubelet`
+
+     `systemctl restart kubelet`
+
+4. 等待`Pod`自动重试
+
+   - `kubectl describe pod nginx`
+
+   - `kubectl get pod`（看到下边结果就是成功了）
+
+     ```shell
+     NAME      READY     STATUS    RESTARTS   AGE
+     nginx     1/1       Running   0          2h
+     ```
+
+5. 如果没有成功，改下Docker的配置，增加镜像加速地址
+
+   - `vim /etc/sysconfig/docker`
+   - [申请你的专属镜像加速器地址](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)
    
-3. 查看已创建
+   ```shell
+   # 原始内容
+   OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false'
+   # 增加 --registry-mirror=你的专属镜像加速器地址
+   # 修改后内容
+   OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false --registry-mirror=https://ug1g4lsw.mirror.aliyuncs.com'
+   ```
+   
+6. 实时看`docker pull`情况
 
-   - `kubectl get pods`
-   - `kubectl --server=10.0.0.11:8080 get pods`
-   - `kubectl --server=10.0.0.11:8080 get pod nginx`
+   `ll /var/lib/docker/tmp/`
+
+7. 私有仓库配置
+
+   k8s集群中，多台机器上都用 node 时，就要搭个仓库了，一方面提高镜像下载速度，另一方面也能保证镜像的同步。
+
+   - 修改`kubelet`私有仓库配置`vim /etc/kubernetes/kubelet`
+
+     ```shell
+     # 当然前提是重新给 pod-infrastructure 打标签，上传到私有仓库
+     KUBELET_POD_INFRA_CONTAINER="--pod-infra-container-image=10.0.0.11:5000/pod-infrastructure:latest"
+     ```
+
+   - 修改`docker`私有仓库配置`vim /etc/sysconfig/docker`
+
+     ```shell
+     OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false --registry-mirror=https://ug1g4lsw.mirror.aliyuncs.com --insecure-registry=10.0.0.11:5000'
+     ```
+
+
+
+
 
 ---
 
@@ -267,6 +362,7 @@ tags:
 - 2020-05-25 23:45
 - 2020-05-26 23:19
 - 2020-05-27 23:26
+- 2020-05-28 23:00
 
 # 模板
 
@@ -279,6 +375,7 @@ tags:
 
 ## 2. K8S实操模板
 
-1. 声明配置文件
-2. 启动命令
-3. 注意事项
+1. 创建配置文件
+2. 执行启动命令
+3. 查看结果
+4. 解决问题
