@@ -231,6 +231,34 @@ tags:
       ```
 
 ## 3. 创建pod
+1. 声明配置文件 `nginx-pod.yaml`
+
+   ```yaml
+   apiVersion: v1 # 版本号
+   kind: Pod      # 资源 Pod/Service/Deployment/
+   metadata:      # 元数据
+     name: nginx  # Pod名字
+     labels:       # Pod标签
+       app: website
+   spec:          # Pod中容器的详细定义
+     containers:
+       - name: nginx
+         image: nginx
+         ports:
+           - containerPort: 80
+   ```
+
+2. 启动命令
+
+   - `kubectl create -f nginx-pod.yaml`
+     - 如果自定义了端口，可用下边命令查看。正常来说8080端口都很忙
+   - `kubectl --server=10.0.0.11:8080 create -f nginx-pod.yaml`
+   
+3. 查看已创建
+
+   - `kubectl get pods`
+   - `kubectl --server=10.0.0.11:8080 get pods`
+   - `kubectl --server=10.0.0.11:8080 get pod nginx`
 
 ---
 
@@ -251,6 +279,6 @@ tags:
 
 ## 2. K8S实操模板
 
-1. 实验作用与目标
-2. 实践命令
+1. 声明配置文件
+2. 启动命令
 3. 注意事项
