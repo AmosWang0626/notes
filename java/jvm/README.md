@@ -25,6 +25,7 @@ tags:
     - eg. 拿到十六进制线程ID `349`
 4. `jstack` 堆栈跟踪工具
     - `jstack 795|grep 349 -A 30`
+    - 报错 `well-known file is not secure` 对应PID的启动用户不是当前用户
 
 ## 图片演示
 - 获取异常服务进程ID
