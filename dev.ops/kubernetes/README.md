@@ -359,6 +359,55 @@ nginx     0/1       ContainerCreating   0          1h
 
 
 
+## 4. 创建 deployment 和 service
+### 4.1 配置文件方式
+- deployment 配置文件
+```yaml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+name: nginx-deploy
+spec:
+replicas: 3
+template:
+ metadata:
+   labels:
+     app: nginx
+ spec:
+   containers:
+   - name: nginx
+     image: nginx
+     ports:
+     - containerPort: 80
+```
+- 创建 deployment
+  - `kubectl create -f deploy-nginx.yaml`
+- 创建 service
+  - `kubectl expose deployment nginx-deploy --port=80 --type=NodePort`
+  - `--port=80` 也对应deployment配置中的 `containerPort`
+  - 此处deployment的名字也是service的名字，都为`nginx-deploy`
+- 查看
+  - `kubectl get deploy`
+  - `kubectl get svc`
+  - `kubectl get all -o wide`
+  - `kubectl get all -o wide`
+  - `kubectl describe svc nginx-deploy`
+
+### 4.2 纯命令方式（包括回滚及回滚历史）
+> 此处 deployment 名字为 nginx-deploy
+
+- `kubectl run nginx-deploy --image=nginx:1.13 --replicas=3 --record`
+  - --record 表示记录版本
+- `kubectl get svc`
+  - 找到 nginx-deploy 对应的 CLUSTER-IP
+- `curl -I 10.254.188.137:80`
+  - 测试一下，看第二行 Nginx 对应的版本
+- `kubectl set image deployment nginx-deploy nginx=nginx:1.15.5`
+  - 升级 Nginx
+- `kubectl rollout history deployment nginx-deploy`
+  - 查看发布历史，有对应的版本号
+- `kubectl rollout undo deployment nginx-deploy --to-revision=1`
+  - 回滚到指定版本
 
 
 ---
