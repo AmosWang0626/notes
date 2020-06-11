@@ -368,30 +368,48 @@ nginx     0/1       ContainerCreating   0          1h
   apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-  name: nginx-deploy
+    name: nginx-deploy
   spec:
-  replicas: 3
-  template:
-   metadata:
-     labels:
-       app: nginx
-   spec:
-     containers:
-     - name: nginx
-       image: nginx
-       ports:
-       - containerPort: 80
+    replicas: 3
+    template:
+      metadata:
+        labels:
+          app: nginx
+      spec:
+        containers:
+        - name: nginx
+          image: nginx
+          ports:
+          - containerPort: 80
   ```
 
 - 创建 deployment
 
   - `kubectl create -f deploy-nginx.yaml`
 
+- service 配置文件
+
+  ```yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: nginx-deploy
+  spec:
+    type: NodePort
+    ports:
+    - port: 80
+      nodePort: 30000 # 暴露到宿主机的端口
+      targetPort: 80
+    selector:
+      run: nginx-deploy
+  ```
+
 - 创建 service
 
   - `kubectl expose deployment nginx-deploy --port=80 --type=NodePort`
   - --port=80 也对应 deployment 配置中的 containerPort
   - 此处 deployment 的名字也是 service 的名字，都为 nginx-deploy
+  
 - 查看
   - `kubectl get deploy`
   - `kubectl get svc`
@@ -408,9 +426,9 @@ nginx     0/1       ContainerCreating   0          1h
   - 创建对应 service
 - `kubectl get svc`
   - 找到 nginx-deploy 对应的 CLUSTER-IP
-- `curl -I 10.254.188.137:80`
+- `curl -I 10.0.0.11:80`
   - 测试一下，看第二行 Nginx 对应的版本
-- `kubectl set image deployment nginx-deploy nginx=nginx:1.15.5`
+- `kubectl set image deployment nginx-deploy nginx-deploy=nginx:1.15.5`
   - 升级 Nginx
 - `kubectl rollout history deployment nginx-deploy`
   - 查看发布历史，有对应的版本号
@@ -418,13 +436,6 @@ nginx     0/1       ContainerCreating   0          1h
   - 回滚到指定版本
 
 ---
-
-未完待续。。。
-
-- 2020-05-25 23:45
-- 2020-05-26 23:19
-- 2020-05-27 23:26
-- 2020-05-28 23:00
 
 # 模板
 
