@@ -360,20 +360,18 @@ nginx     0/1       ContainerCreating   0          1h
 ## 4. 创建 deployment 和 service
 ### 4.1 配置文件方式
 
-> 此处 deployment 名字为 nginx-deploy
-
 - deployment 配置文件
 
   ```yaml
   apiVersion: extensions/v1beta1
   kind: Deployment
   metadata:
-    name: nginx-deploy
+    name: nginx-deploy # Deployment名字
   spec:
-    replicas: 3
+    replicas: 3 # 副本数
     template:
       metadata:
-        labels:
+        labels: # Deployment标签
           app: nginx
       spec:
         containers:
@@ -393,62 +391,63 @@ nginx     0/1       ContainerCreating   0          1h
   apiVersion: v1
   kind: Service
   metadata:
-    name: nginx-deploy
+    name: nginx-svc # Service名字
   spec:
     type: NodePort
     ports:
-    - port: 80
+    - port: 80 # Service端口
       nodePort: 30000 # 暴露到宿主机的端口
-      targetPort: 80
-    selector:
-      run: nginx-deploy
+      targetPort: 80 # 容器的端口
+    selector: # 标签选择器
+      app: nginx
   ```
 
 - 创建 service
 
-  - `kubectl expose deployment nginx-deploy --port=80 --type=NodePort`
-  - --port=80 也对应 deployment 配置中的 containerPort
-  - 此处 deployment 的名字也是 service 的名字，都为 nginx-deploy
+  - `kubectl create -f nginx-service.yaml`
   
+- 扩缩容
+
+  - `kubectl scale deploy/nginx-deploy --replicas=2`
+  - 或者`kubectl scale deployment nginx-deploy --replicas=2`
+
 - 查看
-  - `kubectl get deploy`
-  - `kubectl get svc`
   - `kubectl get all -o wide`
-  - `kubectl get all -o wide`
-  - `kubectl describe svc nginx-deploy`
+  - `kubectl describe svc nginx-svc`
+  - `curl -I 10.0.0.11:30000`
 
 ### 4.2 纯命令方式（包括回滚及回滚历史）
-> 此处 deployment 名字为 nginx-deploy
-
-- `kubectl run nginx-deploy --image=nginx:1.13 --replicas=3 --record`
+- 创建 Deployment
+  
+  - `kubectl run nginx-deploy --image=nginx:1.13 --replicas=3 --record`
+  
   - --record 表示记录版本
-- `kubectl expose deployment nginx-deploy --port=80 --type=NodePort`
-  - 创建对应 service
-- `kubectl get svc`
-  - 找到 nginx-deploy 对应的 CLUSTER-IP
-- `curl -I 10.0.0.11:80`
-  - 测试一下，看第二行 Nginx 对应的版本
-- `kubectl set image deployment nginx-deploy nginx-deploy=nginx:1.15.5`
-  - 升级 Nginx
-- `kubectl rollout history deployment nginx-deploy`
-  - 查看发布历史，有对应的版本号
-- `kubectl rollout undo deployment nginx-deploy --to-revision=1`
-  - 回滚到指定版本
+  
+- 创建对应 Service
 
----
+  - `kubectl expose deployment nginx-deploy --port=80 --type=NodePort --name=nginx-svc`
 
-# 模板
+- 测试一下
 
-## 1. 组件安装模板
+  - `kubectl get svc nginx-svc` 拿到宿主机端口号，例如 31894，此处暂不能更改宿主机端口号
+  - `curl -I 10.0.0.11:31894`
 
-1. 安装命令
-2. 修改配置
-3. 启动并设置开机启动
-4. 测试一下
+- 升降级
 
-## 2. K8S实操模板
+  - `kubectl set image deploy/nginx-deploy nginx-deploy=nginx:1.15.5`
+  - `curl -I 10.0.0.11:31894`
 
-1. 创建配置文件
-2. 执行启动命令
-3. 查看结果
-4. 解决问题
+- 查看历史
+  
+  - `kubectl rollout history deploy/nginx-deploy`
+  
+- 回滚到指定版本
+
+  - `kubectl rollout undo deploy/nginx-deploy --to-revision=1`
+  - `curl -I 10.0.0.11:31894`
+
+- 扩缩容
+
+  - `kubectl scale deploy/nginx-deploy --replicas=2`
+  - `kubectl get all`
+
