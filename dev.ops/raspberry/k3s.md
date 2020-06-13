@@ -3,9 +3,10 @@ title: 树莓派安装官方k3s（重点是彩蛋）
 date: 2020-06-13
 categories: 树莓派
 tags:
-- 树莓派
 - k8s
+- 树莓派
 ---
+
 
 # 树莓派安装[官方k3s](https://k3s.io/)
 > 树莓派上安装 kubernetes，大多都选择使用k3s吧，小巧，随时随地最新版k8s，追新不等待，香~~~
