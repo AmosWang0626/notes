@@ -11,6 +11,7 @@ tags:
 
 ## 目录
 0. [查看磁盘使用情况 df、du](#查看磁盘使用情况)
+0. [查看磁盘使用情况 df、du](#查看磁盘使用情况)
 0. [查看系统信息 uname](#查看系统信息uname)
 0. [神器 lsof](#命令的使用lsof)
 0. [定时任务 corn](#定时任务cron)
@@ -39,6 +40,11 @@ echo 3 > /proc/sys/vm/
 r 4 w 2 x 1
 l: d目录 l软链接 -文件 b可随机存取装置 c串行端口设备(键鼠等)
 ```
+
+## 修改系统登录及欢迎信息
+`sudo vim /etc/motd`
+
+![vim_etc_motd](https://gitee.com/AmosWang/resource/raw/master/image/linux/vim_etc_motd.png)
 
 ## 查看磁盘使用情况
 - df
