@@ -9,22 +9,6 @@ tags:
 
 # Linux
 
-## 目录
-0. [查看磁盘使用情况 df、du](#查看磁盘使用情况)
-0. [查看磁盘使用情况 df、du](#查看磁盘使用情况)
-0. [查看系统信息 uname](#查看系统信息uname)
-0. [神器 lsof](#命令的使用lsof)
-0. [定时任务 corn](#定时任务cron)
-0. [连接工具 SecureCRT SecureFX](#Secure(CRT/FX)使用技巧)
-0. [Linux目录释义](#Linux目录释义)
-0. [Linux修改系统时间](#Linux修改系统时间)
-0. [Linux查找](#Linux查找)
-    > which、whereis、locate、find
-0. [ls](#ls)
-0. [scp](#scp)
-0. [netstat](#netstat)
-0. [fdisk](#fdisk)
-
 ```
 未整理内容：
 1. 搜索历史命令：Ctrl + R (reverse: 反/逆)
