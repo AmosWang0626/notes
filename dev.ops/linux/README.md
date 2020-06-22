@@ -9,8 +9,8 @@ tags:
 
 # Linux
 
+## 未整理内容
 ```
-未整理内容：
 1. 搜索历史命令：Ctrl + R (reverse: 反/逆)
 2. 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
 3. 添加执行权限：chmod -x hello.sh
