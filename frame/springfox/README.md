@@ -1,5 +1,5 @@
 ---
-title: 上手 Swagger3.0.0-SNAPSHOT,增加支持 WebFlux
+title: 上手 Swagger Webflux（v2.10.5）
 date: 2020-02-12
 categories: Java
 ---
@@ -94,3 +94,4 @@ categories: Java
 - WebMvc，可参考 [mall-user模块](https://github.com/AmosWang0626/mall/tree/master/mall-user)
 - Webflux，可参考 [mall-gateway模块](https://github.com/AmosWang0626/mall/tree/master/mall-gateway)
     > 支持聚合 API，也就是 gateway 里边聚合了user、order等子服务的swagger，子服务无需依赖 springfox-swagger-ui，更简洁
+
