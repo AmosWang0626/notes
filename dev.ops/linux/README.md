@@ -9,23 +9,8 @@ tags:
 
 # Linux
 
-## 目录
-0. [查看磁盘使用情况 df、du](#查看磁盘使用情况)
-0. [查看系统信息 uname](#查看系统信息uname)
-0. [神器 lsof](#命令的使用lsof)
-0. [定时任务 corn](#定时任务cron)
-0. [连接工具 SecureCRT SecureFX](#Secure(CRT/FX)使用技巧)
-0. [Linux目录释义](#Linux目录释义)
-0. [Linux修改系统时间](#Linux修改系统时间)
-0. [Linux查找](#Linux查找)
-    > which、whereis、locate、find
-0. [ls](#ls)
-0. [scp](#scp)
-0. [netstat](#netstat)
-0. [fdisk](#fdisk)
-
+## 未整理内容
 ```
-未整理内容：
 1. 搜索历史命令：Ctrl + R (reverse: 反/逆)
 2. 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
 3. 添加执行权限：chmod -x hello.sh
@@ -39,6 +24,11 @@ echo 3 > /proc/sys/vm/
 r 4 w 2 x 1
 l: d目录 l软链接 -文件 b可随机存取装置 c串行端口设备(键鼠等)
 ```
+
+## 修改系统登录及欢迎信息
+`sudo vim /etc/motd`
+
+![vim_etc_motd](https://gitee.com/AmosWang/resource/raw/master/image/linux/vim_etc_motd.png)
 
 ## 查看磁盘使用情况
 - df
