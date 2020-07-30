@@ -23,6 +23,9 @@ echo 3 > /proc/sys/vm/
 7. 权限lrwxrwxrwx
 r 4 w 2 x 1
 l: d目录 l软链接 -文件 b可随机存取装置 c串行端口设备(键鼠等)
+8. vim骚操作
+:set nu 显示行号
+dd 删除当前行
 ```
 
 ## 修改系统登录及欢迎信息
@@ -316,7 +319,7 @@ l: d目录 l软链接 -文件 b可随机存取装置 c串行端口设备(键鼠�
 - `ls -t`按文件时间排序
 - `ls -S`按文件大小排序。
 - `ls -alth`查看当前的详细信息
-- `ll | wc -w`查看该目录下有多少个文件
+- `ls | wc -w`查看该目录下有多少个文件（wc -l 按照 line 统计数量；wc -w 按照 word 统计数量）
 
 ## scp
 - `scp /home/boot.zip root@192.168.1.129:/home/`
