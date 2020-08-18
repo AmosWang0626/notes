@@ -1,6 +1,10 @@
 ---
 title: Zookeeper 学习
 date: 2020-03-22
+categories: 框架相关
+tags:
+- zookeeper
+- 精选文章
 ---
 
 # Zookeeper 学习

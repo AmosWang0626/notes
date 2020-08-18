@@ -1,7 +1,9 @@
 ---
 title: 上手 Swagger Webflux（v2.10.5）
 date: 2020-02-12
-categories: Java
+categories: 框架相关
+tags:
+- swagger
 ---
 
 

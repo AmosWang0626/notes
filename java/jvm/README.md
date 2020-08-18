@@ -5,6 +5,7 @@ categories: Java
 tags:
 - CPU飙高
 - JVM
+- 精选文章
 ---
 
 # CPU飙高问题排查

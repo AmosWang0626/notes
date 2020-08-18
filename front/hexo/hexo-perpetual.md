@@ -1,6 +1,6 @@
 ---
 title: Hexo 挂掉自动重启
-date: 2020-08-09
+date: 2018-01-01
 tags:
 - hexo
 ---

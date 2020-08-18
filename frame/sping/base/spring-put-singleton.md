@@ -4,6 +4,7 @@ date: 2020-04-16
 categories: 框架相关
 tags:
 - spring
+- 精选文章
 ---
 
 # Spring Bean是什么时候放进单例池的呢？
