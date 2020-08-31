@@ -19,6 +19,8 @@ tags:
 | RC         | 候选发布版 | 发行前观察期，高级bug修复     |
 | SR         | 正式发布版 | SR1、SR2等等，修复大bug或优化 |
 
+## Spring依赖版本总览
+[Spring依赖版本总览](https://start.spring.io/actuator/info)
 
 ## Nacos
 ### nacos 安装
