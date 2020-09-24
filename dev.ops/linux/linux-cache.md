@@ -13,13 +13,13 @@ tags:
 
 ## 一、缓存释放办法
 1. 清理`page_cache`（page_cache是硬盘和内存之间的缓存）:
-   - `sync && echo 3 > /proc/sys/vm/drop_caches`
+   - `sync && echo 1 > /proc/sys/vm/drop_caches`
 
 2. 清理可回收的`slab`对象（包括目录缓存、文件缓存）:
    - `sync && echo 2 > /proc/sys/vm/drop_caches`
 
 3. 清理`slab`对象和`page_cache`:
-   - `sync && echo 1 > /proc/sys/vm/drop_caches`
+   - `sync && echo 3 > /proc/sys/vm/drop_caches`
 
 4. [内核官方文档](https://www.kernel.org/doc/Documentation/sysctl/vm.txt)
     ```text
