@@ -25,7 +25,7 @@ tags:
 8. GeoSpatial地理空间
     - `geoadd/geodist/geohash/geopos/georadius/georadiusbymember`
 
-### 1、String字符串
+## 1、String字符串
 - 增加: `set key value`
 - 查询: `get key`
 - 修改值: `set key value2`
@@ -38,7 +38,7 @@ tags:
 - 设置过期时间(秒) `setex key_name 60 "this is value"`
 - 查看剩余过期时间(ttl:单位秒; pttl:单位毫秒) `ttl key_name` `pttl key_name`
 
-### 2、Hash哈希表
+## 2、Hash哈希表
 - 特别适合存储对象
 - 给指定哈希表添加field-value
     - 添加单个field-value
@@ -57,7 +57,7 @@ tags:
 - 获取哈希表所有field `hkeys user3`
 - 获取哈希表所有value `hvals user3`
 
-### 3、List列表
+## 3、List列表
 - lpush/rpush 从左边push/从右边push
 - 从左插入到列表 `lpush citys beijing shanghai guangzhou tianjin dengzhou`
 - 从右插入到列表 `rpush citys shenzhen zhengzhou`
@@ -75,7 +75,7 @@ tags:
 - 从左弹出第一个元素 `lpop citys` "dengzhou"
 - 从右弹出第一个元素 `rpop citys` "zhengzhou"
 
-### 4、Set集合
+## 4、Set集合
 - 删除全部: `flushdb`
 - 插入多条数据: `sadd set_many aa bb cc dd`
 - 查看该集合数据: `smembers set_many`
@@ -84,7 +84,7 @@ tags:
 - 增加一条数据: `sadd set_mant aa`
 - 增加相同的数据(失败,set不允许重复): `sadd set_many aa` 
 
-### 5、Sorted-Set有序集合
+## 5、Sorted-Set有序集合
 - 添加 `zadd sort_number 5 five 4 four 3 three 1 one 2 two`
 - 正向遍历不带分数 `zrange sort_number 0 -1`
 - 正向遍历带分数 `zrange sort_number 0 -1 WITHSCORES`
@@ -96,7 +96,7 @@ tags:
 - 根据item下标删除一个或多个元素 `zremrangebyrank sort_number 0 2`
 - 根据分数区间删除一个或多个元素(包含临界值) `zremrangebyscore sort_number 3 5`
 
-### 6、Bitmaps字符串位操作
+## 6、Bitmaps字符串位操作
 > 0 0 0 0 0 0 0 0 0 0 0 0
 >
 > [Fast, easy, realtime metrics using Redis bitmaps](https://blog.getspool.com/2011/11/29/fast-easy-realtime-metrics-using-redis-bitmaps/)
@@ -127,7 +127,7 @@ tags:
     (integer) 3
     ```
 
-### 7、HyperLogLog基数统计的算法
+## 7、HyperLogLog基数统计的算法
 > HyperLogLog是Redis的高级数据结构，它在做基数统计的时候非常有用，每个HyperLogLog的键可以计算接近2^64不同元素的基数，而大小只需要12KB。
 >
 > 因为HyperLogLog只会根据输入元素来计算基数，而不会储存输入元素本身，所以HyperLogLog不能像集合那样，返回输入的各个元素。
@@ -150,5 +150,5 @@ tags:
     (integer) 2
     ```
 
-### 8、GeoSpatial地理空间,索引半径查询
+## 8、GeoSpatial地理空间,索引半径查询
 
