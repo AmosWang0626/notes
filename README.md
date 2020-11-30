@@ -6,7 +6,7 @@ hide: true
 
 # notes
 > Java程序员的笔记斋，不教一日闲过
-- 温馨提示：_blank方式打开链接，请按住Ctrl键
+- 温馨提示：_blank方式打开链接，请按住 <kbd>Ctrl</kbd> 键
 - 我的博客：[amos.wang](https://amos.wang)
 
 ## [Flag 2020](https://github.com/AmosWang0626/notes/blob/master/skill/flag-2020.md)
