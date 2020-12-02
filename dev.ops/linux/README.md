@@ -14,6 +14,7 @@ tags:
 ```
 1. 搜索历史命令：Ctrl + R (reverse: 反/逆)
 2. 创建软链接：ln -s /xxx/xxx /usr/local/bin/xxx
+2.1 目录创建软链接：ln -s /opt/java/jdk1.8.0_261/bin/ jdk8bin
 3. 添加执行权限：chmod -x hello.sh
 4. ZIP排除文件夹：zip -r jetty-bak20191230.zip jetty-8080 -x "jetty-8080/logs/*" "jetty-8080/webapps/*"
 5. yum repolist 列出已经配置的所有可用仓库
