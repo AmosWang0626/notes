@@ -8,7 +8,7 @@ tags:
 ---
 
 # Spring 双层事务，我抛出的异常去哪了？
-> 系统A执行数据同步，同步到系统B时，系统B返回了错误信息，系统A需要将前边保存的回滚掉，同时把错误信息返回前端
+> 系统 A 调用系统 B 执行数据同步，系统 B 返回了错误提示，系统 A 需要将前边保存的回滚掉，同时把错误信息向上抛。
 
 ## 大致代码如下
 
@@ -17,7 +17,7 @@ tags:
 public class NoteServiceImpl implements NoteService {
 
     @Resource
-    private NoteVersionService noteVersionService;
+    private SearchService searchService;
 
 
     @Transactional(rollbackFor = Throwable.class)
@@ -26,7 +26,7 @@ public class NoteServiceImpl implements NoteService {
         // 一系列 DB 操作
 
         try {
-            noteVersionService.saveVersion(note);
+            searchService.sync(note);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -38,15 +38,15 @@ public class NoteServiceImpl implements NoteService {
 ```
 
 ```java
-@Service("noteVersionService")
-public class NoteVersionServiceImpl implements NoteVersionService {
+@Service("searchService")
+public class SearchServiceImpl implements SearchService {
 
     @Transactional(rollbackFor = Throwable.class)
     @Override
-    public void saveVersion(NoteEntity note) {
+    public void sync(NoteEntity note) {
         // 一系列 DB 操作
 
-        throw new RuntimeException("保存失败! [XXX]");
+        throw new RuntimeException("同步异常! [XXX]");
     }
 
 }
@@ -71,7 +71,7 @@ public class NoteTests {
             noteService.save(entity);
         } catch (Exception e) {
             e.printStackTrace();
-            // FIXME 我想在这里拿到的是 保存失败! [XXX]
+            // FIXME 我想在这里拿到的是 同步异常! [XXX]
             // FIXME 但是这里拿到的是 Transaction silently rolled back because it has been marked as rollback-only
             System.out.println(">>>>>>>>>> " + e.getMessage());
         }
@@ -81,7 +81,7 @@ public class NoteTests {
 ```
 
 ## 事出有因
-> 代码历史久远，为何这样写已无法追溯
+> 代码历史久远，为何这样写已无从追溯。
 
 纳闷了一会儿，看到双层事务，就想起了 Spring事务传播机制，前边理解得比较肤浅。
 
