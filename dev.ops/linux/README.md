@@ -55,6 +55,8 @@ dd 删除当前行
   - `cat /etc/redhat-release`
 - CPU核心数，型号：
   - `cat /proc/cpuinfo`
+- CPU信息
+  - `lscpu`
 - 内存大小：
   - `cat /proc/meminfo |grep MemTotal`
 - 带宽，网卡数：
