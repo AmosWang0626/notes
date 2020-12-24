@@ -63,7 +63,7 @@ spring.shardingsphere.datasource.ds-1.jdbc-url=jdbc:mysql://192.168.1.188:3306/s
 > [中文官方文档-数据分片](https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/configuration/spring-boot-starter/sharding/)
 
 ```properties
-# 分表规则
+# 分库分表规则
 spring.shardingsphere.rules.sharding.tables.dev_short_url.actual-data-nodes=ds-$->{0..1}.dev_short_url_$->{0..1}
 
 # 1.1 默认分库策略（根据url分库，定义分库算法名字 url-hash，具体算法见下边配置 2.1）
