@@ -41,9 +41,7 @@ tags:
 ### 1. 数据源 datasource
 
 - 定义分库名字（标示） `spring.shardingsphere.datasource.names=ds-0,ds-1`
-  > 注意下用法，后边都是这样用的
-  >
-  > `spring.shardingsphere.datasource.ds-0.jdbc-url`
+  > 注意下用法，后边都是这样用的 `spring.shardingsphere.datasource.ds-0.jdbc-url`
 
 - 公共配置 `spring.shardingsphere.datasource.common`
 
@@ -97,17 +95,17 @@ spring.shardingsphere.rules.sharding.key-generators.snowflake.props.worker-id=12
 
 - INLINE（标准分片算法-行表达式）
 
-```properties
-spring.shardingsphere.rules.sharding.sharding-algorithms.id-inline.type=INLINE
-spring.shardingsphere.rules.sharding.sharding-algorithms.id-inline.props.algorithm-expression=dev_short_url_$->{id % 2}
-```
+    ```properties
+    spring.shardingsphere.rules.sharding.sharding-algorithms.id-inline.type=INLINE
+    spring.shardingsphere.rules.sharding.sharding-algorithms.id-inline.props.algorithm-expression=dev_short_url_$->{id % 2}
+    ```
 
 - HASH_MOD（自动分片算法-哈希取模分片算法）
 
-```properties
-spring.shardingsphere.rules.sharding.sharding-algorithms.id-hash.type=HASH_MOD
-spring.shardingsphere.rules.sharding.sharding-algorithms.id-hash.props.sharding-count=2
-```
+    ```properties
+    spring.shardingsphere.rules.sharding.sharding-algorithms.id-hash.type=HASH_MOD
+    spring.shardingsphere.rules.sharding.sharding-algorithms.id-hash.props.sharding-count=2
+    ```
 
 ## 参考
 
