@@ -20,7 +20,9 @@ tags:
 ## 系统卡顿三连
 
 - `free -h`
+
 - `df -h`
+
 - `htop 或者 top`
 
 ---
@@ -29,12 +31,26 @@ tags:
 
 - `jps -lmv` 或者 `top -c`
     - `1423`
+
 - `top -Hp 1423`
     - `1086`
+
 - `printf "%x\n" 1086`
     - `43e`
+
 - `jstack 1423 | grep 43e -C5 --color`
+
 - `jstack 1423 | grep 43e -A 30`
+
+---
+
+## 查看网络状态
+
+- 查看 CLOSE_WAIT
+    - `netstat -an|grep CLOSE_WAIT -c`
+
+- 查询等待关闭连接数
+    - `netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'`
 
 ---
 
