@@ -1,5 +1,5 @@
 ---
-title: Linux
+title: 系统相关 Linux
 date: 2019-12-01
 categories: 系统相关
 tags:
@@ -7,7 +7,7 @@ tags:
 - 精选文章
 ---
 
-# Linux
+# 系统相关 Linux
 
 ## 未整理内容
 
@@ -109,9 +109,15 @@ tags:
 
 ---
 
-## scp
+## SCP
+
+##### 本机文件 scp 发送至其他机器
 
 - `scp /home/boot.zip root@192.168.1.129:/home/`
+
+##### 指定端口
+
+- `scp -P 7623 /home/boot.zip root@192.168.1.129:/home/`
 
 ---
 
