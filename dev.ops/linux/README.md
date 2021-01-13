@@ -76,6 +76,7 @@ tags:
 ## vim
 
 - `:set nu` 显示行号
+- `:set nonu` 取消显示行号
 - `:set ff=unix` 设置编码
 - `dd` 删除当前行
 
