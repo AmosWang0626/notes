@@ -153,6 +153,12 @@ tags:
 
 ---
 
+## 创建多级文件夹
+
+- `mkdir -p test/amos/`
+
+---
+
 ## Linux 文件权限
 
 > `lrwxrwxrwx`
