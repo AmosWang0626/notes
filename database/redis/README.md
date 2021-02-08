@@ -45,7 +45,12 @@ tags:
 - 由于redis是c++写的，需要下载安装包，并且编译
 - 编译c++环境安装 `yum install gcc-c++`
 
-### 阿里云安装更简单
+### Docker
+
+`docker run -d -p 6379:6379 --name redis -v /opt/redis/data:/data redis redis-server --appendonly yes --requirepass Amos@6379`
+
+### 阿里云
+
 1. 安装redis `yum install redis`
 2. 连接redis `redis-cli`
     > 首次安装肯定没启动，会报错，继续如下操作即可。报错信息: 
