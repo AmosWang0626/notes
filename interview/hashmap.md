@@ -1,8 +1,6 @@
 ---
-title: 面试突击 HashMap 篇（更新中...）
-date: 2021-03-05
-categories: 面试突击
-tags:
+title: 面试突击 HashMap 篇（更新中...） date: 2021-03-05 categories: 面试突击 tags:
+
 - 面试突击
 
 ---
@@ -86,14 +84,13 @@ public class HashMap<K, V> {
         Node<K, V>[] tab;
         Node<K, V> p;
         int n, i;
-        // TODO 这里应该可以说明，HashMap并不是new出来就会初始化的，懒初始化？
+        // 这里可以说明，HashMap并不是new出来就会初始化的，resize时初始化的
         if ((tab = table) == null || (n = tab.length) == 0)
             n = (tab = resize()).length;
         // 这个if里的条件，计算出元素要在数组中的位置，如果该位置为空，就直接放这里了
         if ((p = tab[i = (n - 1) & hash]) == null)
             tab[i] = newNode(hash, key, value, null);
-            // 这里就是hash碰撞了，碰撞完要么放链表，要么放红黑树
-        else {
+        else { // 这里就是hash碰撞了，碰撞完要么放链表，要么放红黑树
             // ......
         }
         ++modCount;
