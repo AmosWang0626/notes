@@ -12,6 +12,12 @@ tags:
 
 - `capacity`：容量，也就是数组的长度，扩容扩的也是数组的长度
 
+## 老生常谈
+
+- jdk1.7 数组（table） + 链表
+- jdk1.8 数组 + 链表 + 红黑树
+  > 避免链表分布不均，链表过长，通过红黑树，自平衡，稳定的树高
+
 ## 基础参数
 
 ```java
@@ -104,3 +110,49 @@ public class HashMap<K, V> {
 }
 ```
 
+## JDK 1.7 并发扩容死循环问题
+
+> [老生常谈，HashMap的死循环-占小狼](https://www.jianshu.com/p/1e9cf0ac07f4)
+
+```java
+public class HashMap<K, V> {
+    /**
+     * Transfers all entries from current table to newTable.
+     */
+    void transfer(Entry[] newTable, boolean rehash) {
+        int newCapacity = newTable.length;
+        for (Entry<K, V> e : table) {
+            while (null != e) {
+                Entry<K, V> next = e.next;
+                if (rehash) {
+                    e.hash = null == e.key ? 0 : hash(e.key);
+                }
+                int i = indexFor(e.hash, newCapacity);
+                e.next = newTable[i];
+                newTable[i] = e;
+                e = next;
+            }
+        }
+    }
+}
+```
+
+有点强迫症，看着 while 里的代码，总觉得有点理解不了，就写了个demo测了一下，这就是个典型的头插法，没有特殊含义。
+
+![HashMap头插法](https://gitee.com/AmosWang/resource/raw/master/image/java/hashmap-head-insert.png)
+
+死循环的原因，详细看上边那篇博客即可。下边简单概述一下：
+
+首先，看这段代码，并发情况下，出现问题的肯定是共享变量，newTable就可以排除了，每次进来的newTable都是扩容后的、全新的数组。
+
+然后，死循环的原因，就定位在table中的Entry上，Entry也就是链表，只要链表中的两个Entry.next互相引用就会导致查询的时候死循环。
+
+概括一下，两个线程同时扩容：
+
+- 线程1：扩容时，执行 `Entry<K, V> next = e.next;` 之后挂起，此时 e = 3，next = 7
+- 线程2：一个扩容完成，顺序是 11 > 7 > 3
+- 线程1：继续执行，
+    - while第一次，e = 3，next = 7；e.next = table[i] = null，`最后3上位`
+    - while第二次，e = 7，此时7的next不是11，而是线程2扩容完成后的3，next = 3；e.next = table[i] = 3，`最后7上位`【7.next = 3】
+    - while第三次，e = 3，此时next = null，e.next = table[i] = 7，`最后3上位`，while循环结束【3.next = 7】
+    - 死循环形成【7.next = 3，3.next = 7】，后续如果查询11时，3和7死循环，CPU就100%了。
