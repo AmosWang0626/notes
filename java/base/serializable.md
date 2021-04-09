@@ -1,5 +1,8 @@
 ---
-title: Java 学习笔记 date: 2018-11-04 categories: Java hide: true
+title: Java 序列化问题
+date: 2018-11-04
+categories: Java
+hide: true
 ---
 
 # Java 序列化问题
