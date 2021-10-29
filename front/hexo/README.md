@@ -9,61 +9,72 @@ tags:
 
 ## 原理
 
-- hexo 相当于一个小服务器，不需要后端支持，你把文章 *.md 文件放到 hexo 指定目录中，文章就能访问了。
-- 评论相关的，可以集成第三方插件，有很多优秀的不需要后端支持的插件。
-- 搞一个博客，三步即可：
-  - 初始化一个 hexo 小服务；
-  - 选一个 hexo 主题；
-  - 把 *.md 文章放进去。
-- 通常要想外网访问，两种办法：
-  - 直接暴露 hexo 服务端口；
-  - 通过 nginx 把 hexo 服务暴露出去。
+Hexo是什么？
 
-## 安装
+Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。
 
-- 官网很详细，有时候官网访问不了，可以访问其 github
+简单说，就是会把 Markdown 解析生成 html。
 
-  - [hexo]( https://hexo.io/ )
-  - [hexo github]( https://github.com/hexojs/hexo )
+通过 `hexo server` 启动后，默认会绑定 4000 端口，此时，既能对外提供服务。
 
-- 班门弄斧下，Linux 上安装时需要安装 node.js，参下文
+当我们想搭一套博客的时候，大致需要三步
 
-  ```shell
-  npm install hexo-cli -g
-  hexo init blog
-  cd blog
-  npm install
-  hexo server
-  ```
+- 安装 Hexo
+- 安装喜欢的 Theme
+- 将自己写作的内容放到指定目录
 
-- Linux 服务器要装 node.js
+## 1、安装 Hexo
 
-  - node.js 二进制文件
+> 需要安装 Node.js 环境
 
-    `wget -c https://nodejs.org/dist/v12.13.1/node-v12.13.1-linux-x64.tar.xz`
+- https://hexo.io/
+- https://github.com/hexojs/hexo
 
-  - 解压 *.xz 文件，需要先转 tar，再解压
+```shell
+npm install hexo-cli -g
+hexo init blog
+cd blog
+npm install
+hexo server
+```
 
-    - `yum search xz`
-    - `yum install xz.x86_64`
-    - `xz -d node-v12.13.1-linux-x64.tar.xz ``
-    - ``tar -xvf node-v12.13.1-linux-x64.tar`
+## 2、安装喜欢的 Theme
 
-  - 创建软链接，命令行下直接访问
+- 这里边选择比较多 [hexo-themes](https://hexo.io/themes/)
 
-    - `ln -s /opt/hexo/node-v12.13.1-linux-x64/bin/node /usr/local/bin/node`
-    - `ln -s /opt/hexo/node-v12.13.1-linux-x64/bin/npm /usr/local/bin/npm`
+### 示例，安装 hexo-theme-fluid 主题
 
-  - `npm install hexo-cli -g`
+> 推荐使用 Hexo 5.0.0+
+>
+> https://github.com/fluid-dev/hexo-theme-fluid
 
-  - ...
+1. 安装主题
 
-## 重点呦 选一个漂亮的主题
-- [hexo-themes](https://hexo.io/themes/)
-- 自认为好看的
+   ```shell
+   npm install --save hexo-theme-fluid
+   ```
 
-## 添加标签和归档
-- add categories
-- add tags
-- article add title、category and tag
-- [参考文章](https://www.jianshu.com/p/e17711e44e00)
+   然后在博客目录下创建 _config.fluid.yml，将主题的 _config.yml 内容复制进去。
+
+
+2. 指定主题(如下修改 Hexo 博客目录中的 _config.yml)
+
+   ```yaml
+   theme: fluid # 指定主题
+   language: zh-CN # 指定语言，会影响主题显示的语言，按需修改
+   ```
+
+## 3、将自己写作的内容放到指定目录
+
+将自己写的文章放到博客目录中的 `./source/_posts` 目录里边。
+
+我习惯，直接把自己整理的文档 [github notes](https://github.com/AmosWang0626/notes) 直接放进去即可。
+
+然后，可以重启下项目，看看能否正常访问。
+
+```shell
+hexo clean # 清理下之前生成的html
+hexo g # 生成html
+hexo server # 启动hexo服务，默认会绑定4000端口
+```
+
