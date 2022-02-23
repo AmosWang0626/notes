@@ -23,22 +23,56 @@ Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（�
 - 安装喜欢的 Theme
 - 将自己写作的内容放到指定目录
 
-## 1、安装 Hexo
+### 1、安装 Node.js
+先说下，不推荐使用 yum 安装，因为版本比较老（v10.24.0），再通过 npm 安装 hexo 启动的时候，会出现ES6之类的语法不支持。
 
-> 需要安装 Node.js 环境
+已经安装了？卸载 yum remove nodejs
+
+```shell
+# 安装 node.js
+wget https://npmmirror.com/mirrors/node/v16.14.0/node-v16.14.0-linux-x64.tar.xz
+
+# 解压1
+xz -d node-v16.14.0-linux-x64.tar.xz
+
+# 解压2
+tar -xvf node-v16.14.0-linux-x64.tar
+
+# 将 nodejs 可执行文件路径放入 ~/.profile
+echo 'PATH="$PATH:/opt/nodejs/node-v16.14.0-linux-x64/bin"' >> ~/.profile
+
+source ~/.profile
+
+# v16.14.0
+node -v
+```
+
+## 2、安装 Hexo
 
 - https://hexo.io/
 - https://github.com/hexojs/hexo
 
 ```shell
-npm install hexo-cli -g
+# 安装 hexo
+npm install hexo
+
+# 将 hexo 可执行文件路径放入 ~/.profile
+echo 'PATH="$PATH:/opt/nodejs/node-v16.14.0-linux-x64/node_modules/.bin"' >> ~/.profile
+
+source ~/.profile
+```
+
+## 3、初始化 Hexo Blog 项目
+
+```shell
 hexo init blog
+
 cd blog
-npm install
+
 hexo server
 ```
 
-## 2、安装喜欢的 Theme
+## 4、安装喜欢的 Theme
 
 - 这里边选择比较多 [hexo-themes](https://hexo.io/themes/)
 
@@ -48,7 +82,7 @@ hexo server
 >
 > https://github.com/fluid-dev/hexo-theme-fluid
 
-1. 安装主题
+#### 1. 安装主题
 
    ```shell
    npm install --save hexo-theme-fluid
@@ -57,14 +91,14 @@ hexo server
    然后在博客目录下创建 _config.fluid.yml，将主题的 _config.yml 内容复制进去。
 
 
-2. 指定主题(如下修改 Hexo 博客目录中的 _config.yml)
+#### 2. 指定主题(如下修改 Hexo 博客目录中的 _config.yml)
 
    ```yaml
    theme: fluid # 指定主题
    language: zh-CN # 指定语言，会影响主题显示的语言，按需修改
    ```
 
-## 3、将自己写作的内容放到指定目录
+#### 3、将自己写作的内容放到指定目录
 
 将自己写的文章放到博客目录中的 `./source/_posts` 目录里边。
 
@@ -73,8 +107,14 @@ hexo server
 然后，可以重启下项目，看看能否正常访问。
 
 ```shell
-hexo clean # 清理下之前生成的html
-hexo g # 生成html
-hexo server # 启动hexo服务，默认会绑定4000端口
+# 清理下之前生成的html
+hexo clean
+
+# 生成html
+hexo g
+
+# 启动hexo服务，默认会绑定4000端口
+hexo server 
 ```
 
+试试吧～ http://localhost:4000/
