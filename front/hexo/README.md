@@ -23,7 +23,7 @@ Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（�
 - 安装喜欢的 Theme
 - 将自己写作的内容放到指定目录
 
-### 1、安装 Node.js
+## 1、安装 Node.js
 先说下，不推荐使用 yum 安装，因为版本比较老（v10.24.0），再通过 npm 安装 hexo 启动的时候，会出现ES6之类的语法不支持。
 
 已经安装了？卸载 yum remove nodejs
@@ -45,6 +45,19 @@ source ~/.profile
 
 # v16.14.0
 node -v
+```
+
+### source后关闭终端失效
+
+```shell
+vim ./.bashrc
+```
+
+```shell
+# self config
+if [ -f ~/.profile ]; then
+        source ~/.profile
+fi
 ```
 
 ## 2、安装 Hexo
