@@ -401,7 +401,7 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
@@ -473,7 +473,7 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 70
   banner_mask_alpha: 0.3
 
@@ -739,7 +739,7 @@ twikoo:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -751,7 +751,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -776,7 +776,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 80
   banner_mask_alpha: 0.3
   subtitle:
@@ -794,7 +794,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:  # 打字机内容
@@ -816,7 +816,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -827,7 +827,7 @@ page:
 #---------------------------
 page404:
   enable: true
-  banner_img: https://gitee.com/AmosWang/resource/raw/master/hexoui/image/default.png
+  banner_img: https://iamos.oss-cn-shanghai.aliyuncs.com/blog/default.jpeg
   banner_img_height: 85
   banner_mask_alpha: 0.3
   subtitle: "Page not found"
@@ -883,48 +883,42 @@ static_prefix:
   internal_css: /css
   internal_img: /img
 
-  # 图标库，包含了大量社交类图标，主题依赖的不包含在内，因此可自行修改，详见 https://hexo.fluid-dev.com/docs/icon/
-  # Icon library, which includes many social icons, does not include those theme dependent, so your can modify link by yourself. See: https://hexo.fluid-dev.com/docs/en/icon/
-  iconfont: //at.alicdn.com/t/font_1736178_kmeydafke9r.css
+  anchor: https://lib.baomitu.com/anchor-js/4.3.1/
 
-  anchor: https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/
+  github_markdown: https://lib.baomitu.com/github-markdown-css/4.0.0/
 
-  github_markdown: https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/
+  jquery: https://lib.baomitu.com/jquery/3.6.0/
 
-  jquery: https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/
+  bootstrap: https://lib.baomitu.com/twitter-bootstrap/4.6.1/
 
-  bootstrap: https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/
+  prismjs: https://lib.baomitu.com/prism/1.26.0/
 
-  highlightjs: https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/
+  tocbot: https://lib.baomitu.com/tocbot/4.18.0/
 
-  prismjs: https://cdn.jsdelivr.net/npm/prismjs@1.22.0/
+  typed: https://lib.baomitu.com/typed.js/2.0.12/
 
-  tocbot: https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/
+  fancybox: https://lib.baomitu.com/fancybox/3.5.7/
 
-  typed: https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/
+  nprogress: https://lib.baomitu.com/nprogress/0.2.0/
 
-  fancybox: https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/
+  mathjax: https://lib.baomitu.com/mathjax/3.2.0/
 
-  nprogress: https://cdn.jsdelivr.net/npm/nprogress@0.2.0/
-
-  mathjax: https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/
-
-  katex: https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/
+  katex: https://lib.baomitu.com/KaTeX/0.15.2/
 
   busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/
 
-  clipboard: https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/
+  clipboard: https://lib.baomitu.com/clipboard.js/2.0.10/
 
-  mermaid: https://cdn.jsdelivr.net/npm/mermaid@8.8.3/dist/
+  mermaid: https://lib.baomitu.com/mermaid/8.13.10/
 
-  valine: https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/
+  valine: https://lib.baomitu.com/valine/1.4.16/
 
-  waline: https://cdn.jsdelivr.net/npm/@waline/client@0.4.2/dist/
+  waline: https://lib.baomitu.com/waline/1.5.2/
 
-  gitalk: https://cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/
+  gitalk: https://lib.baomitu.com/gitalk/1.7.2/
 
-  disqusjs: https://cdn.jsdelivr.net/npm/disqusjs@1.0/dist/
+  disqusjs: https://lib.baomitu.com/disqusjs/1.3.0/
 
-  twikoo: https://cdn.jsdelivr.net/npm/twikoo@0.1.15/dist/
+  twikoo: https://lib.baomitu.com/twikoo/1.4.17/
 
-  hint: /lib/hint/
+  hint: https://lib.baomitu.com/hint.css/2.7.0/
