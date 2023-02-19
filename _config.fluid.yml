@@ -385,7 +385,7 @@ footer:
   beian:
     enable: true
     # ICP证号
-    icp_text: 豫ICP备18017205号-3
+    icp_text: 豫ICP备2023001668号-1
     # 公安备案号，不填则只显示ICP
     police_text: ""
     # 公安备案的编号，用于URL跳转查询
