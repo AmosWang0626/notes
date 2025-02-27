@@ -25,7 +25,7 @@ hide: true
 |----|---------------------------------------------------------------|-------------------------------------------------------------|
 | 1  | `[docker 学习笔记](README.md)`                                    | [docker 学习笔记](dev.ops/docker/README.md)              |
 | 2  | `[我的博客](https://my.oschina.net/AmosWang "AmosWang")`          | [我的博客](https://my.oschina.net/AmosWang "AmosWang")   |
-| 3  | `[私人博客](https://amos.wang "amos.wang")`                       | [私人博客](https://amos.wang/ "amos.wang")               |
+| 3  | `[私人博客](https://www.eyeo.cn "eyeo.cn")`                       | [私人博客](https://www.eyeo.cn/ "eyeo.cn")               |
 | 4  | `[编辑表格](http://ewind.us/h5/md-table/)`                        | [编辑表格](http://ewind.us/h5/md-table/)                 |
 | 5  | `[回到顶部](#notes)`                                              | [回到顶部](#notes)                                       |
 | 6  | `[新版小表情](https://github.com/caiyongji/emoji-list)`            | [新版小表情](https://github.com/caiyongji/emoji-list)    |
