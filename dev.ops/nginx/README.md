@@ -193,7 +193,7 @@ yum install nginx-module-*
 ```
 
 ## nginx配置缓存
-> 新搭了个博客[amos.wang](https://amos.wang)
+> 新搭了个博客[eyeo.cn](https://www.eyeo.cn)
 > 前两天，每次打开都费很长时间，简直不能忍，深夜配置下～～
 
 ### 缓存配置如下，完整配置，没打码

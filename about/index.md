@@ -3,7 +3,7 @@ title: 关于
 hide: true
 ---
 
-嗨，我是道远，欢迎来到我的 Java技术学习笔记。
+嗨，我是 Amos，欢迎来到我的 Java技术学习笔记。
 
 学习笔记来源于 [notes](https://github.com/AmosWang0626/notes) 项目，结合 Hexo 搭建，采用 Fluid 主题。
 

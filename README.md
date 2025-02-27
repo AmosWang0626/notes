@@ -7,10 +7,8 @@ hide: true
 # notes
 > Java程序员的笔记斋，不教一日闲过
 - 温馨提示：_blank方式打开链接，请按住 <kbd>Ctrl</kbd> 键
-- 我的博客：[amos.wang](https://amos.wang)
+- 我的博客：[eyeo.cn](https://eyeo.cn)
 - 用进废退：博客不只是对外的，也是博主自己遇到问题时去翻阅的，查缺补漏，利人利己吧
-
-## [Flag 2020](https://github.com/AmosWang0626/notes/blob/master/skill/flag-2020.md)
 
 ## 文件目录
 - database【数据库】
